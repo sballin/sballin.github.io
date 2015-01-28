@@ -4,8 +4,7 @@ from functions import *
 import glob
 import shutil
 
-top = os.getcwd()
-site_dir = top + '/.'
+site_dir = '.'
 
 with open('template', 'r') as t:
     template = t.read()
@@ -25,14 +24,15 @@ source = make_source(template, 'index', body, 0, categories, articles, 'site')
 write_source('index.html', source)
 
 for folder in glob.glob("_*"):         # content folders like _math
-    os.chdir(folder)
     folder_name = folder.replace('_', '')
-    folder_site_dir = site_dir + '/' + folder_name
-    shutil.rmtree(folder_site_dir)
+    folder_site_dir = os.getcwd() + '/' + folder_name
+    try: shutil.rmtree(folder_site_dir)
+    except: pass
     os.mkdir(folder_site_dir)
+    os.chdir(folder)
     for filename in glob.glob("*"):    # read all markdown files
         if '.md' not in filename and '_' not in filename:
-            os.symlink(top + '/' + folder + '/' + filename, folder_site_dir + '/' + filename)
+            os.symlink('../' + folder + '/' + filename, '../' + folder_name + '/' + filename)
         elif '.md' in filename:
             body = get_body(filename)
             source = make_source(template, 'index', body, 1, categories, articles,
@@ -45,7 +45,7 @@ for folder in glob.glob("_*"):         # content folders like _math
         os.chdir(subfolder)
         for filename in glob.glob("*"):
                 if '.md' not in filename:
-                    os.symlink(top + '/' + folder + '/_' + subfolder_name + '/' + filename, folder_site_dir + '/' + subfolder_name + '/' + filename)
+                    os.symlink('../../' + folder + '/' + subfolder + '/' + filename, '../../' + folder_name + '/' + subfolder_name + '/' + filename)
                 else:
                     date = filename.replace('.md', '')
                     body = get_body(filename)
