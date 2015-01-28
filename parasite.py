@@ -32,7 +32,7 @@ for folder in glob.glob("_*"):         # content folders like _math
     os.mkdir(folder_site_dir)
     for filename in glob.glob("*"):    # read all markdown files
         if '.md' not in filename and '_' not in filename:
-            shutil.copy(filename, folder_site_dir)
+            os.symlink(top + '/' + folder + '/' + filename, folder_site_dir + '/' + filename)
         elif '.md' in filename:
             body = get_body(filename)
             source = make_source(template, 'index', body, 1, categories, articles,
@@ -45,7 +45,7 @@ for folder in glob.glob("_*"):         # content folders like _math
         os.chdir(subfolder)
         for filename in glob.glob("*"):
                 if '.md' not in filename:
-                    shutil.copy(filename, folder_site_dir + '/' + subfolder_name)
+                    os.symlink(top + '/' + folder + '/_' + subfolder_name + '/' + filename, folder_site_dir + '/' + subfolder_name + '/' + filename)
                 else:
                     date = filename.replace('.md', '')
                     body = get_body(filename)
