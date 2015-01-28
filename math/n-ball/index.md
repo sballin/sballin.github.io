@@ -4,7 +4,7 @@
 
 An N-ball is an N-dimensional ball. This was an extra credit assignment to figure out formulas for the volume and surface area of higher-dimensional balls. This might seem pretty abstract, but it has a cool real-world application: optimizing error-correcting codes has to do with finding the densest way to pack spheres in higher dimensions.
 
-<center><img src="4-sphere.png" width="170px"/></center>
+<center><img src="../../math/n-ball/4-sphere.png" width="170px"/></center>
 
 __Table of Contents:__
 

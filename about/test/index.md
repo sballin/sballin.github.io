@@ -65,4 +65,4 @@ The Hitchhiker's Guide to the Galaxy has a few things to say on the subject of t
         text = centerLaTeX(text)
         return text
 
-<center>![2cool4u](2cool4u.jpg)</center>
+<center>![2cool4u](../../about/test/smashing.jpg)</center>

@@ -57,7 +57,7 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <p><center><iframe src="//player.vimeo.com/video/12185093?title=0&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></center></p>
 <h2 id="friendly-background-on-the-mandelbrot-set">Friendly background on the Mandelbrot set</h2>
 <p>The Mandelbrot set is a fractal. In fractals, large-scale shapes and patterns can be seen at much smaller scales (see how the bubble to the left of the cardioid looks like the smaller one to its left, and so on?). This <a href="http://en.wikipedia.org/wiki/File:Mandelbrot_zoom.gif">gif</a> shows it well.</p>
-<p><center><img src="mandel.png" width="400px"/></center></p>
+<p><center><img src="../../code/mandelbrot/mandel.png" width="400px"/></center></p>
 <p><strong>Black: in the Mandelbrot set. White: outside the set.</strong></p>
 <p>This set isn't generated with a function like $y = x^2$. Instead, for each $(x,y)$ point, we look at the behavior of the formula $z_n = z_{n-1}^2 + c$, taking $c = x+ yi$, for example $c = 2+3i$ at $(2,3)$. This formula plugs the values it produces back into itself, and if the number's absolute value $\|z\| = \sqrt{x^2+y^2}$ never hits a limit we define, say 2, in the number of tries we say we're going to test, the value $c$ it used is declared part of the Mandelbrot set. This is all to set up a mathematical game from which a very complex and beautiful order emerges.</p>
 <p>Let's try 200 iterations at $(0.5, 0.5)$ and $(0.1, 0.1)$ with an absolute value limit of 2:</p>
@@ -98,7 +98,7 @@ z_{200} &amp;= 0.0936 + 0.1230i \rightarrow \|z_5\| = \mathbf{0.1546}<br />
 \end{align}$$</center>
 <p>This time we hit the limit of iterations, so we assume it's not going to hit our absolute value limit and it <strong>is</strong> in the Mandelbrot set.</p>
 <p>We can do this for a whole bunch of points in the plane thanks to ~the magic of programming~ and get the following plot:</p>
-<p><center><img src="brot.png" width="400px"/></center></p>
+<p><center><img src="../../code/mandelbrot/brot.png" width="400px"/></center></p>
 <p>The program that made this graph went from $x = -2\cdots0.7$ and $y = -1\cdots1$, took $c = x + yi$, and checked if the values from the formula looked like they were converging or diverging after 100 tries. The converging points are shown in blue. The red dots show $c = 0.1+0.1i$, which you can see is inside the set, and $c = 0.5 + 0.5i$, which is outside the set and normally wouldn't get printed. The lonely blue dots at $x = 0$ could be at the tips of the tendrils that the Mandelbrot set's graph shows at better resolution.</p>
 <p><center><a href="http://commons.wikimedia.org/wiki/File:Mandelbrot_Leminiscates_1_coords.png"><img src="lemniscates.png" width="400px"/></a></center></p>
 <p>Some graphs show the number of iterations to diverge, usually with colors. In the image above (not my work), the outer circle is what you think the Mandelbrot set looks like when you only go to $z_1$ to check that values aren't diverging. The ellipse means you went to $z_2$, the pear-shaped one to $z_3$, and so on. Wikipedia has another helpful <a href="http://en.wikipedia.org/wiki/File:Animation_of_the_growth_of_the_Mandelbrot_set_as_you_iterate_towards_infinity.gif">animation</a>.</p>
@@ -131,7 +131,7 @@ z_{200} &amp;= 0.0936 + 0.1230i \rightarrow \|z_5\| = \mathbf{0.1546}<br />
 </code></pre>
 <p>Python isn't the fastest language. That's cool because it forces you to think about the complexity of your code. For example, in the original Mandelbrot plotting code, I had <code>pixels.append(its)</code>. It's much faster to do <code>pixels[i] = its</code>, although the <code>while</code> loop ends up making this insignficant. There's an interesting <a href="http://pythonfasterway.uni.me/">site</a> with time comparisons between Python operations that look like they're equivalent. </p>
 <p>Finally, we can change the frame borders to zoom in on interesting regions:</p>
-<p><center><img src="zoomed.png"/></center></p>
+<p><center><img src="../../code/mandelbrot/zoomed.png"/></center></p>
 <h2 id="speeding-things-up-with-c">Speeding things up with C</h2>
 <p>I decided to ditch the complex data type:</p>
 <pre><code>for (y = ymin; y &gt; ylim; y -= step)
@@ -167,7 +167,7 @@ z_{200} &amp;= 0.0936 + 0.1230i \rightarrow \|z_5\| = \mathbf{0.1546}<br />
 <p>In the above code, we keep track of the real and imaginary parts separately using <code>zr</code> and <code>zi</code> and use the fact that for $c = x + yi$,</p>
 <center class="donthyphenate">$$c^2 = (x + yi)^2 = x^2 + 2xyi - y^2.$$</center>
 <p>We get a pretty plot after tweaking the color assignment algorithm:</p>
-<p><center><img alt="" src="cbrot.png" /></center></p>
+<p><center><img alt="" src="../../code/mandelbrot/cbrot.png" /></center></p>
 <p>With a simple loop to change the frame borders, I was able to create a zoom function. Another video I'll have to put up is pretty funny at the end, where you see <code>double</code> precision breaking down.</p>
 <p><center><iframe src="//player.vimeo.com/video/83323445?title=0&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></center></p>
 <p>I can't put up the C program at the moment because the image creation code is under a restrictive license. This was also a long time before I took a formal course in C. If I rewrite it in the future, I'll probably use multiple threads and try to get arbitrary precision arithmetic working for real.</p>

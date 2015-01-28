@@ -2,7 +2,7 @@
 
 Tokamaks have a transformer coil at the center of the torus that induces a current in the plasma.
 
-<center><a href="http://cswim.org/imageslibrary/tokamak_schema.gif/view"><img src="tokamak.gif"/></a></center>
+<center><a href="http://cswim.org/imageslibrary/tokamak_schema.gif/view"><img src="../../code/filament/tokamak.gif"/></a></center>
 
 I'm working on a Python program that uses magnetic sensor measurements to reconstruct the plasma current profile on Columbia's High-beta Tokamak. 
 
