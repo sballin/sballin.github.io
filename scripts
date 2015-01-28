@@ -3,6 +3,4 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
     </script>
     <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>"""
 
-highlightjs = """<link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/mono-blue.min.css">
-<script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>"""
+highlightjs = ''
