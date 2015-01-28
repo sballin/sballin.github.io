@@ -1,0 +1,8 @@
+AuthUserFile /u/11/s/sbb2151/.htpasswd
+AuthName "WHAT SEEK YOU ON THE TWELFTH PLANE OF TORMENT?" 
+AuthType Basic
+require valid-user
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)sball\.in$
+RewriteRule ^$ http://www.columbia.edu/~sbb2151/ [L,QSA,R=301]
