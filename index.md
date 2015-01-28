@@ -2,7 +2,7 @@
 <!-- <center><img src="d3dkstar.png" alt="link coming soon" width="450px"/></center> -->
 
 <center>
-<a href="./rho_t"><img src="./thumb_finals.png" style="display: inline-block; width: 300px; margin-right: 1%; margin-bottom: 1em;"></a>
+<a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="./thumb_finals.png" style="display: inline-block; width: 300px; margin-right: 1%; margin-bottom: 1em;"></a>
 <a href="./code/friend-graph"><img src="./thumb_connections.png" style="display: inline-block; width: 300px; margin-right: 1%; margin-bottom: 1em;"></a>
 <a href="./code/mandelbrot"><img src="./thumb_cbrot.png" style="display: inline-block; height: 175px; margin-right: 1%; margin-bottom: 1em;"></a>
 <a href="./physics/papers"><img src="./thumb_star.png" style="display: inline-block; height: 175px; margin-right: 1%; margin-bottom: 1em;"></a>
