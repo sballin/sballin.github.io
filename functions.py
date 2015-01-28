@@ -82,11 +82,9 @@ def add_side(source, categories, articles, category, depth):
                                     + folder_mark)
             for title, parent in articles.iteritems():
                 if parent == cat:
-                    up = diver(depth-1)
-                    source = source.replace(folder_mark, '<a href="' + up + title + '">'
+                    source = source.replace(folder_mark, '<a href="' + up + category + '/' + title + '">'
                                             + '<div id="sub" class="indent">'
                                             + '&#x21B3; ' + title + '</div></a>' + "\n" + folder_mark)
-                    up = diver(depth)
     source = source.replace(folder_mark, '')
     source = source.replace('</div></a>\n\n', '</div></a>\n', 1)
     return source
