@@ -1,6 +1,3 @@
-<!-- <center>[<img src="./connections.png">](https://github.com/sballin/friend_graph)</center> -->
-<!-- <center><img src="d3dkstar.png" alt="link coming soon" width="450px"/></center> -->
-
 <center>
 <a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="http://sball.in/thumb_finals.png" style="display: inline-block; width: 300px; margin-right: 1%; margin-bottom: 1em;"></a>
 <a href="./code/friend-graph"><img src="http://sball.in/thumb_connections.png" style="display: inline-block; width: 300px; margin-right: 1%; margin-bottom: 1em;"></a>

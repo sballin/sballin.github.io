@@ -33,7 +33,5 @@ Hyphenator.run();
 <span style="visibility:hidden">&#x25FC;&#x25FC;</span>&#x25FC;<br>
 <span style="visibility:hidden">&#x25FC;</span>&#x25FC;<span style="visibility:hidden">&#x25FC;</span>
 </div>
-<script src="instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
 </body>
 </html>
