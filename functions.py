@@ -49,8 +49,8 @@ def is_comment(line):
 
 def add_scripts(body, source):
     script_mark = '\n{{scripts}}'
-    if '$$' in body or '\\(' in body or '\begin{align}' in body:
-        source = source.replace(script_mark, mathJax + script_mark)
+    #if '$$' in body or '\\(' in body or '\begin{align}' in body:
+    source = source.replace(script_mark, mathJax + script_mark)
     if '<code>' in body:
         source = source.replace(script_mark, highlightjs + script_mark)
     source = source.replace(script_mark, '')
