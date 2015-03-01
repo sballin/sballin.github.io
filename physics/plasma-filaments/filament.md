@@ -10,7 +10,7 @@ It can calculate the magnetic field at any location resulting from current in a 
 
 $$B = G(r, z, r_{coil}, z_{coil})\cdot I_{coil}$$
 
-where G is a Green's function of their positions in cylindrical coordinates. For each magnetic sensor, we subtract the coil fields from the sensor's readings to get the field of the plasma current alone. Then we do the linear algebra version of I = G^{-1*B to calculate the plasma current over a grid of different positions.
+where G is a Green's function of their positions in cylindrical coordinates. For each magnetic sensor, we subtract the coil fields from the sensor's readings to get the field of the plasma current alone. Then we do the linear algebra version of $I = G^{-1}B$ to calculate the plasma current over a grid of different positions.
 
 <center><a href="https://github.com/sballin/filament"><img src="https://raw.githubusercontent.com/sballin/filament/master/resources/reconstruction.gif"/></a></center>
 
