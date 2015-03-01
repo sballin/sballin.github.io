@@ -4,7 +4,7 @@ You can click on the images to read them.
 
 ### Optimizing Plasma Boundary Control in Superconducting Tokamaks
 
-<center><a href="https://www.dropbox.com/s/o22qekcek83x0id/dpp-poster.pdf?dl=0"><img src="../../physics/papers/d3dkstar.png" width="450px"/></a></center>
+<center><a href="./dpp-poster.pdf"><img src="../../physics/papers/d3dkstar.png" width="450px"/></a></center>
 
 _General Atomics, San Diego, Summer 2014_
 
@@ -16,7 +16,7 @@ Developed a metric to quantify a tokamak's ability to control its plasma. Built 
 
 ### Aerodynamics Simulations for the D8 “Double Bubble” Aircraft Using the LAVA Unstructured Solver
 
-<center><a href="https://www.dropbox.com/s/sv0pc3ni7nk7k2b/d8-sim.pdf?dl=0"><img src="../../physics/papers/star.jpg"/></a></center>
+<center><a href="./d8-sim.pdf"><img src="../../physics/papers/star.jpg"/></a></center>
 
 _NASA Ames Research Center, Moffett Field, Summer 2013_
 
@@ -26,7 +26,7 @@ Ran fluid simulations of a wind tunnel test on NASA's Pleiades supercomputer usi
 
 ### Pong
 
-<center><a href="https://www.dropbox.com/s/jfrxhrt24su0hb8/Pong.pdf?dl=0"><img src="../../physics/papers/arduinos.jpg"/></a></center>
+<center><a href="./pong.pdf"><img src="../../physics/papers/arduinos.jpg"/></a></center>
 
 _Intro to Electrical Engineering, Columbia University, Winter 2012_
 
