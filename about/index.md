@@ -4,7 +4,7 @@ About
 This website
 ------------
 
-I made this site and the Python script that generates it for fun. The script is named Parasite, and you can check it out on [GitHub](https://github.com/sballin).
+I made this site and a Python script that generates it. The script is named Parasite, and you can check it out on [GitHub](https://github.com/sballin/sballin.github.io).
 
 Easter eggs took priority over some of the most basic features. Happy hunting!
 
