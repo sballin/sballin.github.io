@@ -9,7 +9,7 @@ site_dir = '.'
 with open('template', 'r') as t:
     template = t.read()
 
-categories = ['about', 'code', 'math', 'physics', 'photo', 'other']
+categories = ['about', 'code', 'math', 'physics', 'photography', 'other']
 articles = {}
 for folder in categories:
     os.chdir(folder)
