@@ -1,13 +1,13 @@
 <!-- regular html comment -->
 
-# First page?
+# First page
 
-:^)
+With some content or other.
 
 </div>
 <div id="article" class="hyphenate">
 
-# Test Page
+# Second Page
 
 | Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
@@ -21,10 +21,10 @@ HTML SVG:
   <circle cx="250" cy="210" r="100" stroke="red" stroke-width="1" fill="red" style="fill-opacity:0.1;"/>
   <circle cx="350" cy="210" r="100" stroke="blue" stroke-width="1" fill="blue" style="fill-opacity:0.1;"/>
   <circle cx="300" cy="110" r="100" stroke="turquoise" stroke-width="1" fill="turquoise" style="fill-opacity:0.1;"/>
-  <text x="390" y="230" fill="red" text-anchor="middle">cool</text>
-  <text x="300" y="80" fill="red" text-anchor="middle">smart</text>
-  <text x="210" y="230" fill="red" text-anchor="middle">fun</text>
-  <text x="300" y="180" fill="red" text-anchor="middle">ur mom</text>
+  <text x="390" y="230" fill="red" text-anchor="middle">A</text>
+  <text x="300" y="80" fill="red" text-anchor="middle">B</text>
+  <text x="210" y="230" fill="red" text-anchor="middle">C</text>
+  <text x="300" y="180" fill="red" text-anchor="middle">A &#x222A; B &#x222A; C</text>
 </svg></center>
 
 ## Asdf
@@ -65,4 +65,4 @@ The Hitchhiker's Guide to the Galaxy has a few things to say on the subject of t
         text = centerLaTeX(text)
         return text
 
-<center>![2cool4u](../../about/test/smashing.jpg)</center>
+<center><img src="splashing.jpg"></center>
