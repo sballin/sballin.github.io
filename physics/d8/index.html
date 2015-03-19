@@ -5,12 +5,6 @@
 <!-- Stylesheets -->
 <link rel="stylesheet" href="../../normalize.css">
 <link rel="stylesheet" href="../../main.css">
-<!-- Hyphenate body text -->
-<script src="../../hyphen/Hyphenator.js" type="text/javascript"/></script>
-<script type="text/javascript">
-Hyphenator.config({minwordlength : 4});
-Hyphenator.run();
-</script>
 <!-- Additional scripts --><script type="text/x-mathjax-config">
 MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
     </script>
@@ -44,7 +38,7 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 </div>
 </div>
 <div id="content">
-<div id="article" class="hyphenate">
+<div id="article">
 <h1 id="aerodynamics-simulations-for-the-d8-double-bubble-aircraft-using-lava">Aerodynamics Simulations for the D8 "Double Bubble" aircraft using LAVA</h1>
 <p><em>In the summer of 2013, I worked at NASA's Ames Research Center near Mountain View, California. I carried out simulations of the D8 aircraft using a new fluid code that had been developed in-house. It was a great 10 weeks. I made some great friends, hung out in San Francisco, went to Yosemite... and wrote a gripping 10-page report.</em></p>
 <div class="toc">
@@ -89,7 +83,7 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <p>Unstructured grid generation is emerging as a more automated and efficient strategy to set up CFD simulations. LAVA, the Launch Ascent and Vehicle Aerodynamics CFD solver, is able to carry out simulations on both structured and unstructured grids. This paper details an effort to use Star-CCM+ and Pointwise to generate unstructured grids for simulation with the LAVA solver, and compare the numerical results to data from MIT's Wright brothers wind tunnel (WBWT) and to the previously generated OVERFLOW solutions\cite{pandya}. Finally, the overset grids generated for the OVERFLOW runs were also used to compute solutions with LAVA's structured flow solver. The LAVA unstructured results are compared on top and bottom of the aircraft with OVERFLOW and  LAVA structured results.</p>
 <h2 id="cfd-methods">CFD methods</h2>
 <p>Computational fluid dynamics extends the concept of control volumes used in fluid mechanics to simulate flow. This is done by dividing up the volume around the model using a grid. Many different solvers can then resolve attributes of the flow using the Navier–Stokes equations, and assumptions such as inviscid or irrotational flow make it possible to simplify them. However, viscous forces are important for the D8, for example in the boundary layer near the trailing edge of the fuselage which influences airflow to the engines. The codes used in this paper show steady-state behavior, as carried out by Pandya\cite{pandya}, with the Reynolds-Averaged Navier–Stokes (RANS) equations:</p>
-<center class="donthyphenate">$$\rho\bar u_j \frac{\partial \bar u_i }{\partial x_j} = \rho \bar f_i
+<center>$$\rho\bar u_j \frac{\partial \bar u_i }{\partial x_j} = \rho \bar f_i
 + \frac{\partial}{\partial x_j} \left[ - \bar p\delta_{ij} + \mu \left( \frac{\partial \bar u_i}{\partial x_j} + \frac{\partial \bar u_j}{\partial x_i} \right)- \rho \overline{u_i^\prime u_j^\prime} \right]$$</center>
 <p>where the change in mean momentum on the left hand side is equal to the sum of the forces exerted by the body, pressure field stress, viscous stresses, and the Reynolds stress term $-\rho u_i^\prime u_j^\prime$, which can be supplied by different turbulence models. LAVA unstructured simulations were run using 640 Sandy Bridge cores on NASA's Pleiades supercomputer, with a wall-clock time between 4 and 6 hours. The solver outputs data for the pressure, velocity, and temperature of the airflow on the surface of the model and in the entire volume of the simulation. It also gives details about the pressure coefficient $C_p$, lift coefficient $C_L$, drag coefficient $C_D$, and loadings on various parts of the model. These values are obtained when the results of the time-averaged simulation become stable, and is said to converge. If the results begin to differ wildly, the solver detects that the simulation has begun to diverge.</p>
 <p>The flow conditions match those of the of 1:20 scale model tested in the MIT Wright brothers wind tunnel at 120 mph (Mach 0.16) and a Reynolds number of approximately $3\cdot 10^6$ per meter. Steady, turbulent flow was assumed and simulated using the Spalart–Allmaras model.</p>

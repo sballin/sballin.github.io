@@ -38,7 +38,7 @@ def prep_apostrophes(text):
     return text
 
 def prep_latex(text):
-    text = text.replace('<p>$$', '<center class="donthyphenate">$$')
+    text = text.replace('<p>$$', '<center>$$')
     text = text.replace('$$</p>', '$$</center>')
     return text
 

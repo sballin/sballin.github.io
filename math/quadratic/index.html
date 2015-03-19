@@ -5,12 +5,6 @@
 <!-- Stylesheets -->
 <link rel="stylesheet" href="../../normalize.css">
 <link rel="stylesheet" href="../../main.css">
-<!-- Hyphenate body text -->
-<script src="../../hyphen/Hyphenator.js" type="text/javascript"/></script>
-<script type="text/javascript">
-Hyphenator.config({minwordlength : 4});
-Hyphenator.run();
-</script>
 <!-- Additional scripts --><script type="text/x-mathjax-config">
 MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
     </script>
@@ -46,20 +40,20 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 </div>
 </div>
 <div id="content">
-<div id="article" class="hyphenate">
+<div id="article">
 <h1 id="the-quadratic-formula">The Quadratic Formula</h1>
 <p>I couldn't remember if I'd derived it before, and Wikipedia said it was fun and hinted that it involved completing the square.</p>
-<center class="donthyphenate">$$\begin{align}
+<center>$$\begin{align}
 0 &amp;= ax^2+bx+c = x^2+\frac bax+\frac ca\\
 0 &amp;= (x+x_1)(x+x_2) = x^2+(x_1+x_2)x+x_1x_2
 \end{align}$$</center>
-<center class="donthyphenate">$$\frac ba = x_1+x_2\rightarrow x_2 = \frac ba-x_1$$</center>
-<center class="donthyphenate">$$\frac ca = x_1x_2 = x_1\left(\frac ba -x_1\right)\rightarrow 0 = x_1^2-\frac bax_1+\frac ca := (x_1+x_3)^2$$</center>
+<center>$$\frac ba = x_1+x_2\rightarrow x_2 = \frac ba-x_1$$</center>
+<center>$$\frac ca = x_1x_2 = x_1\left(\frac ba -x_1\right)\rightarrow 0 = x_1^2-\frac bax_1+\frac ca := (x_1+x_3)^2$$</center>
 <p>We get another quadratic equation which we say has a single solution $x_3$ (why not two?).</p>
-<center class="donthyphenate">$$-\frac ba = 2x_3 \rightarrow x_3 = -\frac b{2a}$$</center>
-<center class="donthyphenate">$$\frac ca = x_3^2 = \frac{b^2}{4a^2}\rightarrow \frac{b^2}{4a^2}-\frac ca = \left(x_1-\frac b{2a}\right)^2$$</center>
-<center class="donthyphenate">$$\pm\sqrt{\frac{b^2}{4a^2}-\frac ca} = x_1-\frac b{2a}$$</center>
-<center class="donthyphenate">$$x_{1,2} = -\frac b{2a}\pm\sqrt{\frac{b^2}{4a^2}-\frac ca} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$</center>
+<center>$$-\frac ba = 2x_3 \rightarrow x_3 = -\frac b{2a}$$</center>
+<center>$$\frac ca = x_3^2 = \frac{b^2}{4a^2}\rightarrow \frac{b^2}{4a^2}-\frac ca = \left(x_1-\frac b{2a}\right)^2$$</center>
+<center>$$\pm\sqrt{\frac{b^2}{4a^2}-\frac ca} = x_1-\frac b{2a}$$</center>
+<center>$$x_{1,2} = -\frac b{2a}\pm\sqrt{\frac{b^2}{4a^2}-\frac ca} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$</center>
 </div>
 </div>
 </div>

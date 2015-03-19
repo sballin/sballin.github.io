@@ -5,12 +5,6 @@
 <!-- Stylesheets -->
 <link rel="stylesheet" href="../../normalize.css">
 <link rel="stylesheet" href="../../main.css">
-<!-- Hyphenate body text -->
-<script src="../../hyphen/Hyphenator.js" type="text/javascript"/></script>
-<script type="text/javascript">
-Hyphenator.config({minwordlength : 4});
-Hyphenator.run();
-</script>
 <!-- Additional scripts --><script type="text/x-mathjax-config">
 MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
     </script>
@@ -44,13 +38,13 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 </div>
 </div>
 <div id="content">
-<div id="article" class="hyphenate">
+<div id="article">
 <h1 id="filament-code">Filament Code</h1>
 <p>Tokamaks have a transformer coil at the center of the torus that induces a current in the plasma.</p>
 <p><center><a href="http://cswim.org/imageslibrary/tokamak_schema.gif/view"><img src="./tokamak.gif"/></a></center></p>
 <p>I'm working on a Python program that uses magnetic sensor measurements to reconstruct the plasma current profile on Columbia's High-beta Tokamak. </p>
 <p>It can calculate the magnetic field at any location resulting from current in a circular coil:</p>
-<center class="donthyphenate">$$B = G(r, z, r_{coil}, z_{coil})\cdot I_{coil}$$</center>
+<center>$$B = G(r, z, r_{coil}, z_{coil})\cdot I_{coil}$$</center>
 <p>where G is a Green's function of their positions in cylindrical coordinates. For each magnetic sensor, we subtract the coil fields from the sensor's readings to get the field of the plasma current alone. Then we do the linear algebra version of $I = G^{-1}B$ to calculate the plasma current over a grid of different positions.</p>
 <p><center><a href="https://github.com/sballin/filament"><img src="https://raw.githubusercontent.com/sballin/filament/master/resources/reconstruction.gif"/></a></center></p>
 <p>The plasma current in the above image is actually wrong, because the code is not completely precise, and the least-squares inversion of the Green's function matrix makes errors even bigger. The image below shows how accurately the code can predict what a given sensor sees in a shot where only the vertical field coil is active.</p>
