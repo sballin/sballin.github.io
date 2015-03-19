@@ -16,4 +16,4 @@ My name is Sean, and I'm a junior at Columbia University. I'm studying Applied P
 Contact
 -------
 
-Send an email to [sbb2151@columbia.edu](mailto:sbb2151+s@columbia.edu).
+Send an email to [s.ballinger@columbia.edu](mailto:s.ballinger@columbia.edu).
