@@ -24,7 +24,7 @@ HTML SVG:
   <text x="390" y="230" fill="red" text-anchor="middle">A</text>
   <text x="300" y="80" fill="red" text-anchor="middle">B</text>
   <text x="210" y="230" fill="red" text-anchor="middle">C</text>
-  <text x="300" y="180" fill="red" text-anchor="middle">A &#x222A; B &#x222A; C</text>
+  <text x="300" y="180" fill="red" text-anchor="middle">A &#x2229; B &#x2229; C</text>
 </svg></center>
 
 ## Asdf
