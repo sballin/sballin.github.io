@@ -116,7 +116,6 @@ img {
 }
 
 a > img:hover {
-	/*opacity: 0.7;*/
 	-webkit-filter: brightness(90%);
 }
 
