@@ -21,9 +21,8 @@
 <body>
 <div id="wrap">
 <div id="side">
-<div id="logo"><a href="{{top-path}}">&#x2601;</a></div>
+<div id="logo"><a href="{{top-path}}">sbb</a></div>
 <div id="nav">
-<a href="{{top-path}}"><div id="sub" style="padding-left: 0;">home</div></a>
 {{folders}}
 </div>
 </div>

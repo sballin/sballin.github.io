@@ -28,8 +28,7 @@ for folder in categories:
     for filename in glob.glob("*"):
         if '.md' in filename:
             body = get_body(filename)
-            source = make_source(template, 'index', body, 1, categories, articles,
-                                 folder)
+            source = make_source(template, 'index', body, 1, categories, articles, folder)
             write_source(folder_site_dir + '/index.html', source)
         elif os.path.isdir(filename):
             subfolder = filename
@@ -38,12 +37,9 @@ for folder in categories:
                 if '.md' in subfilename:
                     date = subfilename.replace('.md', '')
                     body = get_body(subfilename)
-                    source = make_source(template, subfolder, body, 2, categories,
-                                         articles, folder)
-                    write_source(folder_site_dir + '/' + subfolder
-                                 + '/index.html', source)
+                    source = make_source(template, subfolder, body, 2, categories, articles, folder)
+                    write_source(folder_site_dir + '/' + subfolder + '/index.html', source)
             os.chdir('..')
-
     os.chdir('..')                      # go up to main site directory
 
 print_tree('sballin.github.io', categories, articles)

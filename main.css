@@ -41,8 +41,9 @@ html, body {
 	top: 30px;
 	width: 200px;
 	height: auto;
-	padding: 15px;
+	padding: 5px;
 	padding-top: 12px;
+	padding-bottom: 12px;
 	line-height: 22px;
     -o-transition: .5s;
     -ms-transition: .5s;
@@ -73,7 +74,7 @@ h1 {
 h2 {
 	margin-top: 30px;
 	margin-bottom: 5px;
-	border-bottom: 1px dashed #e3e3e3;
+	/*border-bottom: 1px dashed #e3e3e3;*/
 }
 
 #article {
@@ -83,7 +84,7 @@ h2 {
 	padding: 35px;
 	padding-top: 3px;
 	padding-bottom: 17px;
-	text-align: justify;
+	/*text-align: justify;*/
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	hyphens: auto;
