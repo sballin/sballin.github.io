@@ -1,4 +1,4 @@
-# Filament Code
+# Filament Code <a href="https://github.com/sballin/filament"><i class="fa fa-github"></i></a>
 
 Tokamaks have a transformer coil at the center of the torus that induces a current in the plasma.
 

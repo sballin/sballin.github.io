@@ -5,6 +5,7 @@
 <!-- Stylesheets -->
 <link rel="stylesheet" href="{{top-path}}normalize.css">
 <link rel="stylesheet" href="{{top-path}}main.css">
+<link rel="stylesheet" href="{{top-path}}font-awesome-4.4.0/css/font-awesome.min.css">
 <!-- Additional scripts -->
 {{scripts}}
 <script type="text/javascript" src="{{top-path}}w.js"></script>

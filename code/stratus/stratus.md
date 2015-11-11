@@ -1,4 +1,4 @@
-# Stratus
+# Stratus <a href="https://github.com/nlittlepoole/Chatter"><i class="fa fa-github"></i></a>
 
 <center><img width="250px" src="../../code/stratus/stratus.jpg"/></center>
 

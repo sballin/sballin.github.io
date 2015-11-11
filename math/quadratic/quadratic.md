@@ -1,6 +1,6 @@
 # The Quadratic Formula
 
-I couldn't remember if I'd derived it before, and Wikipedia said it was fun and hinted that it involved completing the square.
+I couldn't remember having derived it before. Wikipedia said it was fun, so I tried it:
 
 $$\begin{align}
 0 &= ax^2+bx+c = x^2+\frac bax+\frac ca\\\\

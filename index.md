@@ -1,8 +1,8 @@
 # Sean B. Ballinger
 
-Hi, I'm Sean, a senior at Columbia University. I'm studying Applied Physics with a minor in Computer Science, and I'm excited about research related to nuclear fusion, aerospace engineering, and medical physics. This website is a repository for cool stuff and projects I'm working on.
+<center style="font-size: 20px"><a href="http://engineering.columbia.edu/sean-ballinger"><i class="fa fa-user"></i> Bio</a> &#8226; <a href="ballinger_resume.pdf"><i class="fa fa-file-text"></i> Resume</a> &#8226; <a href="https://github.com/sballin"><i class="fa fa-github fa-lg"></i> GitHub</a> &#8226; <a href="mailto:s.ballinger@columbia.edu"><i class="fa fa-envelope"></i> Email</a></center>
 
-<center>[Bio](http://engineering.columbia.edu/sean-ballinger) &#8226; [Resume](ballinger_resume.pdf) &#8226; [GitHub](https://github.com/sballin) &#8226; [Email](mailto:s.ballinger@columbia.edu)</center>
+Hi, I'm Sean, a senior at Columbia University. I'm studying Applied Physics with a minor in Computer Science, and I'm excited about research related to nuclear fusion, aerospace engineering, and medical physics. This website is a repository for cool stuff and projects I'm working on.
 
 ## Projects
 

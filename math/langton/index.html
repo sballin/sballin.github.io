@@ -5,6 +5,7 @@
 <!-- Stylesheets -->
 <link rel="stylesheet" href="../../normalize.css">
 <link rel="stylesheet" href="../../main.css">
+<link rel="stylesheet" href="../../font-awesome-4.4.0/css/font-awesome.min.css">
 <!-- Additional scripts -->
 <script type="text/javascript" src="../../w.js"></script>
 <!-- Google Analytics -->
@@ -37,7 +38,7 @@
 </div>
 <div id="content">
 <div id="article">
-<h1 id="langtons-ant">Langton's Ant</h1>
+<h1 id="langtons-ant">Langton's Ant <a href="https://github.com/sballin/iterant"><i class="fa fa-github"></i></a></h1>
 <p>This is a start toward solving problem <a href="http://projecteuler.net/problem=349">349</a> from Project Euler:</p>
 <blockquote>
 <p>An ant moves on a regular grid of squares that are coloured either black or white. The ant is always oriented in one of the cardinal directions (left, right, up or down) and moves from square to adjacent square according to the following rules:</p>
@@ -54,7 +55,7 @@
 <p>I made a Mathematica simulation to find the point around which the motion of the ant stops being random and enters a "highway."</p>
 <p><center><img src="../../math/langton/ant.gif" width="250px"/></center></p>
 <p>After spending a lot of time at the beginning going through seemingly random configurations, the ant reaches a configuration that makes it "repeat" the same sequence and launch into a highway.</p>
-<p>Here's the code, which you can also find on <a href="https://raw.github.com/sbool/iterant">GitHub</a>:</p>
+<p>Here's the code, which you can also find on <a href="https://github.com/sballin/iterant">GitHub</a>:</p>
 <pre><code>(* Short-term to long-term behavior of Langton's ant. *)
 
 moveAnt[gridLen_, maxIts_]:=Module[{grid, antX, antY, dir, dirlist, i},
