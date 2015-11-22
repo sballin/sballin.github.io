@@ -19,7 +19,7 @@ for folder in categories:
     os.chdir('..')
 
 body = get_body('index.md')
-source = make_source(template, 'index', body, 0, categories, articles, 'site')
+source = make_source(template, 'home', body, 0, categories, articles, 'site')
 write_source('index.html', source)
 
 for folder in categories:
@@ -28,7 +28,7 @@ for folder in categories:
     for filename in glob.glob("*"):
         if '.md' in filename:
             body = get_body(filename)
-            source = make_source(template, 'index', body, 1, categories, articles, folder)
+            source = make_source(template, folder, body, 1, categories, articles, folder)
             write_source(folder_site_dir + '/index.html', source)
         elif os.path.isdir(filename):
             subfolder = filename
