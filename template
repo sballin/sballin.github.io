@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{top-path}}normalize.css">
 <link rel="stylesheet" href="{{top-path}}main.css">
 <link rel="stylesheet" href="{{top-path}}font-awesome-4.4.0/css/font-awesome.min.css">
-<link rel="icon" type="image/png" href="favicon-crown.png">
+<link rel="icon" type="image/png" href="{{top-path}}favicon-crown.png">
 <!-- Additional scripts -->
 {{scripts}}
 <script type="text/javascript" src="{{top-path}}w.js"></script>
