@@ -4,7 +4,7 @@
 
 __MIT Plasma Science and Fusion Center, Cambridge, MA. Summer 2015.__
 
-_Contributed Talk, APS Division of Plasma Physics 2015 Meeting_
+_Contributed Talk, APS Division of Plasma Physics 2015 Meeting_ [<i class="fa fa-link"></i>](http://www-internal.psfc.mit.edu./research/alcator/pubs/APS/APS2015/Savannah2015index.html)
 
 <center><a href="https://docs.google.com/presentation/d/1L4ZWVGMUMs7WpfBKkYcwPdrfSc9M8fNJAeG0rojuWwA/pub"><img src="dpp-presentation.jpg" width="450px"/></a></center>
 
@@ -14,7 +14,7 @@ Captured footage of turbulence in the divertor region of the Alcator C-Mod tokam
 
 __General Atomics, San Diego. Summer 2014.__
 
-_Outstanding Undergraduate Poster Award, APS Division of Plasma Physics 2014 Meeting_
+_Outstanding Undergraduate Poster Award, APS Division of Plasma Physics 2014 Meeting_ [<i class="fa fa-picture-o"></i>](outstanding-poster-award.jpg)
 
 <center><a href="dpp-poster.pdf"><img src="d3dkstar.png" width="450px"/></a></center>
 

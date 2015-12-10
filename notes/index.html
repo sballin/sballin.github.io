@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en">
 <head>
-<title>other - Sean Ballinger</title>
+<title>notes - Sean Ballinger</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <!-- Styling -->
 <link rel="stylesheet" href="../normalize.css">
@@ -29,16 +29,24 @@
 <a href="../math"><div id="sub">math</div></a>
 <a href="../physics"><div id="sub">physics</div></a>
 <a href="../photography"><div id="sub">photography</div></a>
-<a href="../notes"><div id="sub">notes</div></a>
-<a href="../other"><div id="sub" class="sel">other</div></a>
-<a href="../other/nethack"><div id="sub" class="indent">&#x21B3; nethack</div></a>
-<a href="../other/mystery-hunt"><div id="sub" class="indent">&#x21B3; mystery-hunt</div></a>
+<a href="../notes"><div id="sub" class="sel">notes</div></a>
+<a href="../other"><div id="sub">other</div></a>
 </div>
 </div>
 <div id="content">
 <div id="article">
-<h1 id="other-links">Other Links</h1>
-<p><a href="http://www.breadfish.co.uk/">http://www.breadfish.co.uk/</a></p>
+<h1 id="notes">Notes</h1>
+<p>This page lets me paste stuff to the internet immediately using SimpleNote.</p>
+<div id="note"></div>
+
+<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+
+<script type="text/javascript">
+$('#note').load('http://cors.io/?u=https://app.simplenote.com/publish/53gczb#published_content', function() {
+    var orig = document.getElementById("note").innerHTML;
+    document.getElementById("note").innerHTML = orig.replace('<p>Public</p>', '').replace('<div class="published-top"><span class="logo"><a href="/" title="Get Simplenote">Published with Simplenote</a></span></div></div><!-- .published-wrap -->', '');
+});
+</script>
 </div>
 </div>
 </div>
