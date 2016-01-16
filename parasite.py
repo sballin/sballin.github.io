@@ -5,6 +5,7 @@ import sys
 import codecs
 import markdown
 import os
+import collections
 
 # Hack to use UTF-8 instead of ASCII encoding
 reload(sys)
@@ -145,10 +146,10 @@ if __name__ == '__main__':
     template = open('template', 'r').read()
 
     # Folders that should show up in the sidebar and whose articles should be formatted
-    folders = ['about', 'code', 'math', 'physics', 'photography', 'notes', 'other']
+    folders = ['about', 'code', 'math', 'physics', 'photography', 'other']
 
     # Make tree of all article folders
-    tree = {}
+    tree = collections.OrderedDict()
     for folder in folders:
         tree[folder] = []
         for path in glob.glob(folder + "/*"):
