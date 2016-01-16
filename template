@@ -24,9 +24,7 @@
 <div id="wrap">
 <div id="side">
 <div id="logo"><a href="{{top-path}}">sbb</a></div>
-<div id="nav">
 {{folders}}
-</div>
 </div>
 <div id="content">
 <div id="article">

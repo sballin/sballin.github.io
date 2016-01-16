@@ -1,12 +1,10 @@
-# ρ(t) <a href="https://github.com/sballin/rho_t"><i class="fa fa-github"></i></a>
+# Tools for life at Columbia 
 
-<center><a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="https://raw.githubusercontent.com/sballin/rho_t/master/finals.jpg"/></a></center>
+## Dining hall menus
 
-The folks at Columbia's Application Development Initiative made a tool called [Density](https://density.adicu.com) which estimates how full different places around Columbia's campus are using WiFi data. Unfortunately it only gives percentages for the moment you check the site. I want to see how the data is changing over time.
+Scrape pages like http://dining.columbia.edu/1209week-fourteenwednesdaybreakfast-fbc
 
-ρ(t) scrapes data from [density.adicu.com](http://density.adicu.com/) every 15 minutes and shows it all using a D3 graph. Here's the [Github page](https://github.com/sballin/rho_t) for the project.
-
-Now there's an API and I'm trying to get some pretty, adjustable graphs working:
+## Space usage
 
 <script src="Chart.js"></script>
 <div style="width:100%">
@@ -66,4 +64,10 @@ getJSONP('http://density.adicu.com/day/2015-11-24/building/75?auth_token=RQ1Y4T3
             responsive: true
         });
     }
-    </script>
+</script>
+
+## Old stuff
+
+<center><a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="https://raw.githubusercontent.com/sballin/rho_t/master/finals.jpg"/></a></center>
+
+ρ(t) scrapes data from [density.adicu.com](http://density.adicu.com/) every 15 minutes and shows it using a D3 plot. Here's its [Github page](https://github.com/sballin/rho_t). It's not a smart solution now since there's an API, but it can show you how to scrape a website.

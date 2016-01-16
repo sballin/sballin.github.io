@@ -7,11 +7,11 @@ Hi, I'm Sean, a senior at Columbia University. I'm studying Applied Physics with
 ## Projects
 
 <center>
-<a href="physics/plasma-filaments"><img src="thumb_3d.png" style="display: inline-block; width: 300px; margin-right: 1%; margin-bottom: 1em;"></a>
-<a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="thumb_finals.png" style="display: inline-block; width: 300px; margin-right: 1%; margin-bottom: 1em;"></a>
-<a href="code/friend-graph"><img src="thumb_connections.png" style="display: inline-block; width: 300px; margin-right: 1%; margin-bottom: 1em;"></a>
+<a href="physics/plasma-filaments"><img src="thumb_3d.png" class="thumb"></a>
+<a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="thumb_finals.png" class="thumb"></a>
+<a href="code/friend-graph"><img src="thumb_connections.png" class="thumb"></a>
 <!-- <a href="code/mandelbrot"><img src="http://sball.in/thumb_cbrot.png" style="display: inline-block; height: 175px; margin-right: 1%; margin-bottom: 1em;"></a> -->
-<a href="physics/papers"><img src="thumb_star.jpg" style="display: inline-block; width: 300px; margin-right: 1%; margin-bottom: 1em;"></a>
+<a href="physics/papers"><img src="thumb_star.jpg" class="thumb"></a>
 </center>
 <p style="clear: both;">
 

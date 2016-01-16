@@ -1,46 +1,174 @@
 #!/usr/bin/env python
 
-from functions import *
 import glob
-import shutil
+import sys
+import codecs
+import markdown
+import os
 
-site_dir = '.'
+# Hack to use UTF-8 instead of ASCII encoding
+reload(sys)
+sys.setdefaultencoding('UTF8')
 
-with open('template', 'r') as t:
-    template = t.read()
+# Define available scripts
+mathJax = """<script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
+    </script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>"""
+highlightjs = """<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/github.min.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>"""
 
-categories = ['about', 'code', 'math', 'physics', 'photography', 'notes', 'other']
-articles = {}
-for folder in categories:
-    os.chdir(folder)
-    for subfolder in glob.glob("*"):
-        if '.' not in subfolder:
-            articles[subfolder] = folder
-    os.chdir('..')
 
-body = get_body('index.md')
-source = make_source(template, 'home', body, 0, categories, articles, 'site')
-write_source('index.html', source)
+def md_to_html(text):
+    text = fancy_quotes(text)
+    #text = prep_apostrophes(text)
+    # Markdown extensions 'codehilite' and 'meta' also available.
+    text = markdown.markdown(text, ['tables', 'footnotes', 'toc'])
+    text = prep_latex(text)
+    return text
 
-for folder in categories:
-    folder_site_dir = os.getcwd() + '/' + folder
-    os.chdir(folder)
-    for filename in glob.glob("*"):
-        if '.md' in filename:
-            body = get_body(filename)
-            source = make_source(template, folder, body, 1, categories, articles, folder)
-            write_source(folder_site_dir + '/index.html', source)
-        elif os.path.isdir(filename):
-            subfolder = filename
-            os.chdir(subfolder)
-            for subfilename in glob.glob("*"):
-                if '.md' in subfilename:
-                    date = subfilename.replace('.md', '')
-                    body = get_body(subfilename)
-                    source = make_source(template, subfolder, body, 2, categories, articles, folder)
-                    write_source(folder_site_dir + '/' + subfolder + '/index.html', source)
-            os.chdir('..')
-    os.chdir('..')                      # go up to main site directory
 
-print_tree('sballin.github.io', categories, articles)
-print 'Size: %.2f MB' % (get_folder_size('.')/1000000.0)
+def fancy_quotes(text):
+    text = text.split("\n")
+    for line in text:
+        if not '    ' in line and not '`' in line:
+            while "\"" in line:
+                line = line.replace("\"", '&ldquo;', 1)
+                line = line.replace("\"", '&rdquo;', 1)
+            # fix quotes inside <div> tags
+            while '=&ldquo;' in line:
+                line = line.replace('=&ldquo;', "=\"", 1)
+                line = line.replace('&rdquo;>', "\">", 1)
+    text_out = ''
+    for line in text:
+        text_out += line.encode('utf-8') + "\n"
+    return text_out
+
+
+def prep_apostrophes(text):
+    text = text.replace("'", '&rsquo;')
+    return text
+
+
+def prep_latex(text):
+    text = text.replace('<p>$$', '<center>$$')
+    text = text.replace('$$</p>', '$$</center>')
+    return text
+
+
+def is_comment(line):
+    if '<!--' and '-->' in line:
+        return 1
+    return 0
+
+
+def add_scripts(body, source):
+    script_mark = '\n{{scripts}}'
+    if '$$' in body or '\\(' in body or '\begin{align}' in body:
+        source = source.replace(script_mark, mathJax + script_mark)
+    if '<code>' in body:
+        source = source.replace(script_mark, highlightjs + script_mark)
+    source = source.replace(script_mark, '')
+    return source
+
+
+def add_content(body, template):
+    return template.replace('{{content}}', body)
+
+
+def add_side(source, path, tree):
+    folder_mark = '{{folders}}'
+    up = top(path)
+    category = path.split('/', 1)[0]
+    for cat in tree.keys():
+        if cat != category or len(tree[category]) == 0:
+            source = source.replace(folder_mark, '<div class="category"><a class="category-name" href="%s%s">%s</a></div>\n%s' % (up, cat, cat, folder_mark))
+        else:
+            source = source.replace(folder_mark, '<div class="category">\n<a class="category-name" href="%s%s">%s</a>\n<div class="category-article-list">\n%s' % (up, cat, cat, folder_mark))
+            for article_name in tree[category]:
+                pretty_article_name = article_name.replace('-', ' ')
+                source = source.replace(folder_mark, '<a class="category-article" href="%s%s/%s">%s</a>\n%s' % (up, category, article_name, pretty_article_name, folder_mark))
+            source = source.replace(folder_mark, '</div>\n</div>' + folder_mark)
+    source = source.replace(folder_mark, '')
+    source = source.replace('</div>\n\n</div>', '</div>\n</div>', 1)
+    return source
+
+
+def top(path):
+    """
+    Return path to top directory given article path.
+    """
+    if path.count('/') == 1: return '../../'
+    elif path != '.': return '../'
+    else: return './'
+
+
+def write_source(path, tree, template):
+    if path.count('/') == 1:
+        title = path.split('/')[1].replace('-', ' ')
+        folder = path.split('/')[0]
+    elif path == '.': title = folder = 'home'
+    else: title = folder = path
+    body = codecs.open(path + '/index.md', 'r', encoding='utf-8').read()
+    body = md_to_html(body)
+    source = add_content(body, template)
+    source = add_scripts(body, source)
+    source = add_side(source, path, tree)
+    source = source.replace('{{top-path}}', top(path)) \
+                   .replace('{{folder}}', folder)    \
+                   .replace('{{title}}', title)
+    codecs.open(path + '/index.html', 'w', encoding='utf-8').write(source)
+
+
+def get_folder_size(p):
+   """
+   Copied from
+   http://stackoverflow.com/questions/1392413/calculating-a-directory-size-using-python
+   """
+   from functools import partial
+   prepend = partial(os.path.join, p)
+   return sum([(os.path.getsize(f) if os.path.isfile(f) else get_folder_size(f))
+               for f in map(prepend, os.listdir(p))])
+
+
+def print_tree(tree):
+    for folder in tree.keys():
+        print '%s' % folder
+        for item in tree[folder]:
+            print '   %s' % item
+        print
+
+
+if __name__ == '__main__':
+    # Read template to apply to pages written in Markdown
+    template = open('template', 'r').read()
+
+    # Folders that should show up in the sidebar and whose articles should be formatted
+    folders = ['about', 'code', 'math', 'physics', 'photography', 'notes', 'other']
+
+    # Make tree of all article folders
+    tree = {}
+    for folder in folders:
+        tree[folder] = []
+        for path in glob.glob(folder + "/*"):
+            # If it's probably a folder containing an article, add article name to tree
+            if '.' not in path:
+                tree[folder].append(path.split('/', 1)[1])
+
+    # Write home page index
+    write_source('.', tree, template)
+
+    # Scan category folders for Markdown to translate to HTML
+    for folder in tree.keys():
+        # Write category folder indices
+        write_source(folder, tree, template)
+        # Write article folder index if an index.md file is present
+        for article in tree[folder]:
+            path = folder + '/' + article
+            if len(glob.glob(path + '/index.md')) == 1:
+                write_source(path, tree, template)
+
+    # Print website info to terminal
+    print_tree(tree)
+    print 'Size: %.2f MB' % (get_folder_size('.')/1000000.0)

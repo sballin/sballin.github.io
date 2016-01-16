@@ -50,3 +50,5 @@ Here's the code, which you can also find on [GitHub](https://github.com/sballin/
 
     (* allow scrubbing through number of iterations *)
     Manipulate[moveAnt[100, its], {{its, 0, "Iterations"}, 0, 8500,1}]
+
+_February 2014._

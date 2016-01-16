@@ -61,5 +61,3 @@ After finishing a meta I went with a friend to pick up another physical puzzle. 
 <center>![](../../other/mystery-hunt/wrap-up.jpg)</center>
 
 <center>![](../../other/mystery-hunt/score-sheet.jpg)</center>
-
-<!-- The problem that is not stated. -->

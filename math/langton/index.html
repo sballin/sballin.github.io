@@ -7,7 +7,9 @@
 <link rel="stylesheet" href="../../main.css">
 <link rel="stylesheet" href="../../font-awesome-4.4.0/css/font-awesome.min.css">
 <link rel="icon" type="image/png" href="../../favicon-crown.png">
-<!-- Additional scripts -->
+<!-- Additional scripts --><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/github.min.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript" src="../../w.js"></script>
 <!-- Google Analytics -->
 <script>
@@ -23,19 +25,21 @@
 <div id="wrap">
 <div id="side">
 <div id="logo"><a href="../../">sbb</a></div>
-<div id="nav">
-<a href="../../about"><div id="sub">about</div></a>
-<a href="../../code"><div id="sub">code</div></a>
-<a href="../../math"><div id="sub" class="sel">math</div></a>
-<a href="../../math/n-ball"><div id="sub" class="indent">&#x21B3; n-ball</div></a>
-<a href="../../math/quadratic"><div id="sub" class="indent">&#x21B3; quadratic</div></a>
-<a href="../../math/billionaire"><div id="sub" class="indent">&#x21B3; billionaire</div></a>
-<a href="../../math/langton"><div id="sub" class="indent">&#x21B3; langton</div></a>
-<a href="../../math/ode"><div id="sub" class="indent">&#x21B3; ode</div></a>
-<a href="../../physics"><div id="sub">physics</div></a>
-<a href="../../photography"><div id="sub">photography</div></a>
-<a href="../../notes"><div id="sub">notes</div></a>
-<a href="../../other"><div id="sub">other</div></a>
+<div class="category"><a class="category-name" href="../../about">about</a></div>
+<div class="category"><a class="category-name" href="../../code">code</a></div>
+<div class="category"><a class="category-name" href="../../notes">notes</a></div>
+<div class="category"><a class="category-name" href="../../other">other</a></div>
+<div class="category"><a class="category-name" href="../../physics">physics</a></div>
+<div class="category"><a class="category-name" href="../../photography">photography</a></div>
+<div class="category">
+<a class="category-name" href="../../math">math</a>
+<div class="category-article-list">
+<a class="category-article" href="../../math/billionaire">billionaire</a>
+<a class="category-article" href="../../math/langton">langton</a>
+<a class="category-article" href="../../math/n-ball">n ball</a>
+<a class="category-article" href="../../math/ode">ode</a>
+<a class="category-article" href="../../math/quadratic">quadratic</a>
+</div>
 </div>
 </div>
 <div id="content">
@@ -91,6 +95,7 @@ moveAnt[gridLen_, maxIts_]:=Module[{grid, antX, antY, dir, dirlist, i},
 (* allow scrubbing through number of iterations *)
 Manipulate[moveAnt[100, its], {{its, 0, "Iterations"}, 0, 8500,1}]
 </code></pre>
+<p><em>February 2014.</em></p>
 </div>
 </div>
 </div>

@@ -10,7 +10,9 @@
 <!-- Additional scripts --><script type="text/x-mathjax-config">
 MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
     </script>
-    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/github.min.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript" src="../../w.js"></script>
 <!-- Google Analytics -->
 <script>
@@ -26,16 +28,17 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <div id="wrap">
 <div id="side">
 <div id="logo"><a href="../../">sbb</a></div>
-<div id="nav">
-<a href="../../about"><div id="sub" class="sel">about</div></a>
-<a href="../../about/test"><div id="sub" class="indent">&#x21B3; test</div></a>
-<a href="../../code"><div id="sub">code</div></a>
-<a href="../../math"><div id="sub">math</div></a>
-<a href="../../physics"><div id="sub">physics</div></a>
-<a href="../../photography"><div id="sub">photography</div></a>
-<a href="../../notes"><div id="sub">notes</div></a>
-<a href="../../other"><div id="sub">other</div></a>
+<div class="category">
+<a class="category-name" href="../../about">about</a>
+<div class="category-article-list">
+<a class="category-article" href="../../about/test">test</a>
 </div>
+</div><div class="category"><a class="category-name" href="../../code">code</a></div>
+<div class="category"><a class="category-name" href="../../notes">notes</a></div>
+<div class="category"><a class="category-name" href="../../other">other</a></div>
+<div class="category"><a class="category-name" href="../../physics">physics</a></div>
+<div class="category"><a class="category-name" href="../../photography">photography</a></div>
+<div class="category"><a class="category-name" href="../../math">math</a></div>
 </div>
 <div id="content">
 <div id="article">

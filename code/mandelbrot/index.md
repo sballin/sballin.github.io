@@ -174,3 +174,5 @@ I was trying to get GMP or MPFR working for arbitrary precision, as well as thre
 - [openMP example programs](http://users.abo.fi/mats/PP2012/examples/OpenMP/)
 - [compiling openMP](http://www.dartmouth.edu/~rc/classes/intro_openmp/compile_run.html)
 - [more openMP](http://www.embedded.com/design/mcus-processors-and-socs/4007625/Getting-started-with-multicore-programming-Part-2--Multithreading-in-C)
+
+_February 2014._
