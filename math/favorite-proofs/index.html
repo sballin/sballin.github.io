@@ -1,13 +1,16 @@
 <!DOCTYPE html><html lang="en">
 <head>
-<title>billionaire - Sean Ballinger</title>
+<title>favorite proofs - Sean Ballinger</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <!-- Styling -->
 <link rel="stylesheet" href="../../normalize.css">
 <link rel="stylesheet" href="../../main.css">
 <link rel="stylesheet" href="../../font-awesome-4.4.0/css/font-awesome.min.css">
 <link rel="icon" type="image/png" href="../../favicon-crown.png">
-<!-- Additional scripts -->
+<!-- Additional scripts --><script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
+    </script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
 <script type="text/javascript" src="../../w.js"></script>
 <!-- Google Analytics -->
 <script>
@@ -28,11 +31,10 @@
 <div class="category">
 <a class="category-name" href="../../math">math</a>
 <div class="category-article-list">
-<a class="category-article" href="../../math/billionaire">billionaire</a>
-<a class="category-article" href="../../math/langton">langton</a>
+<a class="category-article" href="../../math/favorite-proofs">favorite proofs</a>
 <a class="category-article" href="../../math/n-ball">n ball</a>
-<a class="category-article" href="../../math/ode">ode</a>
-<a class="category-article" href="../../math/quadratic">quadratic</a>
+<a class="category-article" href="../../math/ODE">ODE</a>
+<a class="category-article" href="../../math/project-euler">project euler</a>
 </div>
 </div><div class="category"><a class="category-name" href="../../physics">physics</a></div>
 <div class="category"><a class="category-name" href="../../photography">photography</a></div>
@@ -40,18 +42,20 @@
 </div>
 <div id="content">
 <div id="article">
-<h1 id="billionaire">Billionaire</h1>
-<p>Project Euler problem 267:</p>
-<blockquote>
-<p>You are given a unique investment opportunity.</p>
-<p>Starting with £1 of capital, you can choose a fixed proportion, f, of your capital to bet on a fair coin toss repeatedly for 1000 tosses.</p>
-<p>Your return is double your bet for heads and you lose your bet for tails.</p>
-<p>For example, if f = 1/4, for the first toss you bet £0.25, and if heads comes up you win £0.5 and so then have £1.5. You then bet £0.375 and if the second toss is tails, you have £1.125.</p>
-<p>Choosing f to maximize your chances of having at least £1,000,000,000 after 1,000 flips, what is the chance that you become a billionaire?</p>
-<p>All computations are assumed to be exact (no rounding), but give your answer rounded to 12 digits behind the decimal point in the form 0.abcdefghijkl.</p>
-</blockquote>
-<p><center><object type="image/svg+xml" width="500px" data="../../math/billionaire/predictions.svg">Your browser does not support SVG</object></center></p>
-<p><em>April 2014.</em></p>
+<h1 id="favorite-proofs">Favorite proofs</h1>
+<h2 id="the-quadratic-formula">The quadratic formula</h2>
+<p>I couldn't remember having ever derived it. Wikipedia said it was fun, so I tried:</p>
+<center>$$\begin{align}
+0 &amp;= ax^2+bx+c = x^2+\frac bax+\frac ca\\
+0 &amp;= (x+x_1)(x+x_2) = x^2+(x_1+x_2)x+x_1x_2
+\end{align}$$</center>
+<center>$$\frac ba = x_1+x_2\rightarrow x_2 = \frac ba-x_1$$</center>
+<center>$$\frac ca = x_1x_2 = x_1\left(\frac ba -x_1\right)\rightarrow 0 = x_1^2-\frac bax_1+\frac ca := (x_1+x_3)^2$$</center>
+<p>We get another quadratic equation which we say has a single solution $x_3$ (why not two?).</p>
+<center>$$-\frac ba = 2x_3 \rightarrow x_3 = -\frac b{2a}$$</center>
+<center>$$\frac ca = x_3^2 = \frac{b^2}{4a^2}\rightarrow \frac{b^2}{4a^2}-\frac ca = \left(x_1-\frac b{2a}\right)^2$$</center>
+<center>$$\pm\sqrt{\frac{b^2}{4a^2}-\frac ca} = x_1-\frac b{2a}$$</center>
+<center>$$x_{1,2} = -\frac b{2a}\pm\sqrt{\frac{b^2}{4a^2}-\frac ca} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$</center>
 </div>
 </div>
 </div>

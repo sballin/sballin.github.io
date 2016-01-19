@@ -117,7 +117,6 @@ def write_source(path, tree, template):
     source = add_scripts(body, source)
     source = add_side(source, path, tree)
     source = source.replace('{{top-path}}', top(path)) \
-                   .replace('{{folder}}', folder)    \
                    .replace('{{title}}', title)
     codecs.open(path + '/index.html', 'w', encoding='utf-8').write(source)
 

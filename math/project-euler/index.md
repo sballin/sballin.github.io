@@ -1,4 +1,6 @@
-# Langton's Ant <a href="https://github.com/sballin/iterant"><i class="fa fa-github"></i></a>
+# Project Euler
+
+## Langton's Ant <a href="https://github.com/sballin/iterant"><i class="fa fa-github"></i></a>
 
 This is a start toward solving problem [349](http://projecteuler.net/problem=349) from Project Euler:
 
@@ -12,7 +14,7 @@ This is a start toward solving problem [349](http://projecteuler.net/problem=349
 
 I made a Mathematica simulation to find the point around which the motion of the ant stops being random and enters a "highway."
 
-<center><img src="../../math/langton/ant.gif" width="250px"/></center>
+<center><img src="ant.gif" width="250px"/></center>
 
 After spending a lot of time at the beginning going through seemingly random configurations, the ant reaches a configuration that makes it "repeat" the same sequence and launch into a highway.
 
@@ -52,3 +54,23 @@ Here's the code, which you can also find on [GitHub](https://github.com/sballin/
     Manipulate[moveAnt[100, its], {{its, 0, "Iterations"}, 0, 8500,1}]
 
 _February 2014._
+
+## Billionaire
+
+Project Euler problem 267:
+
+>You are given a unique investment opportunity.
+
+>Starting with £1 of capital, you can choose a fixed proportion, f, of your capital to bet on a fair coin toss repeatedly for 1000 tosses.
+
+>Your return is double your bet for heads and you lose your bet for tails.
+
+>For example, if f = 1/4, for the first toss you bet £0.25, and if heads comes up you win £0.5 and so then have £1.5. You then bet £0.375 and if the second toss is tails, you have £1.125.
+
+>Choosing f to maximize your chances of having at least £1,000,000,000 after 1,000 flips, what is the chance that you become a billionaire?
+
+>All computations are assumed to be exact (no rounding), but give your answer rounded to 12 digits behind the decimal point in the form 0.abcdefghijkl.
+
+<center><object type="image/svg+xml" width="500px" data="predictions.svg">Your browser does not support SVG</object></center>
+
+_April 2014._

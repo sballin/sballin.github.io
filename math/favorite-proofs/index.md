@@ -1,6 +1,8 @@
-# The Quadratic Formula
+# Favorite proofs
 
-I couldn't remember having derived it before. Wikipedia said it was fun, so I tried it:
+## The quadratic formula
+
+I couldn't remember having ever derived it. Wikipedia said it was fun, so I tried:
 
 $$\begin{align}
 0 &= ax^2+bx+c = x^2+\frac bax+\frac ca\\\\
