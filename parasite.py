@@ -6,6 +6,7 @@ import codecs
 import markdown
 import os
 import collections
+import re
 
 # Hack to use UTF-8 instead of ASCII encoding
 reload(sys)
@@ -55,6 +56,11 @@ def prep_apostrophes(text):
 def prep_latex(text):
     text = text.replace('<p>$$', '<center>$$')
     text = text.replace('$$</p>', '$$</center>')
+    # Fix over-eager Markdown formatting inside LaTeX expressions
+    text = re.sub(r'\$\$(.*)<em>(.*)\$\$', r'$$\1_\2$$', text)
+    text = re.sub(r'\$\$(.*)</em>(.*)\$\$', r'$$\1_\2$$', text)
+    text = re.sub(r'\$(.*)<em>(.*)\$', r'$\1_\2$', text)
+    text = re.sub(r'\$(.*)</em>(.*)\$', r'$\1_\2$', text)
     return text
 
 
