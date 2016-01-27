@@ -1,12 +1,10 @@
-# Plasma physics formulary
-
 <style>
 .MathJax_Display {
     margin: 0;
 }
 </style>
 
-## Plasma parameters
+# Plasma parameters
 
 Debye length: $$\lambda_D \equiv \sqrt{\frac{\epsilon_0KT_e}{ne^2}}$$
 
@@ -18,7 +16,10 @@ Plasma frequency: $$\omega_p = \sqrt{\frac{n_0e^2}{\epsilon_0m}}$$
 
 Larmor radius: $$r_L \equiv \frac{v_\perp}{\omega_c} = \frac{mv_\perp}{\|q\|B}$$
 
-## Adiabatic invariants
+</div>
+<div id="article" class="hyphenate">
+
+# Adiabatic invariants
 
 Constant for slow changes to the system.
 
@@ -28,7 +29,10 @@ Second, the velocity integral along a magnetic field line: $$J = \int_a^b v_\par
 
 Third: $\Phi$, the total magnetic flux enclosed by a drift surace, though drifts are relatively slow so $\Phi$ is not often conserved.
 
-## Guiding center drifts
+</div>
+<div id="article" class="hyphenate">
+
+# Guiding center drifts
 
 From Chen p43.
 
@@ -42,19 +46,22 @@ Curvature drift: $$\mathbf{v}_R = \frac{mv_\parallel^2}q\frac{\mathbf{R}_c\times
 
 Polarization drift: $$\mathbf{v}_p = \pm \frac{1}{\omega_c B}\frac{d\mathbf{E}}{dt}$$
 
-## Plasma waves
+</div>
+<div id="article" class="hyphenate">
+
+# Plasma waves
 
 From Chen p144-145.
 
 Index of refraction: $$N = \frac{c}{v} = \frac{ck}{\omega}$$
 
-### Electron waves (electrostatic)
+## Electron waves (electrostatic)
 
 $\mathbf{B}_0 = 0$ or $\mathbf{k}\parallel\mathbf{B}_0$ (plasma oscillations): $$\omega^2=\omega_p^2+\frac32k^2v_{th}^2$$
 
 $\mathbf{k}\perp\mathbf{B}_0$ (upper hybrid oscillations): $$\omega^2=\omega_p^2+\omega_c^2=\omega_h^2$$
 
-### Ion waves (electrostatic)
+## Ion waves (electrostatic)
 
 $\mathbf{B}_0$ or $\mathbf{k}\parallel\mathbf{B}_0$ (acoustic waves): $$\omega^2 = k^2v_s^2 = k^2\frac{\gamma_eKT_e+\gamma_iKT_i}{M}$$
 
@@ -62,7 +69,7 @@ $\mathbf{k}\perp\mathbf{B}_0$ (electrostatic ion cyclotron waves): $$\omega^2 = 
 
 $\mathbf{k}\perp\mathbf{B}_0$ (lower hybrid oscillations): $$\omega^2 = \omega_l^2 = \Omega_c\omega_c$$
 
-### Electron waves (electromagnetic)
+## Electron waves (electromagnetic)
 
 $\mathbf{B}_0 = 0$ (light waves): $$\omega^2 = \omega_p^2+k^2c^2$$
 
@@ -74,7 +81,7 @@ $\mathbf{k}\parallel\mathbf{B}_0$ (R wave, whistler): $$\frac{c^2k^2}{\omega^2} 
 
 $\mathbf{k}\parallel\mathbf{B}_0$ (L wave): $$\frac{c^2k^2}{\omega^2} = 1-\frac{\omega_p^2/\omega^2}{1+(\omega_c/\omega)}$$
 
-### Ion waves (electromagnetic)
+## Ion waves (electromagnetic)
 
 $\mathbf{B}_0 = 0$: None
 
