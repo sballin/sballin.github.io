@@ -1,16 +1,16 @@
-# Formulas for N-Balls
+# Formulas for n-spheres
 
-## What?
+## What's an n-sphere?
 
-An N-ball is an N-dimensional ball. This was an extra credit assignment to figure out formulas for the volume and surface area of higher-dimensional balls. This might seem pretty abstract, but it has a cool real-world application: optimizing error-correcting codes has to do with finding the densest way to pack spheres in higher dimensions.
+An n-sphere is an n-dimensional sphere. This was an extra credit assignment to figure out formulas for the volume and surface area of higher-dimensional spheres. This might seem pretty abstract, but it has a cool real-world application: optimizing error-correcting codes has to do with finding the densest way to [pack spheres](https://en.wikipedia.org/wiki/Sphere_packing) in higher dimensions.
 
-<center><img src="../../math/n-ball/4-sphere.png" width="170px"/></center>
+<center><img src="4-sphere.png" width="170px"/></center>
 
 __Table of Contents:__
 
 [TOC]
 
-## Volume of a 4-Sphere
+## Volume of a 4-sphere
 
 To find the area $v(B^2)R^2$ of a disk $x^2 + y^2 \leq R^2$, we integrate the height $y = \sqrt{R^2-x^2}$ along the diameter to find the area of the upper half. This is not trivial, but we'll save our strength for the 4-sphere. The full area of the disk is
 
@@ -43,7 +43,7 @@ $$\begin{align}
 &= \frac{4\pi}3 R^4\left[\frac{3\pi}{8} \right] = \frac 1 2 \pi^2 R^4
 \end{align}$$
 
-## Surface Area of a 4-Sphere
+## Surface area of a 4-sphere
 
 To find the circumference $a(S^1)R$ of a circle $x^2 + y^2 = R^2$, or simply $r(\theta) = R$, we use the formula for arc length $L = \int_a^b \sqrt{r^2+(dr/d\theta)^2}\,d\theta$ in polar coordinates:
 
@@ -79,7 +79,7 @@ $$ = 8\pi R^3\int_0^{\pi/2} \frac 1 2 - \frac 1 2 \cos(2\omega)\, d\omega = \lef
 
 We could have also arrived at this result by finding the differential of the generalized volume $\pi^2 r^4/2$ of a 4-dim ball, which is $2\pi^2 r^3\,dr$, the generalized volume of thin shells of 4-dim balls.
 
-## Behavior of Results
+## Behavior of results
 
 Let's compute $v(B^5)R^5$:
 
@@ -122,7 +122,7 @@ $$a(S^7) = 2\pi/6\cdot a(S^{5}) = \pi/3\cdot (2\pi/4\cdot a(S^{3})) = \pi/3\cdot
 
 $a(S^n)$ starts decreasing after $n = 6$
 
-## Generalizing the Formula
+## Generalizing the formula
 
 We need to generalize the integral used to calculate $v(B^n)$:
 
@@ -161,7 +161,7 @@ Using differentials, we can make a formula for area:
 
 $$a(S^n) = (n+1)\cdot v\left(B^{n+1}\right) = (n+1)\cdot\frac{2\pi}{n+1}\cdot\left(B^{n-1}\right) = 2\pi\cdot v\left(B^{n-1}\right) = \frac{2\pi}{n-1}\cdot a\left(S^{n-2}\right)$$
 
-## The Gamma Function
+## The gamma function
 
 If we repeat the formula for $v(B^{n})$ for $v(B^{n-2})$, we have
 

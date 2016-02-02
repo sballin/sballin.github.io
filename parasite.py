@@ -151,7 +151,7 @@ if __name__ == '__main__':
     template = open('template', 'r').read()
 
     # Folders that should show up in the sidebar and whose articles should be formatted
-    folders = ['about', 'code', 'math', 'physics', 'photography', 'other']
+    folders = ['about', 'code', 'math', 'physics', 'photos', 'other']
 
     # Make tree of all article folders
     tree = collections.OrderedDict()

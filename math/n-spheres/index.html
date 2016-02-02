@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="en">
 <head>
-<title>n ball - Sean Ballinger</title>
+<title>n spheres - Sean Ballinger</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <!-- Styling -->
 <link rel="stylesheet" href="../../normalize.css">
-<link rel="stylesheet" href="../../main.css">
 <link rel="stylesheet" href="../../font-awesome-4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../main.css">
 <link rel="icon" type="image/png" href="../../favicon-crown.png">
 <!-- Additional scripts --><script type="text/x-mathjax-config">
 MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
@@ -31,36 +31,36 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <div class="category">
 <a class="category-name" href="../../math">math</a>
 <div class="category-article-list">
-<a class="category-article" href="../../math/favorite-proofs">favorite proofs</a>
-<a class="category-article" href="../../math/n-ball">n ball</a>
+<a class="category-article" href="../../math/fun-derivations">fun derivations</a>
+<a class="category-article" href="../../math/n-spheres">n spheres</a>
 <a class="category-article" href="../../math/ode">ode</a>
 <a class="category-article" href="../../math/project-euler">project euler</a>
 </div>
 </div><div class="category"><a class="category-name" href="../../physics">physics</a></div>
-<div class="category"><a class="category-name" href="../../photography">photography</a></div>
+<div class="category"><a class="category-name" href="../../photos">photos</a></div>
 <div class="category"><a class="category-name" href="../../other">other</a></div>
 </div>
 <div id="content">
 <div id="article">
-<h1 id="formulas-for-n-balls">Formulas for N-Balls</h1>
-<h2 id="what">What?</h2>
-<p>An N-ball is an N-dimensional ball. This was an extra credit assignment to figure out formulas for the volume and surface area of higher-dimensional balls. This might seem pretty abstract, but it has a cool real-world application: optimizing error-correcting codes has to do with finding the densest way to pack spheres in higher dimensions.</p>
-<p><center><img src="../../math/n-ball/4-sphere.png" width="170px"/></center></p>
+<h1 id="formulas-for-n-spheres">Formulas for n-spheres</h1>
+<h2 id="whats-an-n-sphere">What's an n-sphere?</h2>
+<p>An n-sphere is an n-dimensional sphere. This was an extra credit assignment to figure out formulas for the volume and surface area of higher-dimensional spheres. This might seem pretty abstract, but it has a cool real-world application: optimizing error-correcting codes has to do with finding the densest way to <a href="https://en.wikipedia.org/wiki/Sphere_packing">pack spheres</a> in higher dimensions.</p>
+<p><center><img src="4-sphere.png" width="170px"/></center></p>
 <p><strong>Table of Contents:</strong></p>
 <div class="toc">
 <ul>
-<li><a href="#formulas-for-n-balls">Formulas for N-Balls</a><ul>
-<li><a href="#what">What?</a></li>
-<li><a href="#volume-of-a-4-sphere">Volume of a 4-Sphere</a></li>
-<li><a href="#surface-area-of-a-4-sphere">Surface Area of a 4-Sphere</a></li>
-<li><a href="#behavior-of-results">Behavior of Results</a></li>
-<li><a href="#generalizing-the-formula">Generalizing the Formula</a></li>
-<li><a href="#the-gamma-function">The Gamma Function</a></li>
+<li><a href="#formulas-for-n-spheres">Formulas for n-spheres</a><ul>
+<li><a href="#whats-an-n-sphere">What's an n-sphere?</a></li>
+<li><a href="#volume-of-a-4-sphere">Volume of a 4-sphere</a></li>
+<li><a href="#surface-area-of-a-4-sphere">Surface area of a 4-sphere</a></li>
+<li><a href="#behavior-of-results">Behavior of results</a></li>
+<li><a href="#generalizing-the-formula">Generalizing the formula</a></li>
+<li><a href="#the-gamma-function">The gamma function</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<h2 id="volume-of-a-4-sphere">Volume of a 4-Sphere</h2>
+<h2 id="volume-of-a-4-sphere">Volume of a 4-sphere</h2>
 <p>To find the area $v(B^2)R^2$ of a disk $x^2 + y^2 \leq R^2$, we integrate the height $y = \sqrt{R^2-x^2}$ along the diameter to find the area of the upper half. This is not trivial, but we'll save our strength for the 4-sphere. The full area of the disk is</p>
 <center>$$v(B^2)R^2 = \int_{-R}^R 2\sqrt{R^2-x^2}\,dx = \pi R^2$$</center>
 <p>For the volume $v(B^3)R^3$ of a sphere $x^2 + y^2 + z^2 \leq R^2$, we integrate the area $\pi r^2$ of vertical slices along the diameter. The volume of the sphere is</p>
@@ -80,7 +80,7 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 \frac{4\pi}3 R^4 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac 3 8 + \frac 1 2 \left(\cos(2u)+\cos(4u)\right)\,du &amp;= \frac{4\pi}3 R^4\left[\left. \frac 3 8 u + \frac 1 4 \sin(2u) + \frac 1 8 \sin(4u)\right] \right|_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\\
 &amp;= \frac{4\pi}3 R^4\left[\frac{3\pi}{8} \right] = \frac 1 2 \pi^2 R^4
 \end{align}$$</center>
-<h2 id="surface-area-of-a-4-sphere">Surface Area of a 4-Sphere</h2>
+<h2 id="surface-area-of-a-4-sphere">Surface area of a 4-sphere</h2>
 <p>To find the circumference $a(S^1)R$ of a circle $x^2 + y^2 = R^2$, or simply $r(\theta) = R$, we use the formula for arc length $L = \int_a^b \sqrt{r^2+(dr/d\theta)^2}\,d\theta$ in polar coordinates:</p>
 <center>$$a(S^1)R = \int_0^{2\pi} \sqrt{r^2+\left(\frac{dr}{d\theta}\right)^2}\, d\theta = \int_0^{2\pi} R\, d\theta = 2\pi R$$</center>
 <p>We can also see this as the result of taking the differential of the area $\pi r^2$ of a disk, which gives us $2\pi r dr$, corresponding to the area of the thin ring of width $dr$ that we can think of as circumference.</p>
@@ -98,7 +98,7 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <center>$$8\pi \int_0^{\pi/2}\frac{R^3\sin^2\omega}{\sqrt{R^2-R^2\sin^2\omega}}\,R\cos\omega\,d\omega = 8\pi\int_0^{\pi/2}\frac{R^3\sin^2\omega}{R\cos\omega}\,R\cos\omega\,d\omega = 8\pi R^3\int_0^{\pi/2}\sin^2\omega\,d\omega$$</center>
 <center>$$ = 8\pi R^3\int_0^{\pi/2} \frac 1 2 - \frac 1 2 \cos(2\omega)\, d\omega = \left.8\pi R^3 \left[\frac x 2 - \frac 1 4 \sin(2\omega)\right]\right|_0^{\pi/2} = 8\pi R^3 \left(\frac{\pi}{4}\right) = 2\pi^2 R^3$$</center>
 <p>We could have also arrived at this result by finding the differential of the generalized volume $\pi^2 r^4/2$ of a 4-dim ball, which is $2\pi^2 r^3\,dr$, the generalized volume of thin shells of 4-dim balls.</p>
-<h2 id="behavior-of-results">Behavior of Results</h2>
+<h2 id="behavior-of-results">Behavior of results</h2>
 <p>Let's compute $v(B^5)R^5$:</p>
 <center>$$\begin{align}
 v(B^5)R^5 &amp;= \int_{-R}^R \frac12 \pi^2 (R^2 - x^2)^2\,dx = \frac12 \pi^2 \int_{-R}^R R^4-2R^2x^2+x^4\,dx\\ &amp;= \frac12 \pi^2\,2\left(R^5-\frac23R^5+\frac{R^5}5\right) = \frac12 \pi^2\left(\frac{16}{15}R^5\right) = \frac8{15}\pi^2R^5 \longrightarrow v(B^5) \approx \boxed{5.26}
@@ -124,7 +124,7 @@ v(B^5)R^5 &amp;= \int_{-R}^R \frac12 \pi^2 (R^2 - x^2)^2\,dx = \frac12 \pi^2 \in
 <center>$$a(S^6) = 2\pi/5\cdot a(S^{4}) = 2\pi/5\cdot(8\pi^2/3) = 16\pi^3/15 \approx \boxed{33.1}$$</center>
 <center>$$a(S^7) = 2\pi/6\cdot a(S^{5}) = \pi/3\cdot (2\pi/4\cdot a(S^{3})) = \pi/3\cdot (\pi/2\cdot 2\pi^2) = \pi^4/3 \approx \boxed{32.5}$$</center>
 <p>$a(S^n)$ starts decreasing after $n = 6$</p>
-<h2 id="generalizing-the-formula">Generalizing the Formula</h2>
+<h2 id="generalizing-the-formula">Generalizing the formula</h2>
 <p>We need to generalize the integral used to calculate $v(B^n)$:</p>
 <center>$$v(B^n) = v\left(B^{n-1}\right)\int_{-\pi/2}^{\pi/2}\cos^n\theta\,d\theta$$</center>
 <p>For the integral of $\cos^n\theta\,d\theta$, we do integration by parts, where $u = \cos^{n-1}\theta$ and $dv = \cos\theta\,d\theta$, therefore $du = -(n-1)\cos^{n-2}\theta\sin\theta\,d\theta$ and $v = \sin\theta$:</p>
@@ -148,7 +148,7 @@ v(B^n) &amp;= v(B^{1})\frac{(n-1)(n-2)\cdots3}{n(n-1)(n-2)\cdots 4}I_{2}I_{3}I_{
 \end{align}$$</center>
 <p>Using differentials, we can make a formula for area:</p>
 <center>$$a(S^n) = (n+1)\cdot v\left(B^{n+1}\right) = (n+1)\cdot\frac{2\pi}{n+1}\cdot\left(B^{n-1}\right) = 2\pi\cdot v\left(B^{n-1}\right) = \frac{2\pi}{n-1}\cdot a\left(S^{n-2}\right)$$</center>
-<h2 id="the-gamma-function">The Gamma Function</h2>
+<h2 id="the-gamma-function">The gamma function</h2>
 <p>If we repeat the formula for $v(B^{n})$ for $v(B^{n-2})$, we have</p>
 <center>$$\frac{2\pi}{n}\cdot v\left(B^{n-2}\right) = \frac{2\pi}{n}\cdot\frac{2\pi}{n-2}\cdots\frac{2\pi}{4}\cdot v\left(B^{2}\right) = \frac{(2\pi)^{n/2}}{n(n-2)(n-4)\cdots4}\cdot v\left(B^{2}\right)$$</center>
 <p>for even $n$, and for odd $n$ we have</p>
@@ -197,6 +197,6 @@ v(B^n) &amp;= v(B^{1})\frac{(n-1)(n-2)\cdots3}{n(n-1)(n-2)\cdots 4}I_{2}I_{3}I_{
 </div>
 </div>
 </div>
-<div id="footer"></div>
+<div id="footer"><i class="fa fa-moon-o"></i></div>
 </body
 </html>

@@ -114,10 +114,6 @@ h1, h2, h3, strong {
 	color: #585858;
 }
 
-h2, h3 {
-	font-weight: normal;
-}
-
 strong {
 	font-weight: 500;
 }
@@ -131,7 +127,12 @@ h1 {
 h2 {
 	margin-top: 30px;
 	margin-bottom: 5px;
+	font-size: 1.8em;
 	/*border-bottom: 1px dashed #e3e3e3;*/
+}
+
+h2 i {
+	font-size: .5em;
 }
 
 #article {
@@ -148,7 +149,7 @@ h2 {
 	/*font-family: 'Libre Baskerville', Georgia, serif;*/
 	font-family: Helvetica, Lucida Grande, sans-serif;
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 17px;
 	color: #585858;
 }
 

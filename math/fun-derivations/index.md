@@ -1,4 +1,4 @@
-# Favorite proofs
+# Fun derivations and proofs
 
 ## The quadratic formula
 

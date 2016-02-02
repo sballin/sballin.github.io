@@ -4,11 +4,9 @@ About
 This website
 ------------
 
-I made this site and a Python script to generate it. The script is named Parasite, and you can check it out on [GitHub](https://github.com/sballin/sballin.github.io).
-
-Easter eggs took priority over some of the most basic features. Happy hunting!
+I made this site while playing around with CSS and Python a few years ago. I'm sure I've done some unspeakably horrible things, but I think it looks nice now. And the script that generates it from Markdown files is decent. It's all contained in this [repo](https://github.com/sballin/sballin.github.io) on GitHub.
 
 Contact
 -------
 
-Email me at [s.ballinger@columbia.edu](mailto:s.ballinger@columbia.edu).
+Shoot me an email at [s.ballinger@columbia.edu](mailto:s.ballinger@columbia.edu).

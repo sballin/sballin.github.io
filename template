@@ -4,8 +4,8 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <!-- Styling -->
 <link rel="stylesheet" href="{{top-path}}normalize.css">
-<link rel="stylesheet" href="{{top-path}}main.css">
 <link rel="stylesheet" href="{{top-path}}font-awesome-4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{top-path}}main.css">
 <link rel="icon" type="image/png" href="{{top-path}}favicon-crown.png">
 <!-- Additional scripts -->
 {{scripts}}
@@ -32,6 +32,6 @@
 </div>
 </div>
 </div>
-<div id="footer"></div>
+<div id="footer"><i class="fa fa-moon-o"></i></div>
 </body
 </html>
