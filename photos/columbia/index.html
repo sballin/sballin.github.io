@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en">
 <head>
-    <title>Andover</title>
+    <title>Columbia</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <style>
         html, body {
@@ -9,59 +9,16 @@
             width: 100%;
             background-color: #000;
         }
-        img {
+        img, video {
             width: 100%;
+            margin-bottom: 50px;
         }
     </style>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script id="jsbin-javascript">
-        $(document).ready(function () {
-
-            $('body').on('keydown keyup', function( e ) {
-
-              var key = e.which;
-              var io  = e.type=="keydown" ? 0 : 1; // "0"if keydown; "1" if keyup
-              var keyAction = {                    // Object to store our stuff
-        //  keyCode : [(0)KEYDOWN, (1)KEYUP]
-                82  : ['red' ,'white'],            // R key
-                66  : ['blue','white']             // B key  (last one without comma!)
-              };
-              var propObj = {};                    // Object to store property + value for jQuery methods
-              var keyArr = keyAction[key];
-
-              if(typeof keyArr != 'undefined') {   // Test keyArr (82, 66) is returned/populated to prevent errors
-                 propObj.background = keyAction[key][io];   // Created the jQ Method's object e.g: {background:"red"}
-                 $(this).css(propObj);             // Finally create / use
-              }
-
-            });
-
-        });
-    </script>
 </head>
 <body>
-<img src="1.jpg" title="this is alt text">
-<img src="2.jpg">
-<img src="3.jpg">
-<img src="4.jpg">
-<img src="5.jpg">
-<img src="6.jpg">
-<img src="7.jpg">
-<img src="8.jpg">
-<img src="9.jpg">
-<img src="10.jpg">
-<img src="11.jpg">
-<img src="12.jpg">
-<img src="13.jpg">
-<img src="14.jpg">
-<img src="15.jpg">
-<img src="16.jpg">
-<img src="17.jpg">
-<img src="18.jpg">
-<img src="19.jpg">
-<img src="20.jpg">
-<img src="21.jpg">
-<img src="22.jpg">
-<img src="23.jpg">
+<video src="cloudy.mov" loop autoplay></video>
+<img src="sun.jpg">
+<img src="lightning.jpg">
+
 </body>
 </html>
