@@ -202,13 +202,14 @@ function addISS(scene)
 {
     // Honestly just roll your own at some point, basic outline is easy
     var loader = new THREE.JSONLoader();
-    loader.load('partOfISS.json', function (geometry, materials)
+    loader.load('biggerPartOfISS.json', function (geometry, materials)
     {
-      var material = new THREE.MeshPhongMaterial({color: 0xcccccc});
+      var material = new THREE.MeshPhongMaterial({color: 0x999999});
       var ISS = new THREE.Mesh( geometry, material );
-      ISS.rotation.y -= Math.PI/2;
       ISS.scale.set(.03,.03,.03);
       ISS.position.z -= 10;
+      ISS.rotation.x += Math.PI/2;
+      ISS.rotation.z += Math.PI/2;
       scene.add(ISS);
     });
 }
