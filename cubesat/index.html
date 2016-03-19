@@ -25,7 +25,7 @@ var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeig
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
-camera.position.z = 5;
+camera.position.z = 2.5;
 
 // Browser camera controls
 controls = new THREE.OrbitControls( camera, renderer.domElement );
@@ -40,9 +40,10 @@ var pointLight = new THREE.PointLight( 0xffffff );
 pointLight.position.set( 0, 100, 0 );
 scene.add(pointLight)
 
-// Add axes
+// Add axes, hidden
 sceneAxes = buildAxes( 100 );
 scene.add( sceneAxes );
+toggleAxes();
 
 // Add starfield, Earth, and ISS
 addStarfield(scene);
@@ -170,7 +171,7 @@ function buildCube()
     for ( var i = 0; i < geometry.faces.length; i ++ ) {
         geometry.faces[ i ].color.setHex( Math.random() * 0xffffff );
     }
-    var material = new THREE.MeshBasicMaterial( { color: 0xffffff, vertexColors: THREE.FaceColors } );
+    var material = new THREE.MeshBasicMaterial( { color: 0xffffff, vertexColors: THREE.FaceColors, opacity: 0.8, transparent : true, depthWrite  : false} );
     return new THREE.Mesh( geometry, material );
 }
 
