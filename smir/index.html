@@ -29,9 +29,16 @@
         <span id="percent" class="sr-only">100%</span>
       </div>
     </div>
-    <!-- <progress id="prog" value="10" max="100"><span class="sr-only">40%</span></progress> -->
+    <h4 style="color:white; text-align: left;">Commands</h4>
     <button class="btn btn-success" onclick="goForward();" style="margin-top: 5px;">Forward thrust</button>
     <button class="btn btn-danger" onclick="goBackward();" style="margin-top: 5px; margin-right: 5px;">Reverse thrust</button>
+    <h4 style="color:white; text-align: left;">Jet time</h4>
+    <div style="text-align:left">
+    <button class="btn btn-inverse" onclick="setThrusterFireTime(0.5)">0.5 s</button>
+    <button class="btn btn-inverse" onclick="setThrusterFireTime(1)">1 s</button>
+    <button class="btn btn-inverse" onclick="setThrusterFireTime(2)">2 s</button>
+    <button class="btn btn-inverse" onclick="setThrusterFireTime(3)">3 s</button>
+    </div>
 </div>
 <script>
 
@@ -110,7 +117,7 @@ var earthRadius = 6367445; // meters
 var ISSheight = 400727; // meters
 var cloudHeight = 11278; // meters
 var cubeMomentum = new THREE.Vector3(0,0,0);
-var thrusterFireTime = 1.5; // seconds
+var thrusterFireTime = 2; // seconds
 var thrusterForce = 6.7; // Newtons
 var initialN2mass = 2.34; // kg
 var currentN2mass = initialN2mass; // kg
@@ -126,21 +133,29 @@ var coords = ["x", "y", "z"];
 var date = new Date();
 var prevTime = date.getTime();
 
+var time = 0;
+
 var render = function()
 {
     requestAnimationFrame( render );
+
+    // Compute time since last pass through loop
+    var currentTime = new Date().getTime();
+    var timeDelta = (currentTime - prevTime)/1000;
+    prevTime = currentTime;
 
     if (forward || backward)
     {
         direction = getLookAtVector(controls);
         if (backward) { for (i in coords) direction[coords[i]] *= -1; }
-        if (iter == 0)
+        if (time == 0)
         {
             // Set momentum vector resulting from thrust
             for (i in coords) cubeMomentum[coords[i]] += direction[coords[i]]*thrusterForce*thrusterFireTime;
             iter += 1;
+            time += timeDelta;
         }
-        else if (iter < threshold)
+        else if (time < thrusterFireTime)
         {
             for (i in coords) {
                 if (Math.abs(direction[coords[i]]) > minThrust)
@@ -153,10 +168,12 @@ var render = function()
                 }
             }
             iter += 1;
+            time += timeDelta;
         }
-        else if (iter >= threshold)
+        else if (time >= thrusterFireTime)
         {
             iter = 0;
+            time = 0;
             forward = backward = false;
             // Turn off all thrusters
             for (c in cones) cones[c].visible = false;
@@ -168,11 +185,6 @@ var render = function()
     }
 
     renderer.render(scene, camera);
-
-    // Compute time since last pass through loop
-    var currentTime = new Date().getTime();
-    var timeDelta = (currentTime - prevTime)/1000;
-    prevTime = currentTime;
 
     // Rotate Earth and clouds sort of accurately
     rotation = 2*Math.PI*timeDelta/(92*60);
@@ -190,6 +202,11 @@ var render = function()
 render();
 
 // Button-invoked functions
+
+function setThrusterFireTime(value)
+{
+    thrusterFireTime = value;
+}
 
 function goForward()
 {
