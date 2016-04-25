@@ -228,9 +228,9 @@ a:hover {
 	border-bottom: none;
 	font-weight: 100;
 	font-size: 50px;
-	color: #aaa;
+	color: #888;
     transition: .2s;
-    font-family: Courier New, Courier;
+    font-family: "Helvetica Neue";
 }
 
 #logo > a:hover {
