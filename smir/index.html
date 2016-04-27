@@ -3,10 +3,20 @@
 <title>Spacecraft Microgravity Inspection Robot</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <style>
-    body { margin: 0; }
-    canvas { width: 100%; height: 100% }
+    body {
+        margin: 0;
+    }
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
+    h4, p {
+        color:white;
+        text-align: left;
+    }
 </style>
 <script src="three.min.js"></script>
+<script src="STLLoader.js"></script>
 <script src="OrbitControls.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -19,36 +29,33 @@
 </head>
 <body>
 <div style="position:fixed; text-align: right; top:1%; right:0.5%; padding: 10px; background-color: rgba(0,0,0,0.5); border-radius: 7px;">
-<!--     <button class="btn btn-inverse" onclick="toggleEarth();">Toggle Earth</button>
-    <button class="btn btn-inverse" onclick="toggleISS();">Toggle ISS</button>
-    <button class="btn btn-inverse" onclick="toggleAxes();">Toggle axes</button>
-    <br> -->
-    <h4 style="color:white; text-align: left;">Propellant left</h4>
+    <h4>Speed</h4>
+        <p id="speed">0.00 m/s</p>
+    <h4>Propellant</h4>
     <div class="progress">
       <div id="propellant" class="bar bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%; min-width:10%;">
         <span id="percent" class="sr-only">100%</span>
       </div>
     </div>
-    <h4 style="color:white; text-align: left;">Commands</h4>
+    <h4>Jet commands</h4>
     <button class="btn btn-success" onclick="goForward();" style="margin-top: 5px;">Forward thrust</button>
     <button class="btn btn-danger" onclick="goBackward();" style="margin-top: 5px; margin-right: 5px;">Reverse thrust</button>
-    <h4 style="color:white; text-align: left;">Jet action time</h4>
-    <div style="text-align:left">
-    <button class="btn btn-inverse" onclick="setThrusterFireTime(0.5)">0.5 s</button>
-    <button class="btn btn-inverse" onclick="setThrusterFireTime(1)">1 s</button>
-    <button class="btn btn-inverse" onclick="setThrusterFireTime(2)">2 s</button>
-    <button class="btn btn-inverse" onclick="setThrusterFireTime(3)">3 s</button>
+    <h4>Jet action time</h4>
+    <div style="text-align: left;">
+        <button class="btn btn-inverse" onclick="setThrusterFireTime(0.5)">0.5 s</button>
+        <button class="btn btn-inverse" onclick="setThrusterFireTime(1)">1 s</button>
+        <button class="btn btn-inverse" onclick="setThrusterFireTime(2)">2 s</button>
+        <button class="btn btn-inverse" onclick="setThrusterFireTime(3)">3 s</button>
     </div>
+    <h4>Reaction wheel commands</h4>
+    <p>X: <button class="btn btn-inverse" onclick="rotate('x', -1)">-</button><button class="btn btn-inverse" onclick="rotate('x', 1)">+</button> Y: <button class="btn btn-inverse" onclick="rotate('y', -1)">-</button><button class="btn btn-inverse" onclick="rotate('y', 1)">+</button> Z: <button class="btn btn-inverse" onclick="rotate('z', -1)">-</button><button class="btn btn-inverse" onclick="rotate('z', 1)">+</button></p>
+    <h4>Collision detection</h4>
+    <div style="text-align: left; margin-bottom: 10px;">
+    <button id="collision-button" class="btn btn-inverse" onclick="toggleCollisionDetection();">Turn on</button>
+    </div>
+    <p id="collision-count">Number of collisions: 0</p>
 </div>
 <script>
-
-/* To do:
-- Ambient light/darkness according to sun visibility
-- First person view
-- Flashlight
-- Import more of ISS model
-- Limited quantities of propellant and electricity
-*/
 
 // Initialize scene and renderer
 var scene = new THREE.Scene();
@@ -87,7 +94,7 @@ addLight( 0.995, 0.5, 0.9, 0, 3e3, 0);
 // Add axes, hidden
 sceneAxes = buildAxes( 100 );
 scene.add( sceneAxes );
-toggleAxes();
+sceneAxes.visible = false;
 
 // Add starfield, Earth, and ISS
 addStarfield(scene);
@@ -95,54 +102,55 @@ addEarth(scene);
 addClouds(scene);
 addISS(scene);
 
-// Add cube
-var cube = buildCube();
-scene.add( cube );
-cubeEdges = new THREE.EdgesHelper( cube, 0xff0000 );
-scene.add(cubeEdges);
+// Add SMIR
+var SMIR = buildSMIR();
+scene.add( SMIR );
+SMIREdges = new THREE.EdgesHelper( SMIR, 0xff0000 );
+scene.add(SMIREdges);
 addAntennas();
 
 // Add thruster cones
 var cones = buildThrusterCones();
 for (i in cones)
 {
-    cube.add( cones[i] );
+    SMIR.add( cones[i] );
     cones[i].visible=false;
 }
 
-// Physics values in SI units
-var cubeSide = .5; // meters
+// Immutable physics values in SI units
+var SMIRSide = .61; // meters
 var SMIRMass = 50; // kg
 var earthRadius = 6367445; // meters
 var ISSheight = 400727; // meters
 var cloudHeight = 11278; // meters
-var cubeMomentum = new THREE.Vector3(0,0,0);
-var thrusterFireTime = 2; // seconds
 var thrusterForce = 6.7; // Newtons
 var initialN2mass = 2.34; // kg
-var currentN2mass = initialN2mass; // kg
 var massFlowRate = .0178; // kg/s
+var maxAngularVelocity = .484 // rad/s
 
-var iter = 0;
+// Mutable physics values and utilities
+var thrusterFireTime = 2; // seconds
+var currentN2mass = initialN2mass; // kg
 var forward = false;
 var backward = false;
 var threshold = 50;
 var minThrust = 1/threshold;
 var coords = ["x", "y", "z"];
-
-var date = new Date();
-var prevTime = date.getTime();
-
+var SMIRSpeed = 0;
+var iter = 0;
 var time = 0;
+var clock = new THREE.Clock();
+var SMIRMomentum = new THREE.Vector3(0,0,0);
+var SMIRRotation = new THREE.Vector3(0,0,0);
+var collidableMeshList = [];
+var totalIter = 0;
+var collisionCount = 0;
+var collisions = false;
 
 var render = function()
 {
     requestAnimationFrame( render );
-
-    // Compute time since last pass through loop
-    var currentTime = new Date().getTime();
-    var timeDelta = (currentTime - prevTime)/1000;
-    prevTime = currentTime;
+    var timeDelta = clock.getDelta();
 
     if (forward || backward)
     {
@@ -151,7 +159,7 @@ var render = function()
         if (time == 0)
         {
             // Set momentum vector resulting from thrust
-            for (i in coords) cubeMomentum[coords[i]] += direction[coords[i]]*thrusterForce*thrusterFireTime;
+            for (i in coords) SMIRMomentum[coords[i]] += direction[coords[i]]*thrusterForce*thrusterFireTime;
             iter += 1;
             time += timeDelta;
         }
@@ -162,7 +170,7 @@ var render = function()
                 {
                     interval = Math.round(1/direction[coords[i]]);
                     coneName = (direction[coords[i]] < 0 ? "-" : "") + coords[i];
-                    // Naive thruster flashing - bad for direction_i equiv 1
+                    // Thruster flashing
                     if (iter%interval == 0) cones[coneName].visible = true;
                     else cones[coneName].visible = false;
                 }
@@ -186,22 +194,53 @@ var render = function()
 
     renderer.render(scene, camera);
 
-    // Rotate Earth and clouds sort of accurately
+    // Rotate Earth and clouds semi-accurately
     rotation = 2*Math.PI*timeDelta/(92*60);
     earth.rotation.x += rotation;
     clouds.rotation.x += .5*rotation;
 
-    // Update cube and camera position from momentum vector
+    // Update SMIR and camera position from momentum vector
     for (i in coords) {
-        camera.position[coords[i]] += cubeMomentum[coords[i]]/SMIRMass*timeDelta;
-        cube.position[coords[i]] += cubeMomentum[coords[i]]/SMIRMass*timeDelta;
+        camera.position[coords[i]] += SMIRMomentum[coords[i]]/SMIRMass*timeDelta;
+        SMIR.position[coords[i]] += SMIRMomentum[coords[i]]/SMIRMass*timeDelta;
+        SMIR.rotation[coords[i]] += SMIRRotation[coords[i]]*maxAngularVelocity*timeDelta;
     }
-    controls.target = cube.position;
+    controls.target = SMIR.position;
+
+    // Calculate SMIR speed and update display
+    SMIRSpeed = SMIRMomentum.length()/SMIRMass;
+    document.getElementById("speed").innerHTML = SMIRSpeed.toFixed(2) + " m/s";
+    if (SMIRSpeed > 1) {
+        document.getElementById("speed").style.color = "red";
+    }
+    else {
+        document.getElementById("speed").style.color = "white";
+    }
+
+    // Compute collisions
+    if (collisions && (totalIter++)%100 == 0) {
+        var originPoint = SMIR.position.clone();
+        for (vertexIndex in SMIR.geometry.vertices)
+        {
+            var localVertex = SMIR.geometry.vertices[vertexIndex].clone();
+            var globalVertex = localVertex.applyMatrix4( SMIR.matrix );
+            var directionVector = globalVertex.sub( SMIR.position );
+            var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+            var collisionResults = ray.intersectObjects( collidableMeshList );
+            if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
+                document.getElementById("collision-count").innerHTML = "Number of collisions: " + collisionCount++;
+        }
+    }
 };
 
 render();
 
 // Button-invoked functions
+
+function rotate(coord, value)
+{
+    SMIRRotation[coord] += value;
+}
 
 function setThrusterFireTime(value)
 {
@@ -218,20 +257,13 @@ function goBackward()
     backward = true;
 }
 
-function toggleAxes()
+function toggleCollisionDetection()
 {
-    sceneAxes.visible = !sceneAxes.visible;
-}
-
-function toggleEarth()
-{
-    earth.visible = !earth.visible;
-    clouds.visible = !clouds.visible;
-}
-
-function toggleISS()
-{
-    ISS.visible = !ISS.visible;
+    if (document.getElementById("collision-button").innerHTML == "Turn off")
+        document.getElementById("collision-button").innerHTML = "Turn on";
+    else
+        document.getElementById("collision-button").innerHTML = "Turn off";
+    collisions = !collisions;
 }
 
 // Internal functions
@@ -257,36 +289,37 @@ function addAntennas()
     lineGeometry.vertices.push( new THREE.Vector3( antennaStart, antennaStart, antennaStart) );
     lineGeometry.vertices.push( new THREE.Vector3( antennaLen, antennaLen, antennaLen) );
     line = new THREE.Line( lineGeometry, lineMaterial );
-    cube.add(line);
+    SMIR.add(line);
     lineGeometry = new THREE.Geometry();
     lineGeometry.vertices.push( new THREE.Vector3( -antennaStart, -antennaStart, antennaStart) );
     lineGeometry.vertices.push( new THREE.Vector3( -antennaLen, -antennaLen, antennaLen) );
     line = new THREE.Line( lineGeometry, lineMaterial );
-    cube.add(line);
+    SMIR.add(line);
     lineGeometry = new THREE.Geometry();
     lineGeometry.vertices.push( new THREE.Vector3( -antennaStart, antennaStart, antennaStart) );
     lineGeometry.vertices.push( new THREE.Vector3( -antennaLen, antennaLen, antennaLen) );
     line = new THREE.Line( lineGeometry, lineMaterial );
-    cube.add(line);lineGeometry = new THREE.Geometry();
+    SMIR.add(line);lineGeometry = new THREE.Geometry();
     lineGeometry = new THREE.Geometry();
     lineGeometry.vertices.push( new THREE.Vector3( antennaStart, -antennaStart, antennaStart) );
     lineGeometry.vertices.push( new THREE.Vector3( antennaLen, -antennaLen, antennaLen) );
     line = new THREE.Line( lineGeometry, lineMaterial );
-    cube.add(line);
+    SMIR.add(line);
 }
 
-function buildCube(cubeSide)
+function buildSMIR(SMIRSide)
 {
-    var cubeSide = .5;
-    var geometry = new THREE.BoxGeometry( cubeSide, cubeSide, cubeSide );
-    var material = new THREE.MeshBasicMaterial( { color: 0xffffff, vertexColors: THREE.FaceColors, opacity: 0.8, transparent : true, depthWrite  : false} );
+    var SMIRSide = .5;
+    var geometry = new THREE.BoxGeometry( SMIRSide, SMIRSide, SMIRSide );
+    var material = new THREE.MeshPhongMaterial( { color: 0xdddddd });
+
     return new THREE.Mesh( geometry, material );
 }
 
 function buildThrusterCones()
 {
-    var coneHeight = .45;
-    var coneBase = .1;
+    var coneHeight = .55;
+    var coneBase = .07;
     var coneMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: 0.8, transparent : true, depthWrite  : false} );
     var coneGeometry = new THREE.CylinderGeometry(0, coneBase, coneHeight, 20, 1, false);
     coneGeometry.translate( 0, -coneHeight/2, 0 ); // make tip pivot
@@ -309,18 +342,35 @@ function buildThrusterCones()
 
 function addISS(scene)
 {
-    // Honestly just roll your own at some point, basic outline is easy
-    var loader = new THREE.JSONLoader();
-    loader.load('biggerPartOfISS.json', function (geometry, materials)
-    {
-      var material = new THREE.MeshPhongMaterial({color: 0x999999});
-      var ISS = new THREE.Mesh( geometry, material );
-      ISS.scale.set(.03,.03,.03);
-      ISS.position.z -= 10;
-      ISS.rotation.x += Math.PI/2;
-      ISS.rotation.z += Math.PI/2;
-      scene.add(ISS);
-    });
+    // Add ISS model by kmemmons: http://www.thingiverse.com/thing:17114
+    var loader = new THREE.STLLoader();
+    loader.load( 'ISS.stl', function ( geometry ) {
+        // Create ISS material, rotate, and position
+        var ISSMaterial = new THREE.MeshPhongMaterial( { color: 0x999999, specular: 0xfff, shininess: 200 } );
+        var ISS = new THREE.Mesh( geometry, ISSMaterial );
+        ISS.position.set( 8.5, -1.1, -15.6 );
+        ISS.rotation.set( 0, - Math.PI / 2, 0 );
+        ISS.scale.set( 1, 1, 1 );
+        ISS.castShadow = true;
+        ISS.receiveShadow = true;
+        scene.add( ISS );
+        collidableMeshList.push(ISS);
+
+        // Add airlock marker
+        var airlockGeometry = new THREE.CylinderGeometry( .95, .95, .1, 64 );
+        var airlockMaterial = new THREE.MeshPhongMaterial( { color: 0x0080FF });
+        var airlock = new THREE.Mesh(airlockGeometry, airlockMaterial);
+        airlock.rotation.set(0,0,-Math.PI/2);
+        airlock.position.set(1.2,0,.07)
+        scene.add(airlock);
+
+        // Add damage marker
+        var damageGeometry = new THREE.SphereGeometry( 1, 100, 100 );
+        var damageMaterial = new THREE.MeshBasicMaterial( { color: 0xFF0000, opacity: 0.5, transparent : true, depthWrite  : false });
+        var damage = new THREE.Mesh(damageGeometry, damageMaterial);
+        damage.position.set(39, 5.3, -30)
+        scene.add(damage);
+    } );
 }
 
 function addClouds(scene)
