@@ -118,15 +118,15 @@ for (i in cones)
 }
 
 // Immutable physics values in SI units
-var SMIRSide = .61; // meters
-var SMIRMass = 50; // kg
 var earthRadius = 6367445; // meters
 var ISSheight = 400727; // meters
 var cloudHeight = 11278; // meters
+var SMIRSide = .61; // meters
+var SMIRMass = 45; // kg
 var thrusterForce = 6.7; // Newtons
 var initialN2mass = 2.34; // kg
 var massFlowRate = .0178; // kg/s
-var maxAngularVelocity = .484 // rad/s
+var maxAngularVelocity = .538 // rad/s
 
 // Mutable physics values and utilities
 var thrusterFireTime = 2; // seconds
@@ -136,14 +136,14 @@ var backward = false;
 var threshold = 50;
 var minThrust = 1/threshold;
 var coords = ["x", "y", "z"];
-var SMIRSpeed = 0;
 var iter = 0;
 var time = 0;
 var clock = new THREE.Clock();
 var SMIRMomentum = new THREE.Vector3(0,0,0);
 var SMIRRotation = new THREE.Vector3(0,0,0);
-var collidableMeshList = [];
+var SMIRSpeed = 0;
 var totalIter = 0;
+var collidableMeshList = [];
 var collisionCount = 0;
 var collisions = false;
 
@@ -218,7 +218,7 @@ var render = function()
     }
 
     // Compute collisions
-    if (collisions && (totalIter++)%100 == 0) {
+    if (collisions && (totalIter++)%50 == 0) {
         var originPoint = SMIR.position.clone();
         for (vertexIndex in SMIR.geometry.vertices)
         {
