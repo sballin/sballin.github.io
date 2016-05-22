@@ -23,7 +23,7 @@
 <body>
 <div id="wrap">
 <div id="side">
-<div id="logo"><a href="{{top-path}}">sbb</a></div>
+<div id="logo"><a href="{{top-path}}">sballin</a></div>
 {{folders}}
 </div>
 <div id="content">

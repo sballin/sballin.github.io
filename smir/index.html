@@ -197,7 +197,7 @@ var render = function()
     // Rotate Earth and clouds semi-accurately
     rotation = 2*Math.PI*timeDelta/(92*60);
     earth.rotation.x += rotation;
-    clouds.rotation.x += .5*rotation;
+    // clouds.rotation.x += .5*rotation;
 
     // Update SMIR and camera position from momentum vector
     for (i in coords) {

@@ -16,15 +16,15 @@ sys.setdefaultencoding('UTF8')
 mathJax = """<script type="text/x-mathjax-config">
 MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
     </script>
-    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>"""
-highlightjs = """<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/github.min.css">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+    <script src="{{top-path}}MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>"""
+highlightjs = """<link rel="stylesheet" href="{{top-path}}github.min.css">
+<script src="{{top-path}}highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>"""
 
 
 def md_to_html(text):
     text = fancy_quotes(text)
-    #text = prep_apostrophes(text)
+    # text = prep_apostrophes(text)
     # Markdown extensions 'codehilite' and 'meta' also available.
     text = markdown.markdown(text, ['tables', 'footnotes', 'toc'])
     text = prep_latex(text)
@@ -56,6 +56,7 @@ def prep_apostrophes(text):
 def prep_latex(text):
     text = text.replace('<p>$$', '<center>$$')
     text = text.replace('$$</p>', '$$</center>')
+
     # Fix over-eager Markdown formatting inside LaTeX expressions
     text = re.sub(r'\$\$(.*)<em>(.*)\$\$', r'$$\1_\2$$', text)
     text = re.sub(r'\$\$(.*)</em>(.*)\$\$', r'$$\1_\2$$', text)
@@ -106,17 +107,21 @@ def top(path):
     """
     Return path to top directory given article path.
     """
-    if path.count('/') == 1: return '../../'
-    elif path != '.': return '../'
-    else: return './'
+    if path.count('/') == 1:
+        return '../../'
+    elif path != '.':
+        return '../'
+    else:
+        return './'
 
 
 def write_source(path, tree, template):
     if path.count('/') == 1:
         title = path.split('/')[1].replace('-', ' ')
-        folder = path.split('/')[0]
-    elif path == '.': title = folder = 'home'
-    else: title = folder = path
+    elif path == '.':
+        title = 'home'
+    else:
+        title = path
     body = codecs.open(path + '/index.md', 'r', encoding='utf-8').read()
     body = md_to_html(body)
     source = add_content(body, template)
@@ -128,13 +133,13 @@ def write_source(path, tree, template):
 
 
 def get_folder_size(p):
-   """
-   Copied from
-   http://stackoverflow.com/questions/1392413/calculating-a-directory-size-using-python
-   """
-   from functools import partial
-   prepend = partial(os.path.join, p)
-   return sum([(os.path.getsize(f) if os.path.isfile(f) else get_folder_size(f))
+    """
+    Copied from
+    http://stackoverflow.com/questions/1392413/calculating-a-directory-size-using-python
+    """
+    from functools import partial
+    prepend = partial(os.path.join, p)
+    return sum([(os.path.getsize(f) if os.path.isfile(f) else get_folder_size(f))
                for f in map(prepend, os.listdir(p))])
 
 
@@ -150,7 +155,8 @@ if __name__ == '__main__':
     # Read template to apply to pages written in Markdown
     template = open('template', 'r').read()
 
-    # Folders that should show up in the sidebar and whose articles should be formatted
+    # Folders that should show up in the sidebar and whose articles should be
+    # formatted
     folders = ['about', 'code', 'math', 'physics', 'photos', 'other']
 
     # Make tree of all article folders
@@ -158,7 +164,8 @@ if __name__ == '__main__':
     for folder in folders:
         tree[folder] = []
         for path in glob.glob(folder + "/*"):
-            # If it's probably a folder containing an article, add article name to tree
+            # If it's probably a folder containing an article, add article name
+            # to tree
             if '.' not in path:
                 tree[folder].append(path.split('/', 1)[1])
 
