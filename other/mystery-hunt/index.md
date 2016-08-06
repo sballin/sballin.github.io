@@ -1,3 +1,5 @@
+<!-- {"full_title": "MIT Mystery Hunt"} -->
+
 # Mystery Hunt 2014
 
 The Mystery Hunt is an event held every year at MIT in which many teams, some with hundreds of members, binge-solve puzzles without instructions for around 3 days to find a coin hidden somewhere on campus.
@@ -28,6 +30,8 @@ We split up into groups. I helped put together a bunch of physical puzzle pieces
 
 The initial letters of the names form a word: "MALPRACTICE." So the "+" was just a white cross hinting at something medical. All the puzzles involved a lot of guesswork—there were absolutely no instructions, but sometimes the title of the puzzle was a little hint.
 
+<!--  -->
+
 A lot of puzzles involved anagrams with extra letters (making it difficult to use the [internet anagram server](http://wordsmith.org/anagram/)), hidden numbers that were indices of the alphabet, maybe with a cipher, and some things we just never figured out. Piecing it all together seemed impossible at first, but after you see a few get done, you learn to think in a different way. You scrutinize every little bit of information hoping it'll lead to more.
 
 ## Text board
@@ -36,28 +40,28 @@ After finishing a meta I went with a friend to pick up another physical puzzle. 
 
 ## Snoopy
 
-<center>![](../../other/mystery-hunt/snoopy1.jpg)</center>
+<center>![]({{top-path}}/{{article-path}}/snoopy1.jpg)</center>
 
-<center>![](../../other/mystery-hunt/snoopy2.jpg)</center>   
+<center>![]({{top-path}}/{{article-path}}/snoopy2.jpg)</center>   
 
 ## Origami
 
-<center>![](../../other/mystery-hunt/fri-nyt.jpg)</center>
+<center>![]({{top-path}}/{{article-path}}/fri-nyt.jpg)</center>
 
-<center>![](../../other/mystery-hunt/dud.jpg)</center>
+<center>![]({{top-path}}/{{article-path}}/dud.jpg)</center>
 
-<center>![](../../other/mystery-hunt/unfolded.jpg)</center>
+<center>![]({{top-path}}/{{article-path}}/unfolded.jpg)</center>
 
-<center>![](../../other/mystery-hunt/theory.jpg)</center>
+<center>![]({{top-path}}/{{article-path}}/theory.jpg)</center>
 
 ## Crowfacts
 
-<center>![](../../other/mystery-hunt/crow.png)</center>
+<center>![]({{top-path}}/{{article-path}}/crow.png)</center>
 
 ## Aftermath
 
-<center>![](../../other/mystery-hunt/aftermath.jpg)</center>
+<center>![]({{top-path}}/{{article-path}}/aftermath.jpg)</center>
 
-<center>![](../../other/mystery-hunt/wrap-up.jpg)</center>
+<center>![]({{top-path}}/{{article-path}}/wrap-up.jpg)</center>
 
-<center>![](../../other/mystery-hunt/score-sheet.jpg)</center>
+<center>![]({{top-path}}/{{article-path}}/score-sheet.jpg)</center>

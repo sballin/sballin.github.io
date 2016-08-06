@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="./main.css">
 <link rel="icon" type="image/png" href="./favicon-crown.png">
 <!-- Additional scripts -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
+</script>
+<script src="./MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
 <script type="text/javascript" src="./w.js"></script>
 <!-- Google Analytics -->
 <script>
@@ -22,28 +26,83 @@
 <body>
 <div id="wrap">
 <div id="side">
-<div id="logo"><a href="./">sballin</a></div>
+<div id="logo"><a href=".">Sean Ballinger</a></div>
 <div class="category"><a class="category-name" href="./about">about</a></div>
-<div class="category"><a class="category-name" href="./code">code</a></div>
-<div class="category"><a class="category-name" href="./math">math</a></div>
-<div class="category"><a class="category-name" href="./physics">physics</a></div>
-<div class="category"><a class="category-name" href="./photos">photos</a></div>
+<div class="category"><a class="category-name" href="./projects">projects</a></div>
+<div class="category"><a class="category-name" href="./academia">academia</a></div>
 <div class="category"><a class="category-name" href="./other">other</a></div>
 </div>
 <div id="content">
 <div id="article">
-<h1 id="sean-b-ballinger">Sean B. Ballinger</h1>
-<p>Hi, I'm Sean, a senior at Columbia University. I'm studying Applied Physics with a minor in Computer Science, and I'm excited about research in nuclear fusion, data science, and aerospace engineering. This website is a repository for cool stuff and projects I'm working on.</p>
-<p><center><a class="button" href="http://engineering.columbia.edu/sean-ballinger"><i class="fa fa-user"></i> Bio</a> <a class="button" href="Ballinger_CV.pdf"><i class="fa fa-file-text"></i> Resume</a>  <a class="button" href="https://github.com/sballin"><i class="fa fa-github fa-lg"></i> GitHub</a> <a class="button" href="mailto:s.ballinger@columbia.edu"><i class="fa fa-envelope"></i> Email</a></center></p>
-<h2 id="projects">Projects</h2>
-<p><center>
-<a href="physics/plasma-current-reconstruction"><img src="thumb_3d.png" class="thumb"></a>
-<a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="thumb_finals.png" class="thumb"></a>
-<a href="code/friend-graph"><img src="thumb_connections.png" class="thumb"></a>
-<!-- <a href="code/mandelbrot"><img src="http://sball.in/thumb_cbrot.png" style="display: inline-block; height: 175px; margin-right: 1%; margin-bottom: 1em;"></a> -->
-<a href="physics/papers"><img src="thumb_star.jpg" class="thumb"></a>
-</center>
-<p style="clear: both;"></p>
+<h1 id="spacecraft-microgravity-inspection-robot"><a class="article-title" href="./projects/smir">Spacecraft Microgravity Inspection Robot</h1></a>
+<p>As we contemplate long-term manned missions to Mars and beyond, we need a convenient way to inspect and repair micrometeorite damage on the outside of spacecraft caused by micrometeorites, space debris, and radiation. I designed a robot for this purpose with a team of fellow students in the excellent Human Spaceflight class taught by former astronaut Mike Massimino. The robot is designed to be a companion for spacecraft and space habitats like the International Space Station, and can be deployed to inspect the exterior of any structure in microgravity.</p>
+<p><center><img src="./projects/smir/screen-1.png"/></center></p>
+<p>The robot is cube-shaped with thrusters at the center of each face and an omnidirectional antenna. It also has a camera at the center of each face, and their video feeds are stitched together to form an immersive view of every direction surrounding the robot. Piloting the robot is supposed to be very easy to learn, and would consist of setting a direction in the immersive view and pressing go/reverse at different speeds. Finally, one face also has precision and infrared cameras, a trace gas analyzer, and a flashlight, to closely inspect damaged areas. When the robot is not being used, it can rest and recharge in the airlock.</p>
+<p>I created a <a href="./projects/smir/simulation">simulation</a> of the robot in the ISS environment to train prospective pilots. Interestingly, it runs pretty well on iPhones (20 MB download), but collision detection is slow even on desktops.</p>
+<p><em><a href="./projects/smir">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="notes"><a class="article-title" href="./other/notes">Notes</h1></a>
+<p>This page lets me paste stuff to the internet immediately using SimpleNote. If nothing else displays in this article after a few seconds, try refreshing the page.</p>
+<div id="note"></div>
+
+<script type="text/javascript" src="./jquery-2.1.4.min.js"></script>
+
+<script type="text/javascript">
+$('#note').load('http://cors.io/?u=https://app.simplenote.com/publish/53gczb#published_content', function() {
+    var orig = document.getElementById("note").innerHTML;
+    document.getElementById("note").innerHTML = orig.replace('<p>Public</p>', '').replace('<div class="published-top"><span class="logo"><a href="/" title="Get Simplenote">Published with Simplenote</a></span></div></div><!-- .published-wrap -->', '');
+});
+</script>
+<p><em><a href="./other/notes">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="tempofy-rhythm-matching-shuffle"><a class="article-title" href="./projects/tempofy">Tempofy: rhythm-matching shuffle </h1></a>
+<p>This is a project I worked on with a team at PennApps in winter 2015. It finds random songs on Spotify matching the tempo of your movements according to the iPhone's accelerometer.</p>
+<p>I did the iOS programming, but it currently requires a backend Flask server to be running to calculate bpm and use the Echonest API.</p>
+<p><center><a href="https://github.com/sballin/Tempofy-iOS"><img width="250px" src="./projects/tempofy/tempofy-iphone.png"/></a></center></p>
+<p><em><a href="./projects/tempofy">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="stratus-bluetooth-chat"><a class="article-title" href="./projects/stratus">Stratus: bluetooth chat </h1></a>
+<p>Wouldn't it be cool if you could chat with strangers around you in a coffee shop, or even around an entire campus? A couple friends and I thought so, and we made a bluetooth chat app for Android phones during Columbia's ADI hackathon.</p>
+<p><center><a href="https://github.com/nlittlepoole/Chatter"><img width="250px" src="./projects/stratus/stratus.jpg"/></a></center></p>
+<p>It's a fun proof of concept, and hopefully in the future we'll figure out some decentralized protocol like Bittorrent for phones to communicate over. This could be useful for people in disaster areas when cell towers get damaged, or in very crowded places where networks get overloaded.</p>
+<p><em><a href="./projects/stratus">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="force-directed-graph-of-facebook-friends"><a class="article-title" href="./projects/friend-graph">Force-directed graph of Facebook friends </h1></a>
+<p>This is a tool to make a force-directed graph of your Facebook friend network. Each friend is represented as a node, and is connected to each of your mutual friends. Each time you load this page, friends are connected by springs, and they pull each other together in a physical simulation that results in a final balance. Highly connected groups pull each other close and will end up the way you group your friends in your mind: clustered around schools, towns, events, and organizations. This is what my friend network looks like:</p>
+<p><center><img src="./projects/friend-graph/connections.png"/></center></p>
+<p><em><a href="./projects/friend-graph">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="current-reconstruction-in-tokamak-plasmas"><a class="article-title" href="./academia/plasma-current-reconstruction">Current reconstruction in Tokamak plasmas </h1></a>
+<p>I've worked a lot on Tokamaks. Tokamaks are donut-shaped containers for hydrogen plasmas that we heat to ludicrous temperatures so that charged particles overcome their mutual repulsion and fuse, releasing energy that could be used to turn a steam turbine and power the lights in your house. To keep the plasma at such enormous temperatures and to protect the Tokamak's interior, the plasma is suspended in midair using magnetic fields. Tokamaks are surrounded by electromagnetic coils that generate powerful magnetic fields, but they also rely on an electric current going through the plasma itself to create the perfect confining magnetic field. This plasma current is induced by a transformer coil at the center of the torus:</p>
+<p><center><a href="http://cswim.org/imageslibrary/tokamak_schema.gif/view"><img src="./academia/plasma-current-reconstruction/tokamak.gif"/></a></center></p>
+<p>I'm working on a Python program that uses magnetic sensor measurements to reconstruct the plasma current profile on Columbia's High-beta Tokamak. </p>
+<p>It can calculate the magnetic field at any location resulting from current in a circular coil:</p>
+<center>$$B = G(r, z, r_{coil}, z_{coil})\cdot I_{coil}$$</center>
+<p>where G is a Green's function of their positions in cylindrical coordinates. For each magnetic sensor, we subtract the coil fields from the sensor's readings to get the field of the plasma current alone. Then we do the linear algebra version of $I = G^{-1}B$ to calculate the plasma current over a grid of different positions.</p>
+<p><em><a href="./academia/plasma-current-reconstruction">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="plasma-physics-formulary"><a class="article-title" href="./academia/plasma-formulary">Plasma physics formulary</h1></a>
+<h2 id="plasma-parameters">Plasma parameters</h2>
+<p>Debye length: $$\lambda_D \equiv \sqrt{\frac{\epsilon_0KT_e}{ne^2}}$$</center>
+<p>The number of particles in a sphere with the Debye length as its radius should be $\gg1$ for collective behavior.</p>
+<p>Cyclotron frequency: $$\omega_c = \frac{\|q\|B}{m}$$</center>
+<p>Plasma frequency: $$\omega_p = \sqrt{\frac{n_0e^2}{\epsilon_0m}}$$</center>
+<p>Larmor radius: $$r_L \equiv \frac{v_\perp}{\omega_c} = \frac{mv_\perp}{\|q\|B}$$</center>
+<p><em><a href="./academia/plasma-formulary">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="tracking-space-usage-at-columbia"><a class="article-title" href="./projects/space-at-columbia">Tracking space usage at Columbia </h1></a>
+<p>During the last finals week of my junior year, an interesting website came online at <a href="http://density.adicu.com/">density.adicu.com</a>. It tracks the number of devices connected to WiFi access points at many places on campus, and translates these numbers into a crowdedness metric (100% := full, 0% := empty). The website, however, only shows the crowdedness at the instant you access it. ρ(t) is a tool I made while procrastinating during finals week that scrapes data from the website every 15 minutes and shows it using a D3 plot. It's not a smart solution now since there's an API, but it can show you how to scrape a website.</p>
+<p><center><a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="./projects/space-at-columbia/finals.jpg"/></a></center></p>
+<p>Above is what ρ(t) recorded during finals at Columbia. The largest fluctuations are between daytime and nighttime (although a fair number of people stay active at Butler, the 24-hour library). We can also see on most days a swell in activity after lunchtime. In my experience, finding a spot in the library was impossible just after lunch.</p>
+<p>And we also see the beautiful, gradual death of finals week over three days.</p>
+<p><em><a href="./projects/space-at-columbia">Continue reading...</a></em></p>
 </div>
 </div>
 </div>

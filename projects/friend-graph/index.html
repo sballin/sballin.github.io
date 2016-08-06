@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<title>Facebook friend graph - Sean Ballinger</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- Styling -->
+<link rel="stylesheet" href="../../normalize.css">
+<link rel="stylesheet" href="../../font-awesome-4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../main.css">
+<link rel="icon" type="image/png" href="../../favicon-crown.png">
+<!-- Additional scripts -->
+
+<script type="text/javascript" src="../../w.js"></script>
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-5325674-3', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="wrap">
+<div id="side">
+<div id="logo"><a href="../..">Sean Ballinger</a></div>
+<div class="category"><a class="category-name" href="../../about">about</a></div>
+<div class="category">
+<a class="category-name" href="../../projects">projects</a>
+<div class="category-article-list">
+<a class="category-article" href="../../projects/smir">Spacecraft Inspection Robot</a>
+<a class="category-article" href="../../projects/tempofy">Tempofy: rhythm-matching shuffle</a>
+<a class="category-article" href="../../projects/stratus">Stratus: bluetooth chat</a>
+<a class="category-article" href="../../projects/friend-graph">Facebook friend graph</a>
+<a class="category-article" href="../../projects/space-at-columbia">Space usage at Columbia</a>
+<a class="category-article" href="../../projects/mandelbrot">Plotting the Mandelbrot set</a>
+<a class="category-article" href="../../projects/snake">ASCII Snake game</a>
+</div>
+</div><div class="category"><a class="category-name" href="../../academia">academia</a></div>
+<div class="category"><a class="category-name" href="../../other">other</a></div>
+</div>
+<div id="content">
+<div id="article">
+<h1 id="force-directed-graph-of-facebook-friends">Force-directed graph of Facebook friends <a href="https://github.com/sballin/friend_graph"><i class="fa fa-github"></i></a></h1>
+<p>This is a tool to make a force-directed graph of your Facebook friend network. Each friend is represented as a node, and is connected to each of your mutual friends. Each time you load this page, friends are connected by springs, and they pull each other together in a physical simulation that results in a final balance. Highly connected groups pull each other close and will end up the way you group your friends in your mind: clustered around schools, towns, events, and organizations. This is what my friend network looks like:</p>
+<p><thing width="700" height="700"></thing></p>
+<script src="http://d3js.org/d3.v2.js?2.9.6"></script>
+
+<script>
+var width = 700,
+    height = 700;
+
+var canvas = d3.select("thing").append("canvas")
+    .attr("width", width)
+    .attr("height", height);
+
+var force = d3.layout.force()
+    .size([width, height]);
+
+d3.json("friends.json", function(graph) {
+  var context = canvas.node().getContext("2d");
+
+  force
+      .size([width, height])
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .gravity([.3])
+      .on("tick", tick)
+      .start();
+
+  function tick() {
+    context.clearRect(0, 0, width, height);
+
+    // draw links
+    context.strokeStyle = "#ccc";
+    context.beginPath();
+    graph.links.forEach(function(d) {
+      context.moveTo(d.source.x, d.source.y);
+      context.lineTo(d.target.x, d.target.y);
+    });
+    context.stroke();
+
+    // draw nodes
+    context.fillStyle = "steelblue";
+    context.beginPath();
+    graph.nodes.forEach(function(d) {
+      context.moveTo(d.x, d.y);
+      context.arc(d.x, d.y, 2, 0, 2 * Math.PI);
+    });
+    context.fill();
+  }
+});
+</script>
+
+<p>It's more illuminating to look at the results excluding yourself as the central node that's connected to all others, because you know that already.</p>
+<p>The biggest group I see is my high school. That's closely connected to a couple other clusters, including my college friends at Columbia and friends I met during a high school research program at Stony Brook University. Some clusters farther out aren't connected as well to the massive high school and college group. My friends from middle school in Vienna are in one such cluster. At the farthest outskirts, there are a few friends that aren't connected to the rest at all (other than through me). They correspond to about 1.5% of the total, which is tiny.</p>
+<p>I wonder if Facebook uses an approach like this to recommend people for you to add as friends. At Facebook's scale, though, it's probably some heuristic that looks at connectivity up to 2 degrees of separation.</p><p><em>Written January 2015.</em></p>
+</div>
+</div>
+</div>
+<div id="footer"></div>
+</body
+</html>

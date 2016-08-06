@@ -119,20 +119,38 @@ strong {
 }
 
 h1 {
+	font-size: 1.85em;
 	margin-left: -2px;
 	padding-bottom: 5px;
 	border-bottom: 1px solid #e3e3e3;
 }
 
+.article-title {
+	display: block;
+	color: #585858;
+}
+
+.article-title:hover {
+	color: #3a9cff;
+}
+
 h2 {
-	margin-top: 30px;
+	margin-top: 50px;
 	margin-bottom: 5px;
-	font-size: 1.8em;
+	font-size: 1.7em;
 	/*border-bottom: 1px dashed #e3e3e3;*/
+}
+
+h2:nth-child(2) {
+	margin-top: 30px;
 }
 
 h2 i {
 	font-size: .5em;
+}
+
+h3 {
+	margin-top: 30px;
 }
 
 #article {
@@ -149,7 +167,7 @@ h2 i {
 	/*font-family: 'Libre Baskerville', Georgia, serif;*/
 	font-family: Helvetica, Lucida Grande, sans-serif;
 	font-weight: 400;
-	font-size: 17px;
+	font-size: 1.15em;
 	color: #585858;
 }
 

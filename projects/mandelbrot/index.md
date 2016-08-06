@@ -1,0 +1,179 @@
+<!-- {"full_title": "Plotting the Mandelbrot set"} -->
+
+# Plotting the Mandelbrot set <a href="https://github.com/sballin/brot"><i class="fa fa-github"></i></a>
+
+__Contents:__
+
+[TOC]
+
+## Motivation
+
+This mesmerizing video Dr. Odden showed before class one day.
+
+<center><iframe src="//player.vimeo.com/video/12185093?title=0&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></center>
+
+## Background on the Mandelbrot set
+
+The Mandelbrot set is a fractal. In fractals, large-scale shapes and patterns can be seen at much smaller scales (see how the bubble to the left of the cardioid looks like the smaller one to its left, and so on?). This [gif](http://en.wikipedia.org/wiki/File:Mandelbrot_zoom.gif) shows it well.
+
+<center><img src="mandel.png" width="400px"/></center>
+
+__Black: in the Mandelbrot set. White: outside the set.__
+
+This set isn't generated with a function like $y = x^2$. Instead, for each $(x,y)$ point, we look at the behavior of the formula $z_n = z_{n-1}^2 + c$, taking $c = x+ yi$, for example $c = 2+3i$ at $(2,3)$. This formula plugs the values it produces back into itself, and if the number's absolute value $\|z\| = \sqrt{x^2+y^2}$ never hits a limit we define, say 2, in the number of tries we say we're going to test, the value $c$ it used is declared part of the Mandelbrot set. This is all to set up a mathematical game from which a very complex and beautiful order emerges.
+
+Let's try 200 iterations at $(0.5, 0.5)$ and $(0.1, 0.1)$ with an absolute value limit of 2:
+
+Is $c = 0.5+0.5i$ in the Mandelbrot set?
+
+$$\begin{align}
+z_n &= z_{n-1}^2 + c,\quad z_0 = 0\\\\
+\\\\
+z_1 &= z_0^2 + c\\\\
+    &= 0^2+(0.5+0.5i)\\\\
+    &= 0.5+0.5i \rightarrow \|z_1\| = \mathbf{0.7071}\\\\
+\\\\
+z_2 &= (0.5+0.5i)^2 + (0.5+0.5i)\\\\
+    &= 0.5+i\rightarrow \|z_2\| = \mathbf{1.1180}\\\\
+\\\\
+z_3 &= (0.5+i)^2 + (0.5 + 0.5i)\\\\
+    &= -0.25+1.5i \rightarrow \|z_3\| = \mathbf{1.5207}\\\\
+\\\\
+z_4 &= (-0.25+1.5i)^2 + (0.5 + 0.5i)\\\\
+    &= -1.6875 - 0.25i \rightarrow \|z_4\| = \mathbf{1.7059}\\\\
+\\\\
+z_5 &= (-1.6875 - 0.25i)^2 + (0.5 + 0.5i)\\\\
+    &= 3.2852 - 1.3438i \rightarrow \|z_5\| = \mathbf{3.5494}
+\end{align}$$
+
+$\|z_5\| = 3.5494$ already went past our absolute value limit of $2$, so it's __not__ in the Mandelbrot set.
+
+What about $c = 0.1+0.1i$?
+
+$$\begin{align}
+z_1 &= 0^2+(0.1+0.1i)\\\\
+    &= 0.1+0.1i \rightarrow \|z_1\| = \mathbf{0.1414}\\\\
+\\\\
+z_2 &= (0.1+0.1i)^2 + (0.1+0.1i)\\\\
+    &= 0.1+0.12i\rightarrow \|z_2\| = \mathbf{0.1562}\\\\
+\\\\
+z_3 &= (0.1+0.12i)^2 + (0.1 + 0.1i)\\\\
+    &= 0.0956 + 0.124i \rightarrow \|z_3\| = \mathbf{0.1566}\\\\
+    &\vdots
+\\\\
+z_{200} &= 0.0936 + 0.1230i \rightarrow \|z_5\| = \mathbf{0.1546}  
+\end{align}$$
+
+This time we hit the limit of iterations, so we assume it's not going to hit our absolute value limit and it __is__ in the Mandelbrot set.
+
+We can do this for a whole bunch of points in the plane thanks to ~the magic of programming~ and get the following plot:
+
+<center><img src="brot.png" width="400px"/></center>
+
+The program that made this graph went from $x = -2\cdots0.7$ and $y = -1\cdots1$, took $c = x + yi$, and checked if the values from the formula looked like they were converging or diverging after 100 tries. The converging points are shown in blue. The red dots show $c = 0.1+0.1i$, which you can see is inside the set, and $c = 0.5 + 0.5i$, which is outside the set and normally wouldn't get printed. The lonely blue dots at $x = 0$ could be at the tips of the tendrils that the Mandelbrot set's graph shows at better resolution.
+
+<center><a href="http://commons.wikimedia.org/wiki/File:Mandelbrot_Leminiscates_1_coords.png"><img src="lemniscates.png" width="400px"/></a></center>
+
+Some graphs show the number of iterations to diverge, usually with colors. In the image above (not my work), the outer circle is what you think the Mandelbrot set looks like when you only go to $z_1$ to check that values aren't diverging. The ellipse means you went to $z_2$, the pear-shaped one to $z_3$, and so on. Wikipedia has another helpful [animation](http://en.wikipedia.org/wiki/File:Animation_of_the_growth_of_the_Mandelbrot_set_as_you_iterate_towards_infinity.gif).
+
+Because there's no limit to the number of times we can check if a number $c$ makes the formula's results eventually decrease, this graph always shows new detail as we zoom in, and that's part of why it seems to be infinitely "deep" around the edges.
+
+## A quick solution in Python
+
+Check out the code on [Github](https://github.com/sballin/brot). The crucial bit is simple:
+
+    for y in yrange:
+        for x in xrange:
+            c     = complex(x, y)
+            z     = 0
+            zprev = 0
+            its   = 0
+            if isInCardioidOrBulb(x, y):
+                its = maxits
+            else:
+                while abs(z) < abslim and its < maxits:
+                    z     = zprev*zprev + c
+                    zprev = z
+                    its  += 1
+            pixels[i] = its
+            i += 1
+
+There's even an optimization happening here. Because a large number of the points that converge (i.e. hit `maxits` without exceeding `abslim`, wasting a lot of time) are inside two big shapes that we can describe mathematically, we check for that case first (more on that [here](http://commons.wikimedia.org/wiki/File:Mandelbrot_set_Components.jpg)):
+
+    def isInCardioidOrBulb(x, y):
+        p = math.sqrt((x - 0.25)*(x - 0.25) + y*y)
+        if x < p-2*p*p + 0.25 or (x + 1)*(x + 1) + y*y < 0.0625:
+            return True
+        else:
+            return False
+
+Python isn't the fastest language. That's cool because it forces you to think about the complexity of your code. For example, in the original Mandelbrot plotting code, I had `pixels.append(its)`. It's much faster to do `pixels[i] = its`, although the `while` loop ends up making this insignficant. There's an interesting [site](http://pythonfasterway.uni.me/) with time comparisons between Python operations that look like they're equivalent.
+
+Finally, we can change the frame borders to zoom in on interesting regions:
+
+<center><img src="zoomed.png"/></center>
+
+## Speeding things up with C
+
+I decided to ditch the complex data type:
+
+    for (y = ymin; y > ylim; y -= step)
+    {
+        for (x = xmin; x < xlim; x += step)
+        {
+            its  = 0;
+            zr   = 0;
+            zi   = 0;
+            sqzr = zr*zr;
+            sqzi = zi*zi;
+
+            p = sqrt((x - 0.25)*(x - 0.25) + y*y);
+            if (x < p - 2*p*p + 0.25 || (x + 1)*(x + 1) + y*y < 0.0625)
+                its = maxits;
+            else
+                while (sqzr + sqzi < sqabslim && its < maxits)
+                {
+                    zi   = zr*zi;
+                    zi  += zi;
+                    zi  += y;
+                    zr   = sqzr - sqzi + x;
+                    sqzr = zr*zr;
+                    sqzi = zi*zi;
+                    its++;
+                }
+            pixels[xindex][yindex] = its;
+            xindex = (xindex + 1) % WIDTH;
+        }
+        yindex++;
+    }
+
+In the above code, we keep track of the real and imaginary parts separately using `zr` and `zi` and use the fact that for $c = x + yi$,
+
+$$c^2 = (x + yi)^2 = x^2 + 2xyi - y^2.$$
+
+We get a pretty plot after tweaking the color assignment algorithm:
+
+<center>![](cbrot.png)</center>
+
+With a simple loop to change the frame borders, I was able to create a zoom function. Another video I'll have to put up is pretty funny at the end, where you see `double` precision breaking down.
+
+<center><iframe src="//player.vimeo.com/video/83323445?title=0&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></center>
+
+I can't put up the C program at the moment because the image creation code is under a restrictive license. This was also a long time before I took a formal course in C. If I rewrite it in the future, I'll probably use multiple threads and try to get arbitrary precision arithmetic working for real.
+
+## Further optimizations
+
+I was trying to get GMP or MPFR working for arbitrary precision, as well as threads using pthreads or openMP.
+
+- [GMP](https://gmplib.org/)
+    - [Assignment](https://gmplib.org/manual/Assigning-Floats.html)
+    - [Arithmetic](https://gmplib.org/manual/Float-Arithmetic.html#Float-Arithmetic)
+    - [Comparison](https://gmplib.org/manual/Float-Comparison.html#Float-Comparison)
+    - [Tutorial](https://www.cs.colorado.edu/~srirams/classes/doku.php/gmp_usage_tutorial)
+- [Starting with MPFR](http://www.mpfr.org/sample.html)
+- [pthreads, assembly, and periodicity checking](http://locklessinc.com/articles/mandelbrot/)
+- [tutorial on pthreads](http://ashishagarwal.org/2011/02/13/multicore-programming-with-pthreads/)
+- [openMP example programs](http://users.abo.fi/mats/PP2012/examples/OpenMP/)
+- [compiling openMP](http://www.dartmouth.edu/~rc/classes/intro_openmp/compile_run.html)
+- [more openMP](http://www.embedded.com/design/mcus-processors-and-socs/4007625/Getting-started-with-multicore-programming-Part-2--Multithreading-in-C)
+

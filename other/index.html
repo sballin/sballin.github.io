@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="../main.css">
 <link rel="icon" type="image/png" href="../favicon-crown.png">
 <!-- Additional scripts -->
+<link rel="stylesheet" href="../github.min.css">
+<script src="../highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript" src="../w.js"></script>
 <!-- Google Analytics -->
 <script>
@@ -22,25 +25,157 @@
 <body>
 <div id="wrap">
 <div id="side">
-<div id="logo"><a href="../">sballin</a></div>
+<div id="logo"><a href="..">Sean Ballinger</a></div>
 <div class="category"><a class="category-name" href="../about">about</a></div>
-<div class="category"><a class="category-name" href="../code">code</a></div>
-<div class="category"><a class="category-name" href="../math">math</a></div>
-<div class="category"><a class="category-name" href="../physics">physics</a></div>
-<div class="category"><a class="category-name" href="../photos">photos</a></div>
+<div class="category"><a class="category-name" href="../projects">projects</a></div>
+<div class="category"><a class="category-name" href="../academia">academia</a></div>
 <div class="category">
 <a class="category-name" href="../other">other</a>
 <div class="category-article-list">
-<a class="category-article" href="../other/mystery-hunt">mystery hunt</a>
-<a class="category-article" href="../other/nethack">nethack</a>
-<a class="category-article" href="../other/notes">notes</a>
+<a class="category-article" href="../other/notes">Notes</a>
+<a class="category-article" href="../other/nethack">Nethack</a>
+<a class="category-article" href="../other/mystery-hunt">MIT Mystery Hunt</a>
+<a class="category-article" href="../other/photography">Photography links</a>
 </div>
 </div>
 </div>
 <div id="content">
 <div id="article">
-<h1 id="other-links">Other Links</h1>
-<p><a href="http://www.breadfish.co.uk/">http://www.breadfish.co.uk/</a></p>
+<h1 id="notes"><a class="article-title" href="../other/notes">Notes</h1></a>
+<p>This page lets me paste stuff to the internet immediately using SimpleNote. If nothing else displays in this article after a few seconds, try refreshing the page.</p>
+<div id="note"></div>
+
+<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+
+<script type="text/javascript">
+$('#note').load('http://cors.io/?u=https://app.simplenote.com/publish/53gczb#published_content', function() {
+    var orig = document.getElementById("note").innerHTML;
+    document.getElementById("note").innerHTML = orig.replace('<p>Public</p>', '').replace('<div class="published-top"><span class="logo"><a href="/" title="Get Simplenote">Published with Simplenote</a></span></div></div><!-- .published-wrap -->', '');
+});
+</script>
+<p><em><a href="../other/notes">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="nethack"><a class="article-title" href="../other/nethack">Nethack</h1></a>
+<p>A clever and brutal roguelike game. Try it from your terminal with this simple command:</p>
+<pre><code>$ telnet nethack.alt.org
+</code></pre>
+<p>This is me beating it for the first and as of yet only time:</p>
+<p><center><img alt="finally" src="../other/nethack/ascension.png" /></center></p>
+<p><em><a href="../other/nethack">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="mystery-hunt-2014"><a class="article-title" href="../other/mystery-hunt">Mystery Hunt 2014</h1></a>
+<p>The Mystery Hunt is an event held every year at MIT in which many teams, some with hundreds of members, binge-solve puzzles without instructions for around 3 days to find a coin hidden somewhere on campus.</p>
+<p>The hunt is always organized by the previous year's winning team. Last year, the team in charge forgot to sanitize their database inputs, and the name of the winning team was actually the entire text of <em>Atlas Shrugged</em>. This year, the theme for the hunt was <em>Alice in Wonderland</em>.</p>
+<p>I asked my good friend and long-time-ago roommate Ani, now a sophomore at MIT, if he could pair me up with any teams doing the hunt. And so I became one of about 30 members of ADPhi Mystery.</p>
+<p>Our headquarters were in ADPhi's library. We collaborated on puzzles using Google Drive, submitted answers via a website, then our team would receive a phone call informing us that we had the solution or that unfortunately, we were wrong.</p>
+<h2 id="physical-puzzle">Physical puzzle</h2>
+<p>We split up into groups. I helped put together a bunch of physical puzzle pieces, and the final image showed paths of hexadecimal numbers with a white "+" symbol in the background. So... addition? But reading along the paths yielded hexadecimal values (colors?), and we looked up their names:</p>
+<table>
+<thead>
+<tr>
+<th>Hex</th>
+<th align="center">Color</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FFE4B5</td>
+<td align="center"><div style="color:#FFE4B5">◼</div></td>
+<td>Moccasin</td>
+</tr>
+<tr>
+<td>7FFFD4</td>
+<td align="center"><div style="color:#7FFFD4">◼</div></td>
+<td>Aquamarine</td>
+</tr>
+<tr>
+<td>E6E6FA</td>
+<td align="center"><div style="color:#E6E6FA">◼</div></td>
+<td>Lavender</td>
+</tr>
+<tr>
+<td>CD853F</td>
+<td align="center"><div style="color:#CD853F">◼</div></td>
+<td>Peru</td>
+</tr>
+<tr>
+<td>FF0000</td>
+<td align="center"><div style="color:#FF0000">◼</div></td>
+<td>Red</td>
+</tr>
+<tr>
+<td>F0FFFF</td>
+<td align="center"><div style="color:#F0FFFF">◼</div></td>
+<td>Azure</td>
+</tr>
+<tr>
+<td>7FFF00</td>
+<td align="center"><div style="color:#7FFF00">◼</div></td>
+<td>Chartreuse</td>
+</tr>
+<tr>
+<td>D8BFD8</td>
+<td align="center"><div style="color:#D8BFD8">◼</div></td>
+<td>Thistle</td>
+</tr>
+<tr>
+<td>4B0088</td>
+<td align="center"><div style="color:#4B0088">◼</div></td>
+<td>Indigo</td>
+</tr>
+<tr>
+<td>FF7F50</td>
+<td align="center"><div style="color:#FF7F50">◼</div></td>
+<td>Coral</td>
+</tr>
+<tr>
+<td>50C872</td>
+<td align="center"><div style="color:#50C872">◼</div></td>
+<td>Emerald</td>
+</tr>
+</tbody>
+</table>
+<p>The initial letters of the names form a word: "MALPRACTICE." So the "+" was just a white cross hinting at something medical. All the puzzles involved a lot of guesswork—there were absolutely no instructions, but sometimes the title of the puzzle was a little hint.</p>
+<p><em><a href="../other/mystery-hunt">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="photography-links"><a class="article-title" href="../other/photography">Photography links</h1></a>
+<h2 id="portals">Portals</h2>
+<ul>
+<li><a href="http://www.diyphotography.net/">DIY Photography</a></li>
+<li><a href="http://toothwalker.org/optics/misconceptions.html">Photographic optics</a></li>
+<li><a href="http://www.keh.com/">Keh used gear</a></li>
+</ul>
+<h2 id="recent-random">Recent random</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=nZ5Mg1DoZVU">Fixing skies</a></li>
+<li><a href="https://www.lytro.com/">Lytro camera</a></li>
+<li><a href="http://www.youtube.com/watch?v=kuExFcfpzpg&amp;feature=player_embedded">Halo flash</a></li>
+<li><a href="http://www.petapixel.com/2011/09/26/sling-shot-a-camera-that-only-captures-expressions-of-fear/">Fear</a></li>
+<li><a href="http://www.flickr.com/photos/thetrashcamproject/">Trashcam</a></li>
+<li><a href="http://hanjies.blogspot.com/2009/10/black-card-photography-part-i.html">Black card</a></li>
+<li><a href="http://www.petapixel.com/2011/07/26/the-amazing-rooftopping-photography-of-tom-ryaboi/">Rooftopping</a></li>
+<li><a href="http://www.smashingmagazine.com/2009/04/20/the-disturbing-beauty-of-oversaturated-pictures/">Lomo</a></li>
+</ul>
+<h2 id="artists">Artists</h2>
+<ul>
+<li><a href="http://tumblr.yutowatanabe.com/">Yuto Watanabe</a></li>
+<li><a href="http://www.emilkozak.com/photography/">Emil Kozak</a><ul>
+<li><a href="http://www.emilkozak.com/photography/projects/big-black-nothing/">Nothing</a></li>
+</ul>
+</li>
+<li><a href="http://www.andrewbrooksphotography.com/view-main-gallery.php?id=31">Andrew Brooks</a></li>
+<li><a href="http://www.julianwolkenstein.com/index.php/project/symmetrical-portraits/">Julian Wolkenstein</a></li>
+<li><a href="http://www.newyorker.com/magazine/2011/09/26/depth-of-field">Thomas Struth</a><ul>
+<li><a href="http://nautil.us/issue/101/in-our-nature/six-pictures-of-paradise-rp">Paradise series</a></li>
+</ul>
+</li>
+<li><a href="http://www.felicefrankel.com/felice-frankel-limited-edition/new-gallery/">Felice Frankel</a></li>
+</ul>
+<p><em><a href="../other/photography">Continue reading...</a></em></p>
 </div>
 </div>
 </div>

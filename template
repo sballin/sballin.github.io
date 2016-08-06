@@ -3,13 +3,13 @@
 <title>{{title}} - Sean Ballinger</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <!-- Styling -->
-<link rel="stylesheet" href="{{top-path}}normalize.css">
-<link rel="stylesheet" href="{{top-path}}font-awesome-4.4.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="{{top-path}}main.css">
-<link rel="icon" type="image/png" href="{{top-path}}favicon-crown.png">
+<link rel="stylesheet" href="{{top-path}}/normalize.css">
+<link rel="stylesheet" href="{{top-path}}/font-awesome-4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{top-path}}/main.css">
+<link rel="icon" type="image/png" href="{{top-path}}/favicon-crown.png">
 <!-- Additional scripts -->
 {{scripts}}
-<script type="text/javascript" src="{{top-path}}w.js"></script>
+<script type="text/javascript" src="{{top-path}}/w.js"></script>
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -23,8 +23,8 @@
 <body>
 <div id="wrap">
 <div id="side">
-<div id="logo"><a href="{{top-path}}">sballin</a></div>
-{{folders}}
+<div id="logo"><a href="{{top-path}}">Sean Ballinger</a></div>
+{{categories}}
 </div>
 <div id="content">
 <div id="article">

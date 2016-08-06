@@ -1,0 +1,561 @@
+<html>
+<head>
+<title>Spacecraft Microgravity Inspection Robot</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<style>
+    body {
+        margin: 0;
+    }
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
+    h4, p {
+        color:white;
+        text-align: left;
+    }
+</style>
+<script src="three.min.js"></script>
+<script src="STLLoader.js"></script>
+<script src="OrbitControls.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-5325674-3', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div style="position:fixed; text-align: right; top:1%; right:0.5%; padding: 10px; background-color: rgba(0,0,0,0.5); border-radius: 7px;">
+    <h4>Speed</h4>
+        <p id="speed">0.00 m/s</p>
+    <h4>Propellant</h4>
+    <div class="progress">
+      <div id="propellant" class="bar bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%; min-width:10%;">
+        <span id="percent" class="sr-only">100%</span>
+      </div>
+    </div>
+    <h4>Jet commands</h4>
+    <button class="btn btn-success" onclick="goForward();" style="margin-top: 5px;">Forward thrust</button>
+    <button class="btn btn-danger" onclick="goBackward();" style="margin-top: 5px; margin-right: 5px;">Reverse thrust</button>
+    <h4>Jet action time</h4>
+    <div style="text-align: left;">
+        <button class="btn btn-inverse" onclick="setThrusterFireTime(0.5)">0.5 s</button>
+        <button class="btn btn-inverse" onclick="setThrusterFireTime(1)">1 s</button>
+        <button class="btn btn-inverse" onclick="setThrusterFireTime(2)">2 s</button>
+        <button class="btn btn-inverse" onclick="setThrusterFireTime(3)">3 s</button>
+    </div>
+    <h4>Reaction wheel commands</h4>
+    <p>X: <button class="btn btn-danger" onclick="rotate('x', -1)">-</button><button class="btn btn-success" onclick="rotate('x', 1)">+</button> Y: <button class="btn btn-danger" onclick="rotate('y', -1)">-</button><button class="btn btn-success" onclick="rotate('y', 1)">+</button> Z: <button class="btn btn-danger" onclick="rotate('z', -1)">-</button><button class="btn btn-success" onclick="rotate('z', 1)">+</button></p>
+    <h4>Collision detection</h4>
+    <div style="text-align: left; margin-bottom: 10px;">
+    <button id="collision-button" class="btn btn-inverse" onclick="toggleCollisionDetection();">Turn on</button>
+    </div>
+    <p id="collision-count">Number of collisions: 0</p>
+</div>
+<script>
+
+// Initialize scene and renderer
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.0001, 1e9);
+var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+camera.position.z = 2.5;
+
+// Browser camera controls
+controls = new THREE.OrbitControls( camera, renderer.domElement );
+controls.enableDamping = true;
+controls.dampingFactor = 0.25;
+controls.enableZoom = true;
+controls.maxDistance = 500;
+
+// Basic lights
+var ambientLight = new THREE.AmbientLight(0xffffff);
+        scene.add(ambientLight);
+var pointLight = new THREE.PointLight( 0xffffff );
+pointLight.position.set( 0, 100, 0 );
+pointLight.shadowMapVisible = true;
+scene.add(pointLight)
+
+// Sun and lens flares
+var dirLight = new THREE.DirectionalLight( 0xffffff, 0.05 );
+dirLight.position.set( 0, -1, 0 ).normalize();
+scene.add( dirLight );
+dirLight.color.setHSL( 0.1, 0.7, 0.5 );
+var textureLoader = new THREE.TextureLoader();
+var textureFlare0 = textureLoader.load( "lensflare0.png" );
+var textureFlare2 = textureLoader.load( "lensflare2.png" );
+var textureFlare3 = textureLoader.load( "lensflare3.png" );
+addLight( 0.995, 0.5, 0.9, 0, 3e3, 0);
+
+// Add axes, hidden
+sceneAxes = buildAxes( 100 );
+scene.add( sceneAxes );
+sceneAxes.visible = false;
+
+// Add starfield, Earth, and ISS
+addStarfield(scene);
+addEarth(scene);
+addClouds(scene);
+addISS(scene);
+
+// Add SMIR
+var SMIR = buildSMIR();
+scene.add( SMIR );
+SMIREdges = new THREE.EdgesHelper( SMIR, 0xff0000 );
+scene.add(SMIREdges);
+addAntennas();
+
+// Add thruster cones
+var cones = buildThrusterCones();
+for (i in cones)
+{
+    SMIR.add( cones[i] );
+    cones[i].visible=false;
+}
+
+// Immutable physics values in SI units
+var earthRadius = 6367445; // meters
+var ISSheight = 400727; // meters
+var cloudHeight = 11278; // meters
+var SMIRSide = .61; // meters
+var SMIRMass = 45; // kg
+var thrusterForce = 6.7; // Newtons
+var initialN2mass = 2.34; // kg
+var massFlowRate = .0178; // kg/s
+var maxAngularVelocity = .538 // rad/s
+
+// Mutable physics values and utilities
+var thrusterFireTime = 2; // seconds
+var currentN2mass = initialN2mass; // kg
+var forward = false;
+var backward = false;
+var threshold = 50;
+var minThrust = 1/threshold;
+var coords = ["x", "y", "z"];
+var iter = 0;
+var time = 0;
+var clock = new THREE.Clock();
+var SMIRMomentum = new THREE.Vector3(0,0,0);
+var SMIRRotation = new THREE.Vector3(0,0,0);
+var SMIRSpeed = 0;
+var totalIter = 0;
+var collidableMeshList = [];
+var collisionCount = 0;
+var collisions = false;
+
+var render = function()
+{
+    requestAnimationFrame( render );
+    var timeDelta = clock.getDelta();
+
+    if (forward || backward)
+    {
+        direction = getLookAtVector(controls);
+        if (backward) { for (i in coords) direction[coords[i]] *= -1; }
+        if (time == 0)
+        {
+            // Set momentum vector resulting from thrust
+            for (i in coords) SMIRMomentum[coords[i]] += direction[coords[i]]*thrusterForce*thrusterFireTime;
+            iter += 1;
+            time += timeDelta;
+        }
+        else if (time < thrusterFireTime)
+        {
+            for (i in coords) {
+                if (Math.abs(direction[coords[i]]) > minThrust)
+                {
+                    interval = Math.round(1/direction[coords[i]]);
+                    coneName = (direction[coords[i]] < 0 ? "-" : "") + coords[i];
+                    // Thruster flashing
+                    if (iter%interval == 0) cones[coneName].visible = true;
+                    else cones[coneName].visible = false;
+                }
+            }
+            iter += 1;
+            time += timeDelta;
+        }
+        else if (time >= thrusterFireTime)
+        {
+            iter = 0;
+            time = 0;
+            forward = backward = false;
+            // Turn off all thrusters
+            for (c in cones) cones[c].visible = false;
+            currentN2mass -= massFlowRate*thrusterFireTime;
+            percent = parseInt(currentN2mass/initialN2mass*100) + "%";
+            document.getElementById("propellant").style.width = percent;
+            document.getElementById("percent").innerHTML = percent;
+        }
+    }
+
+    renderer.render(scene, camera);
+
+    // Rotate Earth and clouds semi-accurately
+    rotation = 2*Math.PI*timeDelta/(92*60);
+    earth.rotation.x += rotation;
+    // clouds.rotation.x += .5*rotation;
+
+    // Update SMIR and camera position from momentum vector
+    for (i in coords) {
+        camera.position[coords[i]] += SMIRMomentum[coords[i]]/SMIRMass*timeDelta;
+        SMIR.position[coords[i]] += SMIRMomentum[coords[i]]/SMIRMass*timeDelta;
+        SMIR.rotation[coords[i]] += SMIRRotation[coords[i]]*maxAngularVelocity*timeDelta;
+    }
+    controls.target = SMIR.position;
+
+    // Calculate SMIR speed and update display
+    SMIRSpeed = SMIRMomentum.length()/SMIRMass;
+    document.getElementById("speed").innerHTML = SMIRSpeed.toFixed(2) + " m/s";
+    if (SMIRSpeed > 1) {
+        document.getElementById("speed").style.color = "red";
+    }
+    else {
+        document.getElementById("speed").style.color = "white";
+    }
+
+    // Compute collisions
+    if (collisions && (totalIter++)%50 == 0) {
+        var originPoint = SMIR.position.clone();
+        for (vertexIndex in SMIR.geometry.vertices)
+        {
+            var localVertex = SMIR.geometry.vertices[vertexIndex].clone();
+            var globalVertex = localVertex.applyMatrix4( SMIR.matrix );
+            var directionVector = globalVertex.sub( SMIR.position );
+            var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+            var collisionResults = ray.intersectObjects( collidableMeshList );
+            if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
+                document.getElementById("collision-count").innerHTML = "Number of collisions: " + collisionCount++;
+        }
+    }
+};
+
+render();
+
+// Button-invoked functions
+
+function rotate(coord, value)
+{
+    SMIRRotation[coord] += value;
+}
+
+function setThrusterFireTime(value)
+{
+    thrusterFireTime = value;
+}
+
+function goForward()
+{
+    forward = true;
+}
+
+function goBackward()
+{
+    backward = true;
+}
+
+function toggleCollisionDetection()
+{
+    if (document.getElementById("collision-button").innerHTML == "Turn off")
+        document.getElementById("collision-button").innerHTML = "Turn on";
+    else
+        document.getElementById("collision-button").innerHTML = "Turn off";
+    collisions = !collisions;
+}
+
+// Internal functions
+
+function thrusterForce(r)
+{
+    return new THREE.Vector3(0, totalForce, 0);
+}
+
+function getLookAtVector(controls)
+{
+    var phi = controls.getAzimuthalAngle();
+    var theta = controls.getPolarAngle();
+    return new THREE.Vector3(-Math.sin(theta)*Math.sin(phi), -Math.cos(theta), -Math.sin(theta)*Math.cos(phi));
+}
+
+function addAntennas()
+{
+    var antennaStart = .25;
+    var antennaLen = .4;
+    lineMaterial = material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+    lineGeometry = new THREE.Geometry();
+    lineGeometry.vertices.push( new THREE.Vector3( antennaStart, antennaStart, antennaStart) );
+    lineGeometry.vertices.push( new THREE.Vector3( antennaLen, antennaLen, antennaLen) );
+    line = new THREE.Line( lineGeometry, lineMaterial );
+    SMIR.add(line);
+    lineGeometry = new THREE.Geometry();
+    lineGeometry.vertices.push( new THREE.Vector3( -antennaStart, -antennaStart, antennaStart) );
+    lineGeometry.vertices.push( new THREE.Vector3( -antennaLen, -antennaLen, antennaLen) );
+    line = new THREE.Line( lineGeometry, lineMaterial );
+    SMIR.add(line);
+    lineGeometry = new THREE.Geometry();
+    lineGeometry.vertices.push( new THREE.Vector3( -antennaStart, antennaStart, antennaStart) );
+    lineGeometry.vertices.push( new THREE.Vector3( -antennaLen, antennaLen, antennaLen) );
+    line = new THREE.Line( lineGeometry, lineMaterial );
+    SMIR.add(line);lineGeometry = new THREE.Geometry();
+    lineGeometry = new THREE.Geometry();
+    lineGeometry.vertices.push( new THREE.Vector3( antennaStart, -antennaStart, antennaStart) );
+    lineGeometry.vertices.push( new THREE.Vector3( antennaLen, -antennaLen, antennaLen) );
+    line = new THREE.Line( lineGeometry, lineMaterial );
+    SMIR.add(line);
+}
+
+function buildSMIR(SMIRSide)
+{
+    var SMIRSide = .5;
+    var geometry = new THREE.BoxGeometry( SMIRSide, SMIRSide, SMIRSide );
+    var material = new THREE.MeshPhongMaterial( { color: 0xdddddd });
+
+    return new THREE.Mesh( geometry, material );
+}
+
+function buildThrusterCones()
+{
+    var coneHeight = .55;
+    var coneBase = .07;
+    var coneMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: 0.8, transparent : true, depthWrite  : false} );
+    var coneGeometry = new THREE.CylinderGeometry(0, coneBase, coneHeight, 20, 1, false);
+    coneGeometry.translate( 0, -coneHeight/2, 0 ); // make tip pivot
+    var cones = {};
+    cones["y"] = new THREE.Mesh( coneGeometry, coneMaterial );
+    cones["-y"] = new THREE.Mesh( coneGeometry, coneMaterial );
+    cones["-y"].rotation.z = Math.PI;
+    cones["x"] = new THREE.Mesh( coneGeometry, coneMaterial );
+    cones["x"].rotation.z = -Math.PI/2
+    cones["-x"] = new THREE.Mesh( coneGeometry, coneMaterial );
+    cones["-x"].rotation.z = Math.PI/2;
+    cones["z"] = new THREE.Mesh( coneGeometry, coneMaterial );
+    cones["z"].rotation.z = Math.PI/2;
+    cones["z"].rotation.y = Math.PI/2;
+    cones["-z"] = new THREE.Mesh( coneGeometry, coneMaterial );
+    cones["-z"].rotation.z = Math.PI/2;
+    cones["-z"].rotation.y = -Math.PI/2;
+    return cones;
+}
+
+function addISS(scene)
+{
+    // Add ISS model by kmemmons: http://www.thingiverse.com/thing:17114
+    var loader = new THREE.STLLoader();
+    loader.load( 'ISS.stl', function ( geometry ) {
+        // Create ISS material, rotate, and position
+        var ISSMaterial = new THREE.MeshPhongMaterial( { color: 0x999999, specular: 0xfff, shininess: 200 } );
+        var ISS = new THREE.Mesh( geometry, ISSMaterial );
+        ISS.position.set( 8.5, -1.1, -15.6 );
+        ISS.rotation.set( 0, - Math.PI / 2, 0 );
+        ISS.scale.set( 1, 1, 1 );
+        ISS.castShadow = true;
+        ISS.receiveShadow = true;
+        scene.add( ISS );
+        collidableMeshList.push(ISS);
+
+        // Add airlock marker
+        var airlockGeometry = new THREE.CylinderGeometry( .95, .95, .1, 64 );
+        var airlockMaterial = new THREE.MeshPhongMaterial( { color: 0x0080FF });
+        var airlock = new THREE.Mesh(airlockGeometry, airlockMaterial);
+        airlock.rotation.set(0,0,-Math.PI/2);
+        airlock.position.set(1.2,0,.07)
+        scene.add(airlock);
+
+        // Add damage marker
+        var damageGeometry = new THREE.SphereGeometry( 1, 100, 100 );
+        var damageMaterial = new THREE.MeshBasicMaterial( { color: 0xFF0000, opacity: 0.5, transparent : true, depthWrite  : false });
+        var damage = new THREE.Mesh(damageGeometry, damageMaterial);
+        damage.position.set(39, 5.3, -30)
+        scene.add(damage);
+    } );
+}
+
+function addClouds(scene)
+{
+    var earthRadius = 6367445;
+    var ISSheight = 400727;
+    var cloudHeight = 11278;
+    var cloudSphere  = new THREE.SphereGeometry(earthRadius+cloudHeight, 100, 100);
+    var loader = new THREE.TextureLoader();
+    loader.load(
+        // resource URL
+        'clouds.png',
+        // Function called when resource is loaded
+        function ( texture )
+        {
+            texture.magFilter = THREE.LinearFilter;
+            texture.minFilter = THREE.LinearMipMapLinearFilter;
+            var cloudMaterial = new THREE.MeshBasicMaterial( {
+              map         : texture,
+              side        : THREE.FrontSide,
+              opacity     : 0.8,
+              transparent : true,
+              depthWrite  : false,
+            } );
+            clouds = new THREE.Mesh(cloudSphere, cloudMaterial);
+            clouds.position.y = -(earthRadius + ISSheight);
+            clouds.rotation.z = Math.PI/2;
+            clouds.rotation.x += Math.PI/2;
+            scene.add(clouds);
+        },
+        // Function called when download progresses
+        function ( xhr )
+        {
+            console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+        },
+        // Function called when download errors
+        function ( xhr )
+        {
+            console.log( 'Error loading Earth texture.' );
+        }
+    );
+}
+
+function addEarth(scene)
+{
+    var earthRadius = 6367445;
+    var ISSheight = 400727;
+    var earthSphere  = new THREE.SphereGeometry(earthRadius, 100, 100);
+    var loader = new THREE.TextureLoader();
+    loader.load(
+        // resource URL
+        'earth.jpg',
+        // Function called when resource is loaded
+        function ( texture )
+        {
+            texture.magFilter = THREE.LinearFilter;
+            texture.minFilter = THREE.LinearMipMapLinearFilter;
+            var earthMaterial = new THREE.MeshBasicMaterial( { map: texture } );
+            earth = new THREE.Mesh(earthSphere, earthMaterial);
+            earth.position.y = -(earthRadius + ISSheight);
+            earth.rotation.z = Math.PI/2;
+            scene.add(earth);
+        },
+        // Function called when download progresses
+        function ( xhr )
+        {
+            console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+        },
+        // Function called when download errors
+        function ( xhr )
+        {
+            console.log( 'Error loading Earth texture.' );
+        }
+    );
+}
+
+function addStarfield(scene)
+{
+    // create the geometry sphere
+    var backgroundSphere  = new THREE.SphereGeometry(5e7, 60, 60);
+    // create the material, using a texture of startfield
+    var loader = new THREE.TextureLoader();
+    loader.load(
+        // resource URL
+        'starfield.jpg',
+        // Function called when resource is loaded
+        function ( texture )
+        {
+            var backgroundMaterial = new THREE.MeshBasicMaterial( {
+                map: texture,
+                side: THREE.BackSide } );
+              // backgroundMaterial.map.wrapS = THREE.RepeatWrapping;
+              // backgroundMaterial.map.wrapT = THREE.RepeatWrapping;
+              // backgroundMaterial.map.repeat.set( 5, 3);
+            var background  = new THREE.Mesh(backgroundSphere, backgroundMaterial);
+            scene.add(background);
+        },
+        // Function called when download progresses
+        function ( xhr ) {
+            console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+        },
+        // Function called when download errors
+        function ( xhr ) {
+            console.log( 'Error loading space texture.' );
+        }
+    );
+}
+
+function buildAxes( length )
+{
+    var axes = new THREE.Object3D();
+    axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( length, 0, 0 ), 0xFF0000, false ) ); // +X
+    axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( -length, 0, 0 ), 0xFF0000, true) ); // -X
+    axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, length, 0 ), 0x00FF00, false ) ); // +Y
+    axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, -length, 0 ), 0x00FF00, true ) ); // -Y
+    axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, length ), 0x0000FF, false ) ); // +Z
+    axes.add( buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, -length ), 0x0000FF, true ) ); // -Z
+    return axes;
+}
+
+function buildAxis( src, dst, colorHex, dashed )
+{
+    var geom = new THREE.Geometry(),
+        mat;
+    if(dashed) {
+        mat = new THREE.LineDashedMaterial({ linewidth: 3, color: colorHex, dashSize: 3, gapSize: 3 });
+    } else {
+        mat = new THREE.LineBasicMaterial({ linewidth: 3, color: colorHex });
+    }
+    geom.vertices.push( src.clone() );
+    geom.vertices.push( dst.clone() );
+    geom.computeLineDistances(); // This one is SUPER important, otherwise dashed lines will appear as simple plain lines
+    var axis = new THREE.Line( geom, mat, THREE.LineSegments );
+    return axis;
+
+}
+
+function addLight( h, s, l, x, y, z )
+{
+    var light = new THREE.PointLight( 0xffffff, 1.5, 2000 );
+    light.color.setHSL( h, s, l );
+    light.position.set( x, y, z );
+    scene.add( light );
+
+    var flareColor = new THREE.Color( 0xffffff );
+    flareColor.setHSL( h, s, l + 0.5 );
+    var blending = THREE.AdditiveBlending;
+
+    var lensFlare = new THREE.LensFlare( textureFlare0, 700, 0.0, blending, flareColor );
+
+    lensFlare.add( textureFlare2, 512, 0.0, blending );
+
+    lensFlare.add( textureFlare3, 60, 0.6, blending );
+    lensFlare.add( textureFlare3, 70, 0.7, blending );
+    lensFlare.add( textureFlare3, 120, 0.9, blending );
+    lensFlare.add( textureFlare3, 70, 1.0, blending );
+
+    lensFlare.customUpdateCallback = lensFlareUpdateCallback;
+    lensFlare.position.copy( light.position );
+
+    scene.add( lensFlare );
+}
+
+function lensFlareUpdateCallback( object )
+{
+    var f, fl = object.lensFlares.length;
+    var flare;
+    var vecX = -object.positionScreen.x * 2;
+    var vecY = -object.positionScreen.y * 2;
+
+
+    for( f = 0; f < fl; f++ )
+    {
+        flare = object.lensFlares[ f ];
+
+        flare.x = object.positionScreen.x + vecX * flare.distance;
+        flare.y = object.positionScreen.y + vecY * flare.distance;
+
+        flare.rotation = 0;
+
+    }
+
+    object.lensFlares[ 2 ].y += 0.025;
+    object.lensFlares[ 3 ].rotation = object.positionScreen.x * 0.5 + THREE.Math.degToRad( 45 );
+}
+</script>
+</body>
+</html>

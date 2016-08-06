@@ -1,11 +1,12 @@
-Notes
-=====
+<!-- {"full_title": "Notes"} -->
 
-This page lets me paste stuff to the internet immediately using SimpleNote.
+# Notes
+
+This page lets me paste stuff to the internet immediately using SimpleNote. If nothing else displays in this article after a few seconds, try refreshing the page.
 
 <div id="note"></div>
 
-<script type="text/javascript" src="{{top-path}}jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="{{top-path}}/jquery-2.1.4.min.js"></script>
 
 <script type="text/javascript">
 $('#note').load('http://cors.io/?u=https://app.simplenote.com/publish/53gczb#published_content', function() {
