@@ -2,7 +2,7 @@
 
 # Spacecraft Microgravity Inspection Robot 
 
-As we contemplate long-term manned missions to Mars and beyond, we need a convenient way to inspect and repair micrometeorite damage on the outside of spacecraft caused by micrometeorites, space debris, and radiation. I designed a robot for this purpose with a team of fellow students in the excellent Human Spaceflight class taught by former astronaut Mike Massimino. The robot is designed to be a companion for spacecraft and space habitats like the International Space Station, and can be deployed to inspect the exterior of any structure in microgravity.
+As we contemplate long-term manned missions to Mars and beyond, we need a convenient way to inspect and repair the damage to spacecraft caused by micrometeorites, space debris, and radiation. I designed a robot for this purpose with a team of fellow students in the excellent Human Spaceflight class taught by former astronaut Mike Massimino. The robot is designed to be a companion for spacecraft and space habitats like the International Space Station, and can be deployed to inspect the exterior of any structure in microgravity.
 
 <center><img src="{{top-path}}/{{article-path}}/screen-1.png"/></center>
 
