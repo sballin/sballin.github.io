@@ -61,11 +61,11 @@ class Article:
                 properties = json.loads(properties)
 
         try:
-            self.date_written = time.mktime(datetime.datetime.strptime(
-                                            properties['date_written'],
+            self.date_created = time.mktime(datetime.datetime.strptime(
+                                            properties['date_created'],
                                             "%b %y").timetuple())
         except:
-            self.date_written = os.stat(self.path).st_birthtime
+            self.date_created = os.stat(self.path).st_birthtime
 
         try:
             self.full_title = properties['full_title']
@@ -74,7 +74,7 @@ class Article:
 
     def page_html(self, tree, template):
         body = md_to_html(self.markdown)
-        body += '<p><em>This page was written in %s.</em></p>' % datetime.datetime.fromtimestamp(int(self.date_written)).strftime("%B %Y")
+        body += '\n<br>\n<p><em>%s.</em></p>' % datetime.datetime.fromtimestamp(int(self.date_created)).strftime("%B %Y")
         source = wrap_in_template(body, template)
         source = add_scripts(body, source)
         source = add_sidebar(source, self.path, tree)
@@ -95,7 +95,7 @@ class Feed:
         if path == '.':
             self.title = 'home'
             self.articles = [a for a_list in tree.values() for a in a_list]
-            self.articles.sort(key=lambda x: x.date_written, reverse=True)
+            self.articles.sort(key=lambda x: x.date_created, reverse=True)
             self.articles = self.articles[:8]
         else:
             self.title = path
@@ -214,7 +214,7 @@ def build_website():
             article = Article(path)
             if '.' not in path and not article.hidden:
                 tree[category].append(article)
-        tree[category].sort(key=lambda x: x.date_written, reverse=True)
+        tree[category].sort(key=lambda x: x.date_created, reverse=True)
 
     # Write home page index
     Feed('.', tree).write_html(template)

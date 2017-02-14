@@ -42,6 +42,27 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <p><em><a class="gray" href="./projects/smir">Continue reading...</a></em></p>
 </div>
 <div id="article">
+<h1 id="problems-from-project-euler"><a class="article-title" href="./science/project-euler">Problems from Project Euler</h1></a>
+<h2 id="langtons-ant">Langton's Ant </h2>
+<p>This is a start toward solving problem <a href="http://projecteuler.net/problem=349">349</a> from Project Euler:</p>
+<blockquote>
+<p>An ant moves on a regular grid of squares that are coloured either black or white. The ant is always oriented in one of the cardinal directions (left, right, up or down) and moves from square to adjacent square according to the following rules:</p>
+<ul>
+<li>
+<p>if it is on a black square, it flips the color of the square to white, rotates 90 degrees counterclockwise and moves forward one square.</p>
+</li>
+<li>
+<p>if it is on a white square, it flips the color of the square to black, rotates 90 degrees clockwise and moves forward one square.</p>
+</li>
+</ul>
+<p>Starting with a grid that is entirely white, how many squares are black after $10^{18}$ moves of the ant?</p>
+</blockquote>
+<p>I made a Mathematica simulation to find the point around which the motion of the ant stops being random and enters a "highway."</p>
+<p><center><img src="./science/project-euler/ant.gif" width="250px"/></center></p>
+<p>After spending a lot of time at the beginning going through seemingly random configurations, the ant reaches a configuration that makes it "repeat" the same sequence and launch into a highway.</p>
+<p><em><a class="gray" href="./science/project-euler">Continue reading...</a></em></p>
+</div>
+<div id="article">
 <h1 id="notes"><a class="article-title" href="./other/notes">Notes</h1></a>
 <p>This page lets me paste stuff to the internet immediately using SimpleNote. If nothing else displays in this article after a few seconds, try refreshing the page.</p>
 <div id="note"></div>
@@ -78,7 +99,7 @@ $('#note').load('http://cors.io/?u=https://app.simplenote.com/publish/53gczb#pub
 </div>
 <div id="article">
 <h1 id="current-reconstruction-in-tokamak-plasmas"><a class="article-title" href="./science/plasma-current-reconstruction">Current reconstruction in tokamak plasmas </h1></a>
-<p>I've worked a lot on Tokamaks. Tokamaks are donut-shaped containers for hydrogen plasmas that we heat to ludicrous temperatures so that charged particles overcome their mutual repulsion and fuse, releasing energy that could be used to turn a steam turbine and power the lights in your house. To keep the plasma at such enormous temperatures and to protect the Tokamak's interior, the plasma is suspended in midair using magnetic fields. Tokamaks are surrounded by electromagnetic coils that generate powerful magnetic fields, but they also rely on an electric current going through the plasma itself to create the perfect confining magnetic field. This plasma current is induced by a transformer coil at the center of the torus:</p>
+<p>Tokamaks are donut-shaped containers for hydrogen plasmas that we heat to ludicrous temperatures so that charged particles overcome their mutual repulsion and fuse, releasing energy that could be used to turn a steam turbine and power the lights in your house. To keep the plasma at such enormous temperatures and to protect the Tokamak's interior, the plasma is suspended in midair using magnetic fields. Tokamaks are surrounded by electromagnetic coils that generate powerful magnetic fields, but they also rely on an electric current going through the plasma itself to create the perfect confining magnetic field. This plasma current is induced by a transformer coil at the center of the torus:</p>
 <p><center><a href="http://cswim.org/imageslibrary/tokamak_schema.gif/view"><img src="./science/plasma-current-reconstruction/tokamak.gif"/></a></center></p>
 <p>I'm working on a Python program that uses magnetic sensor measurements to reconstruct the plasma current profile on Columbia's High-beta Tokamak. </p>
 <p>It can calculate the magnetic field at any location resulting from current in a circular coil:</p>
@@ -95,14 +116,6 @@ $('#note').load('http://cors.io/?u=https://app.simplenote.com/publish/53gczb#pub
 <p>Plasma frequency: $$\omega_p = \sqrt{\frac{n_0e^2}{\epsilon_0m}}$$</center>
 <p>Larmor radius: $$r_L \equiv \frac{v_\perp}{\omega_c} = \frac{mv_\perp}{|q|B}$$</center>
 <p><em><a class="gray" href="./science/plasma-formulary">Continue reading...</a></em></p>
-</div>
-<div id="article">
-<h1 id="tracking-space-usage-at-columbia"><a class="article-title" href="./projects/space-at-columbia">Tracking space usage at Columbia </h1></a>
-<p>During the last finals week of my junior year, an interesting website came online at <a href="http://density.adicu.com/">density.adicu.com</a>. It tracks the number of devices connected to WiFi access points at many places on campus, and translates these numbers into a crowdedness metric (100% := full, 0% := empty). The website, however, only shows the crowdedness at the instant you access it. ρ(t) is a tool I made while procrastinating during finals week that scrapes data from the website every 15 minutes and shows it using a D3 plot. It's not a smart solution now since there's an API, but it can show you how to scrape a website.</p>
-<p><center><a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="./projects/space-at-columbia/finals.jpg"/></a></center></p>
-<p>Above is what ρ(t) recorded during finals at Columbia. The largest fluctuations are between daytime and nighttime (although a fair number of people stay active at Butler, the 24-hour library). We can also see on most days a swell in activity after lunchtime. In my experience, finding a spot in the library was impossible just after lunch.</p>
-<p>And we also see the beautiful, gradual death of finals week over three days.</p>
-<p><em><a class="gray" href="./projects/space-at-columbia">Continue reading...</a></em></p>
 </div>
 </div>
 </div>

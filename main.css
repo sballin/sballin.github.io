@@ -68,6 +68,7 @@ html, body {
 }
 
 .category-name:hover {
+	color: #3a9cff;
 	background-color: #f3f3f3;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
@@ -229,8 +230,6 @@ a:hover {
 	padding: 2px;
 	padding-left: 6px;
 	padding-right: 6px;
-	margin-left: 5px;
-	margin-right: 5px;
 }
 
 .button:hover {
