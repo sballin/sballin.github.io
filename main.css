@@ -160,7 +160,7 @@ h3 {
 	padding: 35px;
 	padding-top: 3px;
 	padding-bottom: 17px;
-	/*text-align: justify;*/
+	text-align: justify;
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	hyphens: auto;
@@ -236,6 +236,14 @@ a:hover {
 .button:hover {
 	color: #fff;
 	background-color: #3a9cff;
+}
+
+.gray {
+	color: #a0a0a0;
+}
+
+.gray:hover {
+	color: #3a9cff;
 }
 
 #logo {

@@ -113,7 +113,7 @@ class Feed:
                 html = md_to_html(article.feed_markdown)
                 html = re.sub('<a (.*)"fa fa-github"></i></a>', '', html)
                 html = re.sub('<h1 (.*)>(.*)</h1>', r'<h1 \1><a class="article-title" href="%s/%s">\2</h1></a>' % (top(self.path), article.path), html)
-                html += '\n<p><em><a href="%s/%s">Continue reading...' \
+                html += '\n<p><em><a class="gray" href="%s/%s">Continue reading...' \
                         '</a></em></p>' % (top(self.path), article.path)
                 feed_body += html
                 if i < len(self.articles) - 1:
