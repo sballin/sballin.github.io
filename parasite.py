@@ -74,7 +74,7 @@ class Article:
 
     def page_html(self, tree, template):
         body = md_to_html(self.markdown)
-        body += '<p><em>Written %s.</em></p>' % datetime.datetime.fromtimestamp(int(self.date_written)).strftime("%B %Y")
+        body += '<p><em>This page was written in %s.</em></p>' % datetime.datetime.fromtimestamp(int(self.date_written)).strftime("%B %Y")
         source = wrap_in_template(body, template)
         source = add_scripts(body, source)
         source = add_sidebar(source, self.path, tree)
@@ -202,7 +202,7 @@ def build_website():
 
     # Folders that should show up in the sidebar and whose articles should be
     # formatted
-    categories = ['about', 'projects', 'academia', 'other']
+    categories = ['about', 'projects', 'science', 'other']
 
     # Make tree of all articles
     tree = collections.OrderedDict()

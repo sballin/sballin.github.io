@@ -10,10 +10,10 @@ This website is a repository for cool stuff and projects I'm working on. I made 
 Here are some images from my favorite projects to date:
 
 <center>
-<a href="../academia/plasma-current-reconstruction"><img src="thumb_3d.png" class="thumb"></a>
+<a href="../science/plasma-current-reconstruction"><img src="thumb_3d.png" class="thumb"></a>
 <a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="thumb_finals.png" class="thumb"></a>
 <a href="../projects/friend-graph"><img src="thumb_connections.png" class="thumb"></a>
 <!-- <a href="code/mandelbrot"><img src="http://sball.in/thumb_cbrot.png" style="display: inline-block; height: 175px; margin-right: 1%; margin-bottom: 1em;"></a> -->
-<a href="../academia"><img src="thumb_star.jpg" class="thumb"></a>
+<a href="../science"><img src="thumb_star.jpg" class="thumb"></a>
 </center>
 <p style="clear: both;">

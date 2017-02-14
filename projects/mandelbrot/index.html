@@ -39,9 +39,8 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <a class="category-article" href="../../projects/friend-graph">Facebook friend graph</a>
 <a class="category-article" href="../../projects/space-at-columbia">Space usage at Columbia</a>
 <a class="category-article" href="../../projects/mandelbrot">Plotting the Mandelbrot set</a>
-<a class="category-article" href="../../projects/snake">ASCII Snake game</a>
 </div>
-</div><div class="category"><a class="category-name" href="../../academia">academia</a></div>
+</div><div class="category"><a class="category-name" href="../../science">science</a></div>
 <div class="category"><a class="category-name" href="../../other">other</a></div>
 </div>
 <div id="content">
@@ -67,7 +66,7 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <p>The Mandelbrot set is a fractal. In fractals, large-scale shapes and patterns can be seen at much smaller scales (see how the bubble to the left of the cardioid looks like the smaller one to its left, and so on?). This <a href="http://en.wikipedia.org/wiki/File:Mandelbrot_zoom.gif">gif</a> shows it well.</p>
 <p><center><img src="mandel.png" width="400px"/></center></p>
 <p><strong>Black: in the Mandelbrot set. White: outside the set.</strong></p>
-<p>This set isn't generated with a function like $y = x^2$. Instead, for each $(x,y)$ point, we look at the behavior of the formula $z_n = z_{n-1}^2 + c$, taking $c = x+ yi$, for example $c = 2+3i$ at $(2,3)$. This formula plugs the values it produces back into itself, and if the number's absolute value $\|z\| = \sqrt{x^2+y^2}$ never hits a limit we define, say 2, in the number of tries we say we're going to test, the value $c$ it used is declared part of the Mandelbrot set. This is all to set up a mathematical game from which a very complex and beautiful order emerges.</p>
+<p>This set isn't generated with a function like $y = x^2$. Instead, for each $(x,y)$ point, we look at the behavior of the formula $z_n = z_{n-1}^2 + c$, taking $c = x+ yi$, for example $c = 2+3i$ at $(2,3)$. This formula plugs the values it produces back into itself, and if the number's absolute value $|z| = \sqrt{x^2+y^2}$ never hits a limit we define, say 2, in the number of tries we say we're going to test, the value $c$ it used is declared part of the Mandelbrot set. This is all to set up a mathematical game from which a very complex and beautiful order emerges.</p>
 <p>Let's try 200 iterations at $(0.5, 0.5)$ and $(0.1, 0.1)$ with an absolute value limit of 2:</p>
 <p>Is $c = 0.5+0.5i$ in the Mandelbrot set?</p>
 <center>$$\begin{align}
@@ -75,34 +74,34 @@ z_n &amp;= z_{n-1}^2 + c,\quad z_0 = 0\\
 \\
 z_1 &amp;= z_0^2 + c\\
     &amp;= 0^2+(0.5+0.5i)\\
-    &amp;= 0.5+0.5i \rightarrow \|z_1\| = \mathbf{0.7071}\\
+    &amp;= 0.5+0.5i \rightarrow |z_1| = \mathbf{0.7071}\\
 \\
 z_2 &amp;= (0.5+0.5i)^2 + (0.5+0.5i)\\
-    &amp;= 0.5+i\rightarrow \|z_2\| = \mathbf{1.1180}\\
+    &amp;= 0.5+i\rightarrow |z_2| = \mathbf{1.1180}\\
 \\
 z_3 &amp;= (0.5+i)^2 + (0.5 + 0.5i)\\
-    &amp;= -0.25+1.5i \rightarrow \|z_3\| = \mathbf{1.5207}\\
+    &amp;= -0.25+1.5i \rightarrow |z_3| = \mathbf{1.5207}\\
 \\
 z_4 &amp;= (-0.25+1.5i)^2 + (0.5 + 0.5i)\\
-    &amp;= -1.6875 - 0.25i \rightarrow \|z_4\| = \mathbf{1.7059}\\
+    &amp;= -1.6875 - 0.25i \rightarrow |z_4| = \mathbf{1.7059}\\
 \\
 z_5 &amp;= (-1.6875 - 0.25i)^2 + (0.5 + 0.5i)\\
-    &amp;= 3.2852 - 1.3438i \rightarrow \|z_5\| = \mathbf{3.5494}
+    &amp;= 3.2852 - 1.3438i \rightarrow |z_5| = \mathbf{3.5494}
 \end{align}$$</center>
-<p>$\|z_5\| = 3.5494$ already went past our absolute value limit of $2$, so it's <strong>not</strong> in the Mandelbrot set.</p>
+<p>$|z_5| = 3.5494$ already went past our absolute value limit of $2$, so it's <strong>not</strong> in the Mandelbrot set.</p>
 <p>What about $c = 0.1+0.1i$?</p>
 <center>$$\begin{align}
 z_1 &amp;= 0^2+(0.1+0.1i)\\
-    &amp;= 0.1+0.1i \rightarrow \|z_1\| = \mathbf{0.1414}\\
+    &amp;= 0.1+0.1i \rightarrow |z_1| = \mathbf{0.1414}\\
 \\
 z_2 &amp;= (0.1+0.1i)^2 + (0.1+0.1i)\\
-    &amp;= 0.1+0.12i\rightarrow \|z_2\| = \mathbf{0.1562}\\
+    &amp;= 0.1+0.12i\rightarrow |z_2| = \mathbf{0.1562}\\
 \\
 z_3 &amp;= (0.1+0.12i)^2 + (0.1 + 0.1i)\\
-    &amp;= 0.0956 + 0.124i \rightarrow \|z_3\| = \mathbf{0.1566}\\
+    &amp;= 0.0956 + 0.124i \rightarrow |z_3| = \mathbf{0.1566}\\
     &amp;\vdots
 \\
-z_{200} &amp;= 0.0936 + 0.1230i \rightarrow \|z_5\| = \mathbf{0.1546}<br />
+z_{200} &amp;= 0.0936 + 0.1230i \rightarrow |z_5| = \mathbf{0.1546}<br />
 \end{align}$$</center>
 <p>This time we hit the limit of iterations, so we assume it's not going to hit our absolute value limit and it <strong>is</strong> in the Mandelbrot set.</p>
 <p>We can do this for a whole bunch of points in the plane thanks to ~the magic of programming~ and get the following plot:</p>
@@ -195,7 +194,7 @@ z_{200} &amp;= 0.0936 + 0.1230i \rightarrow \|z_5\| = \mathbf{0.1546}<br />
 <li><a href="http://users.abo.fi/mats/PP2012/examples/OpenMP/">openMP example programs</a></li>
 <li><a href="http://www.dartmouth.edu/~rc/classes/intro_openmp/compile_run.html">compiling openMP</a></li>
 <li><a href="http://www.embedded.com/design/mcus-processors-and-socs/4007625/Getting-started-with-multicore-programming-Part-2--Multithreading-in-C">more openMP</a></li>
-</ul><p><em>Written February 2014.</em></p>
+</ul><p><em>This page was written in February 2014.</em></p>
 </div>
 </div>
 </div>

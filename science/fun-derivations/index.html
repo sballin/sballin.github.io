@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<title>Fun derivations - Sean Ballinger</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- Styling -->
+<link rel="stylesheet" href="../../normalize.css">
+<link rel="stylesheet" href="../../font-awesome-4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../main.css">
+<link rel="icon" type="image/png" href="../../favicon-crown.png">
+<!-- Additional scripts -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
+</script>
+<script src="../../MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<script type="text/javascript" src="../../w.js"></script>
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-5325674-3', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+<body>
+<div id="wrap">
+<div id="side">
+<div id="logo"><a href="../..">Sean Ballinger</a></div>
+<div class="category"><a class="category-name" href="../../about">about</a></div>
+<div class="category"><a class="category-name" href="../../projects">projects</a></div>
+<div class="category">
+<a class="category-name" href="../../science">science</a>
+<div class="category-article-list">
+<a class="category-article" href="../../science/plasma-current-reconstruction">Plasma current reconstruction</a>
+<a class="category-article" href="../../science/plasma-formulary">Plasma formulary</a>
+<a class="category-article" href="../../science/fun-derivations">Fun derivations</a>
+<a class="category-article" href="../../science/ode">ODE cheat sheet</a>
+<a class="category-article" href="../../science/project-euler">Project Euler</a>
+<a class="category-article" href="../../science/n-spheres">N-sphere volume and surface area</a>
+</div>
+</div><div class="category"><a class="category-name" href="../../other">other</a></div>
+</div>
+<div id="content">
+<div id="article">
+<h1 id="fun-derivations-and-proofs">Fun derivations and proofs</h1>
+<h2 id="the-quadratic-formula">The quadratic formula</h2>
+<p>I couldn't remember having ever derived it. Wikipedia said it was fun, so I tried:</p>
+<center>$$\begin{align}
+0 &amp;= ax^2+bx+c = x^2+\frac bax+\frac ca\\
+0 &amp;= (x+x_1)(x+x_2) = x^2+(x_1+x_2)x+x_1x_2
+\end{align}$$</center>
+<center>$$\frac ba = x_1+x_2\rightarrow x_2 = \frac ba-x_1$$</center>
+<center>$$\frac ca = x_1x_2 = x_1\left(\frac ba -x_1\right)\rightarrow 0 = x_1^2-\frac bax_1+\frac ca := (x_1+x_3)^2$$</center>
+<p>We get another quadratic equation which we say has a single solution $x_3$ (why not two?).</p>
+<center>$$-\frac ba = 2x_3 \rightarrow x_3 = -\frac b{2a}$$</center>
+<center>$$\frac ca = x_3^2 = \frac{b^2}{4a^2}\rightarrow \frac{b^2}{4a^2}-\frac ca = \left(x_1-\frac b{2a}\right)^2$$</center>
+<center>$$\pm\sqrt{\frac{b^2}{4a^2}-\frac ca} = x_1-\frac b{2a}$$</center>
+<center>$$x_{1,2} = -\frac b{2a}\pm\sqrt{\frac{b^2}{4a^2}-\frac ca} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$</center><p><em>This page was written in June 2014.</em></p>
+</div>
+</div>
+</div>
+<div id="footer"></div>
+</body
+</html>

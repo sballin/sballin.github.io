@@ -29,7 +29,7 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <div id="logo"><a href=".">Sean Ballinger</a></div>
 <div class="category"><a class="category-name" href="./about">about</a></div>
 <div class="category"><a class="category-name" href="./projects">projects</a></div>
-<div class="category"><a class="category-name" href="./academia">academia</a></div>
+<div class="category"><a class="category-name" href="./science">science</a></div>
 <div class="category"><a class="category-name" href="./other">other</a></div>
 </div>
 <div id="content">
@@ -77,24 +77,24 @@ $('#note').load('http://cors.io/?u=https://app.simplenote.com/publish/53gczb#pub
 <p><em><a href="./projects/friend-graph">Continue reading...</a></em></p>
 </div>
 <div id="article">
-<h1 id="current-reconstruction-in-tokamak-plasmas"><a class="article-title" href="./academia/plasma-current-reconstruction">Current reconstruction in Tokamak plasmas </h1></a>
+<h1 id="current-reconstruction-in-tokamak-plasmas"><a class="article-title" href="./science/plasma-current-reconstruction">Current reconstruction in Tokamak plasmas </h1></a>
 <p>I've worked a lot on Tokamaks. Tokamaks are donut-shaped containers for hydrogen plasmas that we heat to ludicrous temperatures so that charged particles overcome their mutual repulsion and fuse, releasing energy that could be used to turn a steam turbine and power the lights in your house. To keep the plasma at such enormous temperatures and to protect the Tokamak's interior, the plasma is suspended in midair using magnetic fields. Tokamaks are surrounded by electromagnetic coils that generate powerful magnetic fields, but they also rely on an electric current going through the plasma itself to create the perfect confining magnetic field. This plasma current is induced by a transformer coil at the center of the torus:</p>
-<p><center><a href="http://cswim.org/imageslibrary/tokamak_schema.gif/view"><img src="./academia/plasma-current-reconstruction/tokamak.gif"/></a></center></p>
+<p><center><a href="http://cswim.org/imageslibrary/tokamak_schema.gif/view"><img src="./science/plasma-current-reconstruction/tokamak.gif"/></a></center></p>
 <p>I'm working on a Python program that uses magnetic sensor measurements to reconstruct the plasma current profile on Columbia's High-beta Tokamak. </p>
 <p>It can calculate the magnetic field at any location resulting from current in a circular coil:</p>
 <center>$$B = G(r, z, r_{coil}, z_{coil})\cdot I_{coil}$$</center>
 <p>where G is a Green's function of their positions in cylindrical coordinates. For each magnetic sensor, we subtract the coil fields from the sensor's readings to get the field of the plasma current alone. Then we do the linear algebra version of $I = G^{-1}B$ to calculate the plasma current over a grid of different positions.</p>
-<p><em><a href="./academia/plasma-current-reconstruction">Continue reading...</a></em></p>
+<p><em><a href="./science/plasma-current-reconstruction">Continue reading...</a></em></p>
 </div>
 <div id="article">
-<h1 id="plasma-physics-formulary"><a class="article-title" href="./academia/plasma-formulary">Plasma physics formulary</h1></a>
+<h1 id="plasma-physics-formulary"><a class="article-title" href="./science/plasma-formulary">Plasma physics formulary</h1></a>
 <h2 id="plasma-parameters">Plasma parameters</h2>
 <p>Debye length: $$\lambda_D \equiv \sqrt{\frac{\epsilon_0KT_e}{ne^2}}$$</center>
 <p>The number of particles in a sphere with the Debye length as its radius should be $\gg1$ for collective behavior.</p>
-<p>Cyclotron frequency: $$\omega_c = \frac{\|q\|B}{m}$$</center>
+<p>Cyclotron frequency: $$\omega_c = \frac{|q|B}{m}$$</center>
 <p>Plasma frequency: $$\omega_p = \sqrt{\frac{n_0e^2}{\epsilon_0m}}$$</center>
-<p>Larmor radius: $$r_L \equiv \frac{v_\perp}{\omega_c} = \frac{mv_\perp}{\|q\|B}$$</center>
-<p><em><a href="./academia/plasma-formulary">Continue reading...</a></em></p>
+<p>Larmor radius: $$r_L \equiv \frac{v_\perp}{\omega_c} = \frac{mv_\perp}{|q|B}$$</center>
+<p><em><a href="./science/plasma-formulary">Continue reading...</a></em></p>
 </div>
 <div id="article">
 <h1 id="tracking-space-usage-at-columbia"><a class="article-title" href="./projects/space-at-columbia">Tracking space usage at Columbia </h1></a>
