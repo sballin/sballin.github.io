@@ -1,5 +1,5 @@
 html {
-	background-color: #f3f3f3; /* used to be #edf0f4 */
+	background-color: #edf0f4; /* with #f3f3f3 overall contrast is pretty low */
 	-webkit-font-smoothing: antialiased;
 	font-weight: 200;
 	font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
