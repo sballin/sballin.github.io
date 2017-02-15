@@ -74,7 +74,7 @@ class Article:
 
     def page_html(self, tree, template):
         body = md_to_html(self.markdown)
-        body += '\n<br>\n<p><em>%s.</em></p>' % datetime.datetime.fromtimestamp(int(self.date_created)).strftime("%B %Y")
+        body += '\n<br>\n<p><em>Page created in %s.</em></p>' % datetime.datetime.fromtimestamp(int(self.date_created)).strftime("%B %Y")
         source = wrap_in_template(body, template)
         source = add_scripts(body, source)
         source = add_sidebar(source, self.path, tree)
