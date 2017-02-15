@@ -28,7 +28,7 @@ Intermediate Physics Laboratory, Columbia University. Spring 2014.
 
 <center><a href="qhe-lab.pdf"><img src="magnet.jpg" width="450px"/></a></center>
 
-<a class="button" href="qhe-lab.pdf"><i class="fa fa-file-text-o"></i> Paper</a>
+<a class="button" href="qhe-lab.pdf"><i class="fa fa-file-text-o"></i> Paper</a> Lab report
 
 ## Nuclear Magnetic Resonance
 
@@ -36,7 +36,7 @@ Intermediate Physics Laboratory, Columbia University. Spring 2014.
 
 <center><a href="nmr-lab.pdf"><img src="peaks.jpg" width="450px"/></a></center>
 
-<a class="button" href="nmr-lab.pdf"><i class="fa fa-file-text-o"></i> Paper</a>
+<a class="button" href="nmr-lab.pdf"><i class="fa fa-file-text-o"></i> Paper</a> Lab report
 
 ## Aerodynamics Simulations of the D8 “Double Bubble” Aircraft
 
@@ -44,7 +44,7 @@ NASA Ames Research Center, Moffett Field. Summer 2013.
 
 <center><a href="d8-sim.pdf"><img src="star.jpg"/></a></center>
 
-<a class="button" href="d8-sim.pdf"><i class="fa fa-file-text-o"></i> Paper</a>
+<a class="button" href="d8-sim.pdf"><i class="fa fa-file-text-o"></i> Paper</a> Project report
 
 Ran fluid simulations of a wind tunnel test on NASA's Pleiades supercomputer using the new LAVA code on an unstructured mesh. Unstructured meshes, like the one shown above, can be created automatically given a model, as opposed to structured overset grids, which are usually made by hand. The D8 is a passenger aircraft concept that could take on the role of the Boeing 737 by 2035.
 
@@ -54,7 +54,7 @@ Intro to Electrical Engineering, Columbia University. Winter 2012.
 
 <center><a href="pong.pdf"><img src="arduinos.jpg" width="450px"/></a></center>
 
-<a class="button" href="pong.pdf"><i class="fa fa-file-text-o"></i> Paper</a>
+<a class="button" href="pong.pdf"><i class="fa fa-file-text-o"></i> Paper</a> Project report
 
 Used two Arduinos to simulate a ball bouncing around an oscilloscope screen, and an array of LEDs hooked up to an Arduino to do the same thing.
 
