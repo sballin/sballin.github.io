@@ -54,21 +54,6 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <p><em><a class="gray" href="./science/project-euler">Continue reading...</a></em></p>
 </div>
 <div id="article">
-<h1 id="notes"><a class="article-title" href="./other/notes">Notes</h1></a>
-<p>This page lets me paste stuff to the internet immediately using SimpleNote. If nothing else displays in this article after a few seconds, try refreshing the page.</p>
-<div id="note"></div>
-
-<script type="text/javascript" src="./jquery-2.1.4.min.js"></script>
-
-<script type="text/javascript">
-$('#note').load('http://cors.io/?u=https://app.simplenote.com/publish/53gczb#published_content', function() {
-    var orig = document.getElementById("note").innerHTML;
-    document.getElementById("note").innerHTML = orig.replace('<p>Public</p>', '').replace('<div class="published-top"><span class="logo"><a href="/" title="Get Simplenote">Published with Simplenote</a></span></div></div><!-- .published-wrap -->', '');
-});
-</script>
-<p><em><a class="gray" href="./other/notes">Continue reading...</a></em></p>
-</div>
-<div id="article">
 <h1 id="tempofy-rhythm-matching-shuffle"><a class="article-title" href="./projects/tempofy">Tempofy: rhythm-matching shuffle </h1></a>
 <p>This is a project I worked on with a team at PennApps in winter 2015. It finds random songs on Spotify matching the tempo of your movements according to the iPhone's accelerometer.</p>
 <p>I did the iOS programming, but it currently requires a backend Flask server to be running to calculate bpm and use the Echonest API.</p>
@@ -107,6 +92,14 @@ $('#note').load('http://cors.io/?u=https://app.simplenote.com/publish/53gczb#pub
 <p>Plasma frequency: $$\omega_p = \sqrt{\frac{n_0e^2}{\epsilon_0m}}$$</center>
 <p>Larmor radius: $$r_L \equiv \frac{v_\perp}{\omega_c} = \frac{mv_\perp}{|q|B}$$</center>
 <p><em><a class="gray" href="./science/plasma-formulary">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="tracking-space-usage-at-columbia"><a class="article-title" href="./projects/space-at-columbia">Tracking space usage at Columbia </h1></a>
+<p>During the last finals week of my junior year, an interesting website came online at <a href="http://density.adicu.com/">density.adicu.com</a>. It tracks the number of devices connected to WiFi access points at many places on campus, and translates these numbers into a crowdedness metric (100% := full, 0% := empty). The website, however, only shows the crowdedness at the instant you access it. ρ(t) is a tool I made while procrastinating during finals week that scrapes data from the website every 15 minutes and shows it using a D3 plot. It's not a smart solution now since there's an API, but it can show you how to scrape a website.</p>
+<p><center><a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="./projects/space-at-columbia/finals.jpg"/></a></center></p>
+<p>Above is what ρ(t) recorded during finals at Columbia. The largest fluctuations are between daytime and nighttime (although a fair number of people stay active at Butler, the 24-hour library). We can also see on most days a swell in activity after lunchtime. In my experience, finding a spot in the library was impossible just after lunch.</p>
+<p>And we also see the beautiful, gradual death of finals week over three days.</p>
+<p><em><a class="gray" href="./projects/space-at-columbia">Continue reading...</a></em></p>
 </div>
 </div>
 </div>

@@ -23,7 +23,6 @@
 <div class="category">
 <a class="category-name" href="../other">other</a>
 <div class="category-article-list">
-<a class="category-article" href="../other/notes">Notes</a>
 <a class="category-article" href="../other/nethack">Nethack</a>
 <a class="category-article" href="../other/mystery-hunt">MIT Mystery Hunt</a>
 <a class="category-article" href="../other/photography">Photography links</a>
@@ -31,21 +30,6 @@
 </div>
 </div>
 <div id="content">
-<div id="article">
-<h1 id="notes"><a class="article-title" href="../other/notes">Notes</h1></a>
-<p>This page lets me paste stuff to the internet immediately using SimpleNote. If nothing else displays in this article after a few seconds, try refreshing the page.</p>
-<div id="note"></div>
-
-<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
-
-<script type="text/javascript">
-$('#note').load('http://cors.io/?u=https://app.simplenote.com/publish/53gczb#published_content', function() {
-    var orig = document.getElementById("note").innerHTML;
-    document.getElementById("note").innerHTML = orig.replace('<p>Public</p>', '').replace('<div class="published-top"><span class="logo"><a href="/" title="Get Simplenote">Published with Simplenote</a></span></div></div><!-- .published-wrap -->', '');
-});
-</script>
-<p><em><a class="gray" href="../other/notes">Continue reading...</a></em></p>
-</div>
 <div id="article">
 <h1 id="nethack"><a class="article-title" href="../other/nethack">Nethack</h1></a>
 <p>A clever and brutal roguelike game. Try it from your terminal with this simple command:</p>
