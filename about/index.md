@@ -3,7 +3,7 @@ About
 
 Hi! My name is Sean, and I'm a first-year grad student at MIT's department of Nuclear Science and Engineering. I'm excited about research in nuclear fusion, data science, and aerospace engineering. As an undergrad at Columbia University, I studied Applied Physics with a minor in Computer Science.
 
-<center><a class="button" href="http://engineering.columbia.edu/sean-ballinger"><i class="fa fa-user"></i> Bio</a> <a class="button" href="Ballinger_CV.pdf"><i class="fa fa-file-text-o"></i> Resume</a>  <a class="button" href="https://github.com/sballin"><i class="fa fa-github fa-lg"></i> GitHub</a> <a class="button" href="mailto:sballin@mit.edu"><i class="fa fa-envelope"></i> Email</a></center>
+<center><a class="button" href="http://engineering.columbia.edu/sean-ballinger"><i class="fa fa-user"></i> Bio</a> <a class="button" href="Ballinger_CV.pdf"><i class="fa fa-file-text"></i> Resume</a>  <a class="button" href="https://github.com/sballin"><i class="fa fa-github fa-lg"></i> GitHub</a> <a class="button" href="mailto:sballin@mit.edu"><i class="fa fa-envelope"></i> Email</a></center>
 
 This website is a repository for cool stuff and projects I'm working on. I made it a few years ago to get better with Python and CSS. Its pages are generated from Markdown files.
 

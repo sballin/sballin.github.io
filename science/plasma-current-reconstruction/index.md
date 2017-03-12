@@ -1,6 +1,6 @@
 <!-- {"full_title": "Plasma current reconstruction"} -->
 
-# Current reconstruction in tokamak plasmas <a href="https://github.com/sballin/filament"><i class="fa fa-github"></i></a>
+# Plasma current reconstruction <a href="https://github.com/sballin/filament"><i class="fa fa-github"></i></a>
 
 Tokamaks are donut-shaped containers for hydrogen plasmas that we heat to ludicrous temperatures so that charged particles overcome their mutual repulsion and fuse, releasing energy that could be used to turn a steam turbine and power the lights in your house. To keep the plasma at such enormous temperatures and to protect the Tokamak's interior, the plasma is suspended in midair using magnetic fields. Tokamaks are surrounded by electromagnetic coils that generate powerful magnetic fields, but they also rely on an electric current going through the plasma itself to create the perfect confining magnetic field. This plasma current is induced by a transformer coil at the center of the torus:
 

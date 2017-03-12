@@ -11,10 +11,12 @@ import datetime
 mathJax = """<script type="text/x-mathjax-config">
 MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
 </script>
-<script src="{{top-path}}/MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>"""
+<script src="{{top-path}}/MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
+"""
 highlightjs = """<link rel="stylesheet" href="{{top-path}}/github.min.css">
 <script src="{{top-path}}/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>"""
+<script>hljs.initHighlightingOnLoad();</script>
+"""
 
 class Article:
     def __init__(self, path):
@@ -148,7 +150,7 @@ def prep_latex(text):
 
 
 def add_scripts(body, source):
-    script_mark = '{{scripts}}'
+    script_mark = '{{scripts}}\n'
     if '$$' in body or '\\(' in body or '\begin{align}' in body:
         source = source.replace(script_mark, mathJax + script_mark)
     if '<code>' in body:
@@ -164,15 +166,30 @@ def wrap_in_template(body, template):
 def add_sidebar(source, path, tree):
     cat_placeholder = '{{categories}}'
     up = top(path)
-    category = path.split('/', 1)[0]
+    split = path.split('/', 1)
+    category = split[0]
     for cat in tree.keys():
-        if cat != category or not tree[category]:
+        # If category other than the current one
+        if cat != category:
             source = source.replace(cat_placeholder, '<div class="category"><a class="category-name" href="%s/%s">%s</a></div>\n%s' % (up, cat, cat, cat_placeholder))
+        # If current category without articles
+        elif not tree[category]:
+            source = source.replace(cat_placeholder, '<div class="category"><a class="category-name current-item" href="%s/%s">%s</a></div>\n%s' % (up, cat, cat, cat_placeholder))
+        # If current category with articles
         else:
-            source = source.replace(cat_placeholder, '<div class="category">\n<a class="category-name" href="%s/%s">%s</a>\n<div class="category-article-list">\n%s' %
-                                    (up, cat, cat, cat_placeholder))
+            if len(split)==1:
+                source = source.replace(cat_placeholder, '<div class="category">\n<a class="category-name current-item" href="%s/%s">%s</a>\n<div class="category-article-list">\n%s' %
+                                        (up, cat, cat, cat_placeholder))
+            else:
+                source = source.replace(cat_placeholder, '<div class="category">\n<a class="category-name" href="%s/%s">%s</a>\n<div class="category-article-list">\n%s' %
+                                        (up, cat, cat, cat_placeholder))
+            # List articles in category
             for article in tree[category]:
-                source = source.replace(cat_placeholder, '<a class="category-article" href="%s/%s/%s">%s</a>\n%s' % (up, category, article.url_title, article.full_title, cat_placeholder))
+                classes = "category-article"
+                # Bold text for the title of the article being displayed
+                if len(split) > 1 and split[1] == article.url_title:
+                    classes += " current-item"
+                source = source.replace(cat_placeholder, '<a class="%s" href="%s/%s/%s">%s</a>\n%s' % (classes, up, category, article.url_title, article.full_title, cat_placeholder))
             source = source.replace(cat_placeholder, '</div>\n</div>' + cat_placeholder)
     source = source.replace(cat_placeholder, '')
     source = source.replace('</div>\n\n</div>', '</div>\n</div>', 1)
