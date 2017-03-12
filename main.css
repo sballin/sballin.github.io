@@ -387,6 +387,7 @@ ul {
 		width: auto;
 		margin-left: 3%;
 		margin-right: 3%;
+		border-width: 3px;
 	}
 	
 	#content {
@@ -404,7 +405,7 @@ ul {
 	}
 	
 	#logo > a {
-		color: #888;
+		color: #555;
 	}
 	
 	.category {
