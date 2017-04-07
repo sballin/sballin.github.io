@@ -4,7 +4,7 @@
 
 During the last finals week of my junior year, an interesting website came online at [density.adicu.com](http://density.adicu.com/). It tracks the number of devices connected to WiFi access points at many places on campus, and translates these numbers into a crowdedness metric (100% := full, 0% := empty). The website, however, only shows the crowdedness at the instant you access it. ρ(t) is a tool I made while procrastinating during finals week that scrapes data from the website every 15 minutes and shows it using a D3 plot. It's not a smart solution now since there's an API, but it can show you how to scrape a website.
 
-<center><a href="http://www.columbia.edu/~sbb2151/rho_t/"><img src="{{top-path}}/{{article-path}}/finals.jpg"/></a></center>
+<center><a href="./rho_t"><img src="{{top-path}}/{{article-path}}/finals.jpg"/></a></center>
 
 Above is what ρ(t) recorded during finals at Columbia. The largest fluctuations are between daytime and nighttime (although a fair number of people stay active at Butler, the 24-hour library). We can also see on most days a swell in activity after lunchtime. In my experience, finding a spot in the library was impossible just after lunch.
 

@@ -1,10 +1,10 @@
-# Papers, posters, and talks
+# Research papers, posters, and talks
 
 ## Fast Imaging of X-point Plasma Turbulence
 
 MIT Plasma Science and Fusion Center, Cambridge, MA. Summer 2015.
 
-<center><a href="https://docs.google.com/presentation/d/1L4ZWVGMUMs7WpfBKkYcwPdrfSc9M8fNJAeG0rojuWwA/pub"><img src="dpp-presentation.jpg" width="450px"/></a></center>
+<center><a href="https://docs.google.com/presentation/d/1L4ZWVGMUMs7WpfBKkYcwPdrfSc9M8fNJAeG0rojuWwA/pub"><img src="dpp-presentation.jpg"/></a></center>
 
 <a class="button" href="http://www.sciencedirect.com/science/article/pii/S2352179116300722"><i class="fa fa-file-text-o"></i> Paper</a> Nuclear Materials and Energy 2016
 
@@ -16,7 +16,7 @@ Captured footage of turbulence in the divertor region of the Alcator C-Mod tokam
 
 General Atomics, San Diego. Summer 2014.
 
-<center><a href="dpp-poster.pdf"><img src="d3dkstar.png" width="450px"/></a></center>
+<center><a href="dpp-poster.pdf"><img src="d3dkstar.png"/></a></center>
 
 <a class="button" href="dpp-poster.pdf"><i class="fa fa-map-o"></i> Poster</a> APS Division of Plasma Physics 2014 Meeting
 
@@ -26,7 +26,7 @@ Helped develop a metric to quantify a tokamak's ability to control its plasma. B
 
 Intermediate Physics Laboratory, Columbia University. Spring 2014.
 
-<center><a href="qhe-lab.pdf"><img src="magnet.jpg" width="450px"/></a></center>
+<center><a href="qhe-lab.pdf"><img src="magnet.jpg"/></a></center>
 
 <a class="button" href="qhe-lab.pdf"><i class="fa fa-file-text-o"></i> Paper</a> Lab report
 
@@ -34,7 +34,7 @@ Intermediate Physics Laboratory, Columbia University. Spring 2014.
 
 Intermediate Physics Laboratory, Columbia University. Spring 2014.
 
-<center><a href="nmr-lab.pdf"><img src="peaks.jpg" width="450px"/></a></center>
+<center><a href="nmr-lab.pdf"><img src="peaks.jpg"/></a></center>
 
 <a class="button" href="nmr-lab.pdf"><i class="fa fa-file-text-o"></i> Paper</a> Lab report
 
@@ -52,7 +52,7 @@ Ran fluid simulations of a wind tunnel test on NASA's Pleiades supercomputer usi
 
 Intro to Electrical Engineering, Columbia University. Winter 2012.
 
-<center><a href="pong.pdf"><img src="arduinos.jpg" width="450px"/></a></center>
+<center><a href="pong.pdf"><img src="arduinos.jpg"/></a></center>
 
 <a class="button" href="pong.pdf"><i class="fa fa-file-text-o"></i> Paper</a> Project report
 

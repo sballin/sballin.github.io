@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<title>Notes on plasma physics - Sean Ballinger</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- Styling -->
+<link rel="stylesheet" href="../../normalize.css">
+<link rel="stylesheet" href="../../font-awesome-4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../main.css">
+<link rel="icon" type="image/png" href="../../favicon-crown.png">
+<!-- Additional scripts -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
+</script>
+<script src="../../MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<script type="text/javascript" src="../../w.js"></script>
+</head>
+<body>
+<div id="wrap">
+<div id="side">
+<div id="logo"><a href="../..">Sean Ballinger</a></div>
+<div class="category"><a class="category-name" href="../../about">about</a></div>
+<div class="category"><a class="category-name" href="../../projects">projects</a></div>
+<div class="category">
+<a class="category-name" href="../../science">science</a>
+<div class="category-article-list">
+<a class="category-article" href="../../science/project-euler">Project Euler</a>
+<a class="category-article current-item" href="../../science/notes-plasma">Notes on plasma physics</a>
+<a class="category-article" href="../../science/plasma-current-reconstruction">Plasma current reconstruction</a>
+<a class="category-article" href="../../science/fun-derivations">Fun derivations</a>
+<a class="category-article" href="../../science/notes-odes">Notes on ODEs</a>
+<a class="category-article" href="../../science/n-spheres">N-sphere volume and surface area</a>
+</div>
+</div><div class="category"><a class="category-name" href="../../other">other</a></div>
+</div>
+<div id="content">
+<div id="article">
+<h1 id="notes-on-plasma-physics">Notes on plasma physics</h1>
+<p>Table of contents:</p>
+<div class="toc">
+<ul>
+<li><a href="#notes-on-plasma-physics">Notes on plasma physics</a><ul>
+<li><a href="#plasma-parameters">Plasma parameters</a></li>
+<li><a href="#adiabatic-invariants">Adiabatic invariants</a></li>
+<li><a href="#guiding-center-drifts">Guiding center drifts</a></li>
+<li><a href="#plasma-waves">Plasma waves</a><ul>
+<li><a href="#electron-waves-electrostatic">Electron waves (electrostatic)</a></li>
+<li><a href="#ion-waves-electrostatic">Ion waves (electrostatic)</a></li>
+<li><a href="#electron-waves-electromagnetic">Electron waves (electromagnetic)</a></li>
+<li><a href="#ion-waves-electromagnetic">Ion waves (electromagnetic)</a></li>
+</ul>
+</li>
+<li><a href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="plasma-parameters">Plasma parameters</h2>
+<p>Debye length: $$\lambda_D \equiv \sqrt{\frac{\epsilon_0KT_e}{ne^2}}$$</center>
+<p>The number of particles in a sphere with the Debye length as its radius should be $\gg1$ for collective behavior.</p>
+<p>Cyclotron frequency: $$\omega_c = \frac{|q|B}{m}$$</center>
+<p>Plasma frequency: $$\omega_p = \sqrt{\frac{n_0e^2}{\epsilon_0m}}$$</center>
+<p>Larmor radius: $$r_L \equiv \frac{v_\perp}{\omega_c} = \frac{mv_\perp}{|q|B}$$</center>
+<h2 id="adiabatic-invariants">Adiabatic invariants</h2>
+<p>Constant for slow changes to the system.</p>
+<p>First, the magnetic moment: $$\mu = \frac{mv_\perp^2}{2B}$$</center>
+<p>Second, the velocity integral along a magnetic field line: $$J = \int_a^b v_\parallel ds$$</center>
+<p>Third: $\Phi$, the total magnetic flux enclosed by a drift surface, though drifts are relatively slow so $\Phi$ is not often conserved.</p>
+<h2 id="guiding-center-drifts">Guiding center drifts</h2>
+<p>From Chen p43.</p>
+<p>General force (e.g. gravity): $$\mathbf{v}_f = \frac1q\frac{\mathbf{F}\times\mathbf{B}}{B^2}$$</center>
+<p>Electric field: $$\mathbf{v}_E = \frac{\mathbf{E}\times\mathbf{B}}{B^2}$$</center>
+<p>Grad-B drift ($\pm$ is sign of $q$): $$\mathbf{v}_{\nabla B} = \pm\frac12 v_\perp r_L \frac{\mathbf{B}\times\nabla B}{B^2}$$</center>
+<p>Curvature drift: $$\mathbf{v}_R = \frac{mv_\parallel^2}q\frac{\mathbf{R}_c\times\mathbf{B}}{R_c^2B^2}$$</center>
+<p>Polarization drift: $$\mathbf{v}_p = \pm \frac{1}{\omega_c B}\frac{d\mathbf{E}}{dt}$$</center>
+<h2 id="plasma-waves">Plasma waves</h2>
+<p>From Chen p144-145.</p>
+<p>Index of refraction: $$N = \frac{c}{v} = \frac{ck}{\omega}$$</center>
+<h3 id="electron-waves-electrostatic">Electron waves (electrostatic)</h3>
+<p>$\mathbf{B}_0 = 0$ or $\mathbf{k}\parallel\mathbf{B}_0$ (plasma oscillations): $$\omega^2=\omega_p^2+\frac32k^2v_{th}^2$$</center>
+<p>$\mathbf{k}\perp\mathbf{B}_0$ (upper hybrid oscillations): $$\omega^2=\omega_p^2+\omega_c^2=\omega_h^2$$</center>
+<h3 id="ion-waves-electrostatic">Ion waves (electrostatic)</h3>
+<p>$\mathbf{B}_0$ or $\mathbf{k}\parallel\mathbf{B}_0$ (acoustic waves): $$\omega^2 = k^2v_s^2 = k^2\frac{\gamma_eKT_e+\gamma_iKT_i}{M}$$</center>
+<p>$\mathbf{k}\perp\mathbf{B}_0$ (electrostatic ion cyclotron waves): $$\omega^2 = \Omega_c^2+k^2v_s^2$$</center>
+<p>$\mathbf{k}\perp\mathbf{B}_0$ (lower hybrid oscillations): $$\omega^2 = \omega_l^2 = \Omega_c\omega_c$$</center>
+<h3 id="electron-waves-electromagnetic">Electron waves (electromagnetic)</h3>
+<p>$\mathbf{B}_0 = 0$ (light waves): $$\omega^2 = \omega_p^2+k^2c^2$$</center>
+<p>$\mathbf{k}\perp\mathbf{B}_0$, $\mathbf{E}_1\parallel\mathbf{B}_0$ (O wave): $$\frac{c^2k^2}{\omega^2} = 1 - \frac{\omega_p^2}{\omega^2}$$</center>
+<p>$\mathbf{k}\perp\mathbf{B}_0$, $\mathbf{E}_1\perp\mathbf{B}_0$ (X wave): $$\frac{c^2k^2}{\omega^2} = 1 - \frac{\omega_p^2}{\omega^2}\frac{\omega^2-\omega_p^2}{\omega^2-\omega_h^2}$$</center>
+<p>$\mathbf{k}\parallel\mathbf{B}_0$ (R wave, whistler): $$\frac{c^2k^2}{\omega^2} = 1-\frac{\omega_p^2/\omega^2}{1-(\omega_c/\omega)}$$</center>
+<p>$\mathbf{k}\parallel\mathbf{B}_0$ (L wave): $$\frac{c^2k^2}{\omega^2} = 1-\frac{\omega_p^2/\omega^2}{1+(\omega_c/\omega)}$$</center>
+<h3 id="ion-waves-electromagnetic">Ion waves (electromagnetic)</h3>
+<p>$\mathbf{B}_0 = 0$: None</p>
+<p>$\mathbf{k}\parallel\mathbf{B}_0$ (Alfvén wave): $$\omega^2=k^2v_A^2$$</center>
+<p>$\mathbf{k}\perp\mathbf{B}_0$ (magnetosonic wave): $$\frac{\omega^2}{k^2} = c^2\frac{v_s^2+v_A^2}{c^2+v_A^2}$$</center>
+<h2 id="references">References</h2>
+<ul>
+<li><em>Introduction to Plasma Physics and Controlled Fusion</em>, by Francis F. Chen. Great book to get started and use as an overview of phenomena in plasma.</li>
+<li><em>Introduction to Plasma Theory</em>, by Dwight R. Nicholson. Very clear derivations of things that might seem to have mysterious origins in Chen.</li>
+<li><em><a href="http://www.nrl.navy.mil/ppd/content/nrl-plasma-formulary">NRL Plasma Formulary</a></em>, by J.D. Huba. Dense collection of useful formulas.</li>
+</ul>
+<style>
+.MathJax_Display {
+    margin: 0;
+}
+</style>
+<br>
+<p><em>Page created in January 2015.</em></p>
+</div>
+</div>
+</div>
+<div id="footer"></div>
+</body
+</html>
