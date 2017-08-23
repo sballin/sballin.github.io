@@ -1,6 +1,8 @@
-<!-- {"full_title": "Notes on plasma physics"} -->
+<!-- {"full_title": "Notes: plasma physics"} -->
 
 # Notes on plasma physics
+
+_These are my notes on the general properties of fusion-relevant plasmas. They are intended for personal use and quick reference. Some passages may be copied from sources verbatim._
 
 Table of contents:
 

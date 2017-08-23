@@ -74,16 +74,6 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <p><em><a class="gray" href="./projects/friend-graph">Continue reading...</a></em></p>
 </div>
 <div id="article">
-<h1 id="notes-on-plasma-physics"><a class="article-title" href="./science/notes-plasma">Notes on plasma physics</h1></a>
-<h2 id="plasma-parameters">Plasma parameters</h2>
-<p>Debye length: $$\lambda_D \equiv \sqrt{\frac{\epsilon_0KT_e}{ne^2}}$$</center>
-<p>The number of particles in a sphere with the Debye length as its radius should be $\gg1$ for collective behavior.</p>
-<p>Cyclotron frequency: $$\omega_c = \frac{|q|B}{m}$$</center>
-<p>Plasma frequency: $$\omega_p = \sqrt{\frac{n_0e^2}{\epsilon_0m}}$$</center>
-<p>Larmor radius: $$r_L \equiv \frac{v_\perp}{\omega_c} = \frac{mv_\perp}{|q|B}$$</center>
-<p><em><a class="gray" href="./science/notes-plasma">Continue reading...</a></em></p>
-</div>
-<div id="article">
 <h1 id="plasma-current-reconstruction"><a class="article-title" href="./science/plasma-current-reconstruction">Plasma current reconstruction </h1></a>
 <p>Tokamaks are donut-shaped containers for hydrogen plasmas that we heat to ludicrous temperatures so that charged particles overcome their mutual repulsion and fuse, releasing energy that could be used to turn a steam turbine and power the lights in your house. To keep the plasma at such enormous temperatures and to protect the Tokamak's interior, the plasma is suspended in midair using magnetic fields. Tokamaks are surrounded by electromagnetic coils that generate powerful magnetic fields, but they also rely on an electric current going through the plasma itself to create the perfect confining magnetic field. This plasma current is induced by a transformer coil at the center of the torus:</p>
 <p><center><a href="http://cswim.org/imageslibrary/tokamak_schema.gif/view"><img src="./science/plasma-current-reconstruction/tokamak.gif"/></a></center></p>
@@ -100,6 +90,23 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <p>Above is what ρ(t) recorded during finals at Columbia. The largest fluctuations are between daytime and nighttime (although a fair number of people stay active at Butler, the 24-hour library). We can also see on most days a swell in activity after lunchtime. In my experience, finding a spot in the library was impossible just after lunch.</p>
 <p>And we also see the beautiful, gradual death of finals week over three days.</p>
 <p><em><a class="gray" href="./projects/space-at-columbia">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="fun-derivations-and-proofs"><a class="article-title" href="./science/fun-derivations">Fun derivations and proofs</h1></a>
+<h2 id="the-quadratic-formula">The quadratic formula</h2>
+<p>I couldn't remember having ever derived it. Wikipedia said it was fun, so I tried:</p>
+<center>$$\begin{align}
+0 &amp;= ax^2+bx+c = x^2+\frac bax+\frac ca\\
+0 &amp;= (x+x_1)(x+x_2) = x^2+(x_1+x_2)x+x_1x_2
+\end{align}$$</center>
+<center>$$\frac ba = x_1+x_2\rightarrow x_2 = \frac ba-x_1$$</center>
+<center>$$\frac ca = x_1x_2 = x_1\left(\frac ba -x_1\right)\rightarrow 0 = x_1^2-\frac bax_1+\frac ca := (x_1+x_3)^2$$</center>
+<p>We get another quadratic equation which we say has a single solution $x_3$ (why not two?).</p>
+<center>$$-\frac ba = 2x_3 \rightarrow x_3 = -\frac b{2a}$$</center>
+<center>$$\frac ca = x_3^2 = \frac{b^2}{4a^2}\rightarrow \frac{b^2}{4a^2}-\frac ca = \left(x_1-\frac b{2a}\right)^2$$</center>
+<center>$$\pm\sqrt{\frac{b^2}{4a^2}-\frac ca} = x_1-\frac b{2a}$$</center>
+<center>$$x_{1,2} = -\frac b{2a}\pm\sqrt{\frac{b^2}{4a^2}-\frac ca} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$</center>
+<p><em><a class="gray" href="./science/fun-derivations">Continue reading...</a></em></p>
 </div>
 </div>
 </div>
