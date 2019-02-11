@@ -9,7 +9,6 @@
 <link rel="icon" type="image/png" href="{{top-path}}/favicon-crown.png">
 <!-- Additional scripts -->
 {{scripts}}
-<script type="text/javascript" src="{{top-path}}/w.js"></script>
 </head>
 <body>
 <div id="wrap">

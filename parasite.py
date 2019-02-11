@@ -130,7 +130,7 @@ class Feed:
 
 def md_to_html(text):
     # Markdown extensions 'codehilite' and 'meta' also available.
-    text = markdown.markdown(text, ['tables', 'footnotes', 'toc'])
+    text = markdown.markdown(text, extensions=['tables', 'footnotes', 'toc'])
     text = prep_latex(text)
     return text
 
