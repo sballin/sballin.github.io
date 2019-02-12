@@ -6,7 +6,11 @@
 <link rel="stylesheet" href="{{top-path}}/normalize.css">
 <link rel="stylesheet" href="{{top-path}}/font-awesome-4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{top-path}}/main.css">
-<link rel="icon" type="image/png" href="{{top-path}}/favicon-crown.png">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{top-path}}/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{top-path}}/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{top-path}}/favicon-16x16.png">
+<link rel="manifest" href="{{top-path}}/site.webmanifest">
 <!-- Additional scripts -->
 {{scripts}}
 </head>
