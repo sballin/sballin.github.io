@@ -16,6 +16,9 @@
 MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$","$$"] ]}, messageStyle: "none", "HTML-CSS": {scale: 90}});
 </script>
 <script src="./MathJax/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<link rel="stylesheet" href="./github.min.css">
+<script src="./highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
 <div id="wrap">
@@ -28,54 +31,12 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 </div>
 <div id="content">
 <div id="article">
-<h1 id="problems-from-project-euler"><a class="article-title" href="./science/project-euler">Problems from Project Euler</h1></a>
-<h2 id="langtons-ant">Langton's Ant </h2>
-<p>This is a start toward solving problem <a href="http://projecteuler.net/problem=349">349</a> from Project Euler:</p>
-<blockquote>
-<p>An ant moves on a regular grid of squares that are coloured either black or white. The ant is always oriented in one of the cardinal directions (left, right, up or down) and moves from square to adjacent square according to the following rules:</p>
-<ul>
-<li>
-<p>if it is on a black square, it flips the color of the square to white, rotates 90 degrees counterclockwise and moves forward one square.</p>
-</li>
-<li>
-<p>if it is on a white square, it flips the color of the square to black, rotates 90 degrees clockwise and moves forward one square.</p>
-</li>
-</ul>
-<p>Starting with a grid that is entirely white, how many squares are black after $10^{18}$ moves of the ant?</p>
-</blockquote>
-<p>I made a Mathematica simulation to find the point around which the motion of the ant stops being random and enters a "highway."</p>
-<p><center><img src="./science/project-euler/ant.gif" width="250px"/></center></p>
-<p>After spending a lot of time at the beginning going through seemingly random configurations, the ant reaches a configuration that makes it "repeat" the same sequence and launch into a highway.</p>
-<p><em><a class="gray" href="./science/project-euler">Continue reading...</a></em></p>
-</div>
-<div id="article">
-<h1 id="plasma-current-reconstruction"><a class="article-title" href="./science/plasma-current-reconstruction">Plasma current reconstruction </h1></a>
-<p>Tokamaks are donut-shaped containers for hydrogen plasmas that we heat to ludicrous temperatures so that charged particles overcome their mutual repulsion and fuse, releasing energy that could be used to turn a steam turbine and power the lights in your house. To keep the plasma at such enormous temperatures and to protect the Tokamak's interior, the plasma is suspended in midair using magnetic fields. Tokamaks are surrounded by electromagnetic coils that generate powerful magnetic fields, but they also rely on an electric current going through the plasma itself to create the perfect confining magnetic field. This plasma current is induced by a transformer coil at the center of the torus:</p>
-<p><center><a href="http://cswim.org/imageslibrary/tokamak_schema.gif/view"><img src="./science/plasma-current-reconstruction/tokamak.gif"/></a></center></p>
-<p>I'm working on a Python program that uses magnetic sensor measurements to reconstruct the plasma current profile on Columbia's High-beta Tokamak. </p>
-<p>It can calculate the magnetic field at any location resulting from current in a circular coil:</p>
-<center>$$B = G(r, z, r_{coil}, z_{coil})\cdot I_{coil}$$</center>
-<p>where G is a Green's function of their positions in cylindrical coordinates. For each magnetic sensor, we subtract the coil fields from the sensor's readings to get the field of the plasma current alone. Then we do the linear algebra version of $I = G^{-1}B$ to calculate the plasma current over a grid of different positions.</p>
-<p><em><a class="gray" href="./science/plasma-current-reconstruction">Continue reading...</a></em></p>
-</div>
-<div id="article">
-<h1 id="notes-on-ordinary-differential-equations"><a class="article-title" href="./science/notes-odes">Notes on ordinary differential equations</h1></a>
-<p>A cheat sheet under construction.</p>
-<h2 id="integrating-factor">Integrating factor</h2>
-<p>Any linear first-order ODE can be rearranged into the form</p>
-<center>$$y'+p(x)y=g(x)$$</center>
-<center>$$\mu(t)=e^{-\int p(t)dt}$$</center>
-<center>$$y = \frac1{\mu(t)}\left[\int_{t_0}^t\mu(s)g(s)\,\mathrm ds+c\right]$$</center>
-<p><em><a class="gray" href="./science/notes-odes">Continue reading...</a></em></p>
-</div>
-<div id="article">
-<h1 id="the-volume-and-surface-area-of-n-spheres"><a class="article-title" href="./science/n-spheres">The volume and surface area of n-spheres</h1></a>
-<p>What follows was an extra credit assignment to figure out formulas for the volume and surface area of higher-dimensional spheres. This might seem pretty abstract, but it has a cool real-world application: optimizing error-correcting codes has to do with finding the densest way to <a href="https://en.wikipedia.org/wiki/Sphere_packing">pack spheres</a> in higher dimensions.</p>
-<p><center><img src="./science/n-spheres/4-sphere.png" width="170px"/></center></p>
-<h2 id="volume-of-a-4-sphere">Volume of a 4-sphere</h2>
-<p>To find the area $v(B^2)R^2$ of a disk $x^2 + y^2 \leq R^2$, we integrate the height $y = \sqrt{R^2-x^2}$ along the diameter to find the area of the upper half. This is not trivial, but we'll save our strength for the 4-sphere. The full area of the disk is</p>
-<center>$$v(B^2)R^2 = \int_{-R}^R 2\sqrt{R^2-x^2}\,dx = \pi R^2$$</center>
-<p><em><a class="gray" href="./science/n-spheres">Continue reading...</a></em></p>
+<h1 id="spacecraft-inspection-robot"><a class="article-title" href="./projects/smir">Spacecraft inspection robot</h1></a>
+<p>As we contemplate long-term manned missions to Mars and beyond, we need a convenient way to inspect and repair the damage to spacecraft caused by micrometeorites, space debris, and radiation. I designed a robot for this purpose with a team of fellow students in the excellent Human Spaceflight class taught by former astronaut Mike Massimino. The robot is designed to be a companion for spacecraft and space habitats like the International Space Station, and can be deployed to inspect the exterior of any structure in microgravity.</p>
+<p><center><img src="./projects/smir/screen-1.png"/></center></p>
+<p>The robot is cube-shaped with thrusters at the center of each face and an omnidirectional antenna. It also has a camera at the center of each face, and their video feeds are stitched together to form an immersive view of every direction surrounding the robot. Piloting the robot is supposed to be very easy to learn, and would consist of setting a direction in the immersive view and pressing go/reverse at different speeds. Finally, one face also has precision and infrared cameras, a trace gas analyzer, and a flashlight, to closely inspect damaged areas. When the robot is not being used, it can rest and recharge in the airlock.</p>
+<p>I created a <a href="./projects/smir/simulation">simulation</a> of the robot in the ISS environment to train prospective pilots. Interestingly, it runs pretty well on iPhones (20 MB download), but collision detection is slow even on desktops.</p>
+<p><em><a class="gray" href="./projects/smir">Continue reading...</a></em></p>
 </div>
 <div id="article">
 <h1 id="tempofy-rhythm-matching-shuffle"><a class="article-title" href="./projects/tempofy">Tempofy: rhythm-matching shuffle </h1></a>
@@ -92,6 +53,22 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <p><em><a class="gray" href="./projects/stratus">Continue reading...</a></em></p>
 </div>
 <div id="article">
+<h1 id="graphing-your-facebook-network"><a class="article-title" href="./projects/friend-graph">Graphing your Facebook network </h1></a>
+<p>This is a tool to make a force-directed graph of your Facebook friend network. Each friend is represented as a node, and is connected to each of your mutual friends. Each time this page is loaded, my friends pull each other together, as though they were connected by springs, in a physical simulation that results in a final balance. Highly connected groups pull each other close and will end up the way I group my friends in my mind: clustered around schools, towns, events, and organizations. This is what my network looks like:</p>
+<p><center><img src="./projects/friend-graph/connections.png"/></center></p>
+<p><em><a class="gray" href="./projects/friend-graph">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="plasma-current-reconstruction"><a class="article-title" href="./science/plasma-current-reconstruction">Plasma current reconstruction </h1></a>
+<p>Tokamaks are donut-shaped containers for hydrogen plasmas that we heat to ludicrous temperatures so that charged particles overcome their mutual repulsion and fuse, releasing energy that could be used to turn a steam turbine and power the lights in your house. To keep the plasma at such enormous temperatures and to protect the Tokamak's interior, the plasma is suspended in midair using magnetic fields. Tokamaks are surrounded by electromagnetic coils that generate powerful magnetic fields, but they also rely on an electric current going through the plasma itself to create the perfect confining magnetic field. This plasma current is induced by a transformer coil at the center of the torus:</p>
+<p><center><a href="http://cswim.org/imageslibrary/tokamak_schema.gif/view"><img src="./science/plasma-current-reconstruction/tokamak.gif"/></a></center></p>
+<p>I'm working on a Python program that uses magnetic sensor measurements to reconstruct the plasma current profile on Columbia's High-beta Tokamak. </p>
+<p>It can calculate the magnetic field at any location resulting from current in a circular coil:</p>
+<center>$$B = G(r, z, r_{coil}, z_{coil})\cdot I_{coil}$$</center>
+<p>where G is a Green's function of their positions in cylindrical coordinates. For each magnetic sensor, we subtract the coil fields from the sensor's readings to get the field of the plasma current alone. Then we do the linear algebra version of $I = G^{-1}B$ to calculate the plasma current over a grid of different positions.</p>
+<p><em><a class="gray" href="./science/plasma-current-reconstruction">Continue reading...</a></em></p>
+</div>
+<div id="article">
 <h1 id="tracking-space-usage-at-columbia"><a class="article-title" href="./projects/space-at-columbia">Tracking space usage at Columbia </h1></a>
 <p>During the last finals week of my junior year, an interesting website came online at <a href="http://density.adicu.com/">density.adicu.com</a>. It tracks the number of devices connected to WiFi access points at many places on campus, and translates these numbers into a crowdedness metric (100% := full, 0% := empty). The website, however, only shows the crowdedness at the instant you access it. ρ(t) is a tool I made while procrastinating during finals week that scrapes data from the website every 15 minutes and shows it using a D3 plot. It's not a smart solution now since there's an API, but it can show you how to scrape a website.</p>
 <p><center><a href="./rho_t"><img src="./projects/space-at-columbia/finals.jpg"/></a></center></p>
@@ -100,12 +77,22 @@ MathJax.Hub.Config({tex2jax: { inlineMath: [ ["$", "$"] ], displayMath: [ ["$$",
 <p><em><a class="gray" href="./projects/space-at-columbia">Continue reading...</a></em></p>
 </div>
 <div id="article">
-<h1 id="spacecraft-inspection-robot"><a class="article-title" href="./projects/smir">Spacecraft inspection robot</h1></a>
-<p>As we contemplate long-term manned missions to Mars and beyond, we need a convenient way to inspect and repair the damage to spacecraft caused by micrometeorites, space debris, and radiation. I designed a robot for this purpose with a team of fellow students in the excellent Human Spaceflight class taught by former astronaut Mike Massimino. The robot is designed to be a companion for spacecraft and space habitats like the International Space Station, and can be deployed to inspect the exterior of any structure in microgravity.</p>
-<p><center><img src="./projects/smir/screen-1.png"/></center></p>
-<p>The robot is cube-shaped with thrusters at the center of each face and an omnidirectional antenna. It also has a camera at the center of each face, and their video feeds are stitched together to form an immersive view of every direction surrounding the robot. Piloting the robot is supposed to be very easy to learn, and would consist of setting a direction in the immersive view and pressing go/reverse at different speeds. Finally, one face also has precision and infrared cameras, a trace gas analyzer, and a flashlight, to closely inspect damaged areas. When the robot is not being used, it can rest and recharge in the airlock.</p>
-<p>I created a <a href="./projects/smir/simulation">simulation</a> of the robot in the ISS environment to train prospective pilots. Interestingly, it runs pretty well on iPhones (20 MB download), but collision detection is slow even on desktops.</p>
-<p><em><a class="gray" href="./projects/smir">Continue reading...</a></em></p>
+<h1 id="nethack"><a class="article-title" href="./other/nethack">Nethack</h1></a>
+<p>A clever and brutal roguelike game. Try it from your terminal with this simple command:</p>
+<pre><code>$ telnet nethack.alt.org
+</code></pre>
+<p>This is me beating it for the first and as of yet only time:</p>
+<p><center><img alt="finally" src="./other/nethack/ascension.png" /></center></p>
+<p><em><a class="gray" href="./other/nethack">Continue reading...</a></em></p>
+</div>
+<div id="article">
+<h1 id="the-volume-and-surface-area-of-n-spheres"><a class="article-title" href="./science/n-spheres">The volume and surface area of n-spheres</h1></a>
+<p>What follows was an extra credit assignment to figure out formulas for the volume and surface area of higher-dimensional spheres. This might seem pretty abstract, but it has a cool real-world application: optimizing error-correcting codes has to do with finding the densest way to <a href="https://en.wikipedia.org/wiki/Sphere_packing">pack spheres</a> in higher dimensions.</p>
+<p><center><img src="./science/n-spheres/4-sphere.png" width="170px"/></center></p>
+<h2 id="volume-of-a-4-sphere">Volume of a 4-sphere</h2>
+<p>To find the area $v(B^2)R^2$ of a disk $x^2 + y^2 \leq R^2$, we integrate the height $y = \sqrt{R^2-x^2}$ along the diameter to find the area of the upper half. This is not trivial, but we'll save our strength for the 4-sphere. The full area of the disk is</p>
+<center>$$v(B^2)R^2 = \int_{-R}^R 2\sqrt{R^2-x^2}\,dx = \pi R^2$$</center>
+<p><em><a class="gray" href="./science/n-spheres">Continue reading...</a></em></p>
 </div>
 </div>
 </div>
